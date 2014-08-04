@@ -53,7 +53,7 @@
                                     <input type="hidden" name="language" value="{{ lang.0 }}" />
                                 </form>
                             </li>
-                        {% endfor %}    
+                        {% endfor %}
                     </ul>
                 </li>
 
@@ -71,6 +71,20 @@
           <ul class="nav nav-sidebar">
             <!-- <li class="dropdown&#45;header">{% trans "General" %}</li> -->
             <li id="polyads-menu-home"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "Home" %}</a></li>
+          </ul>
+
+          <ul class="nav nav-sidebar">
+            <li class="dropdown&#45;header">{% trans "Logged users" %}</li>
+            <li id="polyads-menu-browse"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "Browse" %}</a></li>
+            <li id="polyads-menu-newad"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "New ad" %}</a></li>
+            <li id="polyads-menu-myads"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "My ads" %}</a></li>
+            <li id="polyads-menu-notifications"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "Notifications" %}</a></li>
+          </ul>
+
+
+          <ul class="nav nav-sidebar">
+            <li class="dropdown&#45;header">{% trans "External users" %}</li> 
+            <li id="polyads-menu-newpulicad"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "New ad" %}</a></li>
           </ul>
 
         </div>
