@@ -1,0 +1,97 @@
+{% load i18n %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Maximilien Cuony">
+
+    <title>{% block title %}AGEPoly :: {% trans "Classified ads" %}{% endblock %}</title>
+
+    <link href="{% static 'polyclassifiedads/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'polyclassifiedads/style.css' %}" rel="stylesheet">
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="{% static 'polyclassifiedads/bootstrap/js/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'polyclassifiedads/bootstrap/js/bootstrap.min.js' %}"></script>
+
+</head>
+
+<body>
+
+       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'polyclassifiedads.views.home' %}"><img src="{% static 'polyclassifiedads/logo-agep.png' %}" height="40" style="margin-top: -8px;"> {% trans "AGEPoly's classified ads" %}</a>
+
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="#" onclick="return false;">{% trans "Welcome" %} {{user}}</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Language" %}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        {% for lang in LANGUAGES %}
+                            <li>
+                                <a href="#" onclick="document.setLang{{ lang.1 }}.submit();return false;">{{ lang.1 }}</a>
+                                <form name="setLang{{lang.1}}" action="{% url 'django.views.i18n.set_language' %}" method="POST">{% csrf_token %}
+                                    <input type="hidden" name="language" value="{{ lang.0 }}" />
+                                </form>
+                            </li>
+                        {% endfor %}    
+                    </ul>
+                </li>
+
+              </li>
+              <li><a href="#">{% trans "Logout" %}</a></li>
+              <li><a href="https://agepoly.ch">{% trans "Back to the AGEPoly's website" %}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <!-- <li class="dropdown&#45;header">{% trans "General" %}</li> -->
+            <li id="polyads-menu-home"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "Home" %}</a></li>
+          </ul>
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          {% block content %}
+          {% endblock %}
+        </div>
+
+        <div class="footer">
+
+            &copy; Maximilien Cuony - 2014 - <a href="http://opensource.org/licenses/BSD-2-Clause" target="_blank">BSD</a> - <a href="http://agepoly.epfl.ch">AGEPoly</a>/<a href="http://polylan.ch">PolyLAN</a> - <a href="https://github.com/PolyLAN/polyclassifiedads">{% trans "Fork me on Github!" %}</a>
+            <br />
+            Using <a href="https://www.djangoproject.com/" target="_blank">Django</a> with <a href="http://djangopony.com/" target="_blank">ponies and magic</a> and <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>.
+
+        </div>
+
+      </div>
+
+    </div>
+
+   
+</body>
+
+</html>

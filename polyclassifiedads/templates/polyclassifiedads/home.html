@@ -1,0 +1,13 @@
+{% extends "polyclassifiedads/base.html" %}
+{% load i18n %}
+
+{% block title %}{{block.super}} :: {% trans "Home" %}{% endblock %}
+
+{% block content %}
+
+    <h1 class="page-header">{% trans "Welcome on the AGEPoly's classified ads webpage !" %}</h1>
+
+
+    <script type="text/javascript">$('#polyads-menu-home').addClass('active');</script>
+
+{% endblock %}
