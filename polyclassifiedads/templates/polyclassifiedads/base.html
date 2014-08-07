@@ -16,6 +16,8 @@
 
     <link href="{% static 'polyclassifiedads/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
+    <link href="{% static 'polyclassifiedads/bootstrap-datepicker/css/datepicker3.css' %}" rel="stylesheet">
+
     <link href="{% static 'polyclassifiedads/style.css' %}" rel="stylesheet">
 
     <!-- jQuery Version 1.11.0 -->
@@ -23,6 +25,10 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'polyclassifiedads/bootstrap/js/bootstrap.min.js' %}"></script>
+    
+    <script src="{% static 'polyclassifiedads/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+
+
 
 </head>
 
@@ -76,7 +82,7 @@
           <ul class="nav nav-sidebar">
             <li class="dropdown&#45;header">{% trans "Logged users" %}</li>
             <li id="polyads-menu-browse"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "Browse" %}</a></li>
-            <li id="polyads-menu-newad"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "New ad" %}</a></li>
+            <li id="polyads-menu-newad"><a href="{% url 'polyclassifiedads.views.new' %}">{% trans "New ad" %}</a></li>
             <li id="polyads-menu-myads"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "My ads" %}</a></li>
             <li id="polyads-menu-notifications"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "Notifications" %}</a></li>
           </ul>
@@ -89,6 +95,14 @@
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
           {% block content %}
           {% endblock %}
         </div>

@@ -11,8 +11,45 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from datetime import datetime, timedelta
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
+from django.contrib import messages
+
+from .models import Ad
+from .forms import AdForm
 
 
 def home(request):
 
     return render_to_response('polyclassifiedads/home.html', {}, context_instance=RequestContext(request))
+
+
+@login_required
+def edit(request, id):
+
+    try:
+        object = Ad.objects.get(pk=id, author=request.user, is_deleted=False)
+    except:
+        object = Ad()
+
+    object.author = request.user
+
+    if request.method == 'POST':  # If the form has been submitted...
+        form = AdForm(request.POST, instance=object)
+
+        if form.is_valid():  # If the form is valid
+            object = form.save()
+
+            messages.success(request, _('The ad has been saved !'))
+
+            return redirect('polyclassifiedads.views.show', id=object.pk)
+    else:
+        form = AdForm(instance=object)
+
+    date_format = form.fields['offline_date'].widget.format.replace('%Y', 'yyyy').replace('%m', 'mm').replace('%d', 'dd')
+
+    return render_to_response('polyclassifiedads/myads/edit.html', {'form': form, 'date_format': date_format}, context_instance=RequestContext(request))
+
+
+@login_required
+def show(request, id):
+
+    pass

@@ -1,0 +1,41 @@
+
+{% extends "polyclassifiedads/base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+
+{% block title %}{{block.super}} {% if form.instance.pk %}{% trans "Edition of an ad" %}{% else %}{% trans "New ad" %}{% endif %}{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">{% if form.instance.pk %}{% trans "Edition of an ad" %}{% else %}{% trans "New ad" %}{% endif %}</h2>
+
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <form method="POST">
+            {% csrf_token %}
+
+            {% bootstrap_form form %}
+
+            <div class="form-actions pull-right">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="{% if form.instance.pk %}{% url 'polyclassifiedads.views.home' %}{% else %}{% url 'polyclassifiedads.views.home' %}{% endif %}" class="btn btn-danger">{% trans "Cancel" %}</a>
+                        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> {% trans "Save" %}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">$('#polyads-menu-{% if form.instance.pk %}myads{% else %}newad{% endif %}').addClass('active');</script>
+
+<script type="text/javascript">
+
+    $('#id_offline_date, #id_online_date').datepicker({
+        format: "{{date_format}}"
+    });
+
+</script>
+{% endblock %}
