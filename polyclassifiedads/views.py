@@ -15,6 +15,7 @@ from django.contrib import messages
 
 from .models import Ad
 from .forms import AdForm
+import datetime
 
 
 def home(request):
@@ -29,7 +30,7 @@ def edit(request, id):
     try:
         object = Ad.objects.get(pk=id, author=request.user, is_deleted=False)
     except:
-        object = Ad()
+        object = Ad(offline_date=datetime.date.today() + datetime.timedelta(days=60))
 
     object.author = request.user
 
@@ -74,7 +75,16 @@ def delete(request, id):
 @login_required
 def put_offline(request, id):
 
-    pass
+    ad = get_object_or_404(Ad, pk=id, author=request.user, is_deleted=False)
+
+    if request.method == 'POST':
+
+        ad.offline_date = datetime.date.today() - datetime.timedelta(days=1)
+        ad.save()
+        messages.success(request, _('The ad has been put offline !'))
+        return redirect('polyclassifiedads.views.my_ads')
+
+    return render_to_response('polyclassifiedads/myads/put_offline.html', {'ad': ad}, context_instance=RequestContext(request))
 
 
 @login_required
