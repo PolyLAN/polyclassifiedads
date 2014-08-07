@@ -24,6 +24,7 @@ def home(request):
 
 @login_required
 def edit(request, id):
+    """Allow a logged user to edit/add an ad"""
 
     try:
         object = Ad.objects.get(pk=id, author=request.user, is_deleted=False)
@@ -53,3 +54,24 @@ def edit(request, id):
 def show(request, id):
 
     pass
+
+
+@login_required
+def delete(request, id):
+
+    pass
+
+
+@login_required
+def put_offline(request, id):
+
+    pass
+
+
+@login_required
+def my_ads(request):
+    """Display ads of the current user"""
+
+    liste = Ad.objects.filter(author=request.user, is_deleted=False)
+
+    return render_to_response('polyclassifiedads/myads/list.html', {'liste': liste}, context_instance=RequestContext(request))

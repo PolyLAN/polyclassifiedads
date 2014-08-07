@@ -1,14 +1,13 @@
-
 {% extends "polyclassifiedads/base.html" %}
 {% load i18n %}
 {% load bootstrap3 %}
 
 
-{% block title %}{{block.super}} {% if form.instance.pk %}{% trans "Edition of an ad" %}{% else %}{% trans "New ad" %}{% endif %}{% endblock %}
+{% block title %}{{block.super}} :: {% if form.instance.pk %}{% trans "Edition of an ad" %}{% else %}{% trans "New ad" %}{% endif %}{% endblock %}
 
 {% block content %}
 
-<h1 class="page-header">{% if form.instance.pk %}{% trans "Edition of an ad" %}{% else %}{% trans "New ad" %}{% endif %}</h2>
+<h1 class="page-header">{% if form.instance.pk %}{% trans "Edition of an ad" %}{% else %}{% trans "New ad" %}{% endif %}</h1>
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">

@@ -1,0 +1,49 @@
+
+{% extends "polyclassifiedads/base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+
+{% block title %}{{block.super}} :: {% trans "My ads" %}{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">{% trans "My ads" %}</h1>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>{% trans "Title" %}</th>
+            <th>{% trans "Validated ?" %}</th>
+            <th>{% trans "Online date" %}</th>
+            <th>{% trans "Offline date" %}</th>
+            <th>{% trans "Online ?" %}</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for ad in liste %}
+            <tr>
+                <td><a href="{% url 'polyclassifiedads.views.show' ad.pk %}">{{ad.title}}</a></td>
+                <td><span class="label label-{{ad.is_validated|yesno:"success,danger"}}">{{ad.is_validated|yesno}}</span></td>
+                <td>{{ad.online_date|date}}</td>
+                <td>{{ad.offline_date|date}}</td>
+                <td><span class="label label-{{ad.is_online|yesno:"success,danger"}}">{{ad.is_online|yesno}}</span></td>
+                <td>
+                    <a href="{% url 'polyclassifiedads.views.delete' ad.pk %}" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i> {% trans "Delete" %}</a>
+                    <a href="{% url 'polyclassifiedads.views.put_offline' ad.pk %}" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-minus"></i> {% trans "Put offline" %}</a>
+                    <a href="{% url 'polyclassifiedads.views.edit' ad.pk %}" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-pencil"></i> {% trans "Edit" %}</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+<script type="text/javascript">$('#polyads-menu-myads').addClass('active');</script>
+
+<script type="text/javascript">
+
+</script>
+{% endblock %}

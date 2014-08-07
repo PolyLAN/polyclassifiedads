@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 
 from django.utils.translation import ugettext_lazy as _
+import datetime
 
 
 class Ad(models.Model):
@@ -25,6 +26,15 @@ class Ad(models.Model):
     contact_phone = models.CharField(_('Contact\'s phone'), max_length=32, blank=True, null=True)
 
     tags = models.ManyToManyField('AdTag', related_name='ads')
+
+    def is_online(self):
+        if not self.is_validated:
+            return False
+
+        if self.online_date > datetime.date.today() or self.offline_date < datetime.date.today():
+            return False
+
+        return True
 
 
 class AdTag(models.Model):
