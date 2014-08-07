@@ -59,7 +59,16 @@ def show(request, id):
 @login_required
 def delete(request, id):
 
-    pass
+    ad = get_object_or_404(Ad, pk=id, author=request.user, is_deleted=False)
+
+    if request.method == 'POST':
+
+        ad.is_deleted = True
+        ad.save()
+        messages.success(request, _('The ad has been deleted !'))
+        return redirect('polyclassifiedads.views.my_ads')
+
+    return render_to_response('polyclassifiedads/myads/delete.html', {'ad': ad}, context_instance=RequestContext(request))
 
 
 @login_required

@@ -1,0 +1,32 @@
+{% extends "polyclassifiedads/base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+
+{% block title %}{{block.super}} :: {% trans "Delete ad" %}{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">{% trans "Delete ad" %}</h1>
+
+<div class="alert alert-danger">
+    {% blocktrans with t=ad.title %}
+        Are you to you want to delete the ad "{{t}}" ?<br /><br />
+
+        The ad will be deleted forever !
+    {% endblocktrans %}
+</div>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <span class="pull-right">
+        <a href="{% url 'polyclassifiedads.views.my_ads' %}" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"></i> {% trans "No - Don't delete" %}</a>
+        <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> {% trans "Yes" %}</button>
+    </span>
+
+</form>
+
+<script type="text/javascript">$('#polyads-menu-myads').addClass('active');</script>
+
+{% endblock %}
