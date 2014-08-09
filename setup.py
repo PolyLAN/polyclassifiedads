@@ -26,5 +26,7 @@ setup(
         'south',
         'django',
         'bootstrap3',
+        'markdown',
+        'bleach',
     ]
 )

@@ -31,7 +31,7 @@
                     <td><a href="{% url 'polyclassifiedads.views.show' ad.pk %}">{{ad.title}}</a></td>
                     <td>{% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}{% endif %}</i></td>
                     <td>{{ad.last_modification_date|date}}</td>
-                    <td>{{ad.content|truncatewords_html:20}}</td>
+                    <td>{{ad.content_formated|safe|truncatewords_html:5}}</td>
                     <td>
                         {% if ad.author == user or user.is_staff %}
                             <a href="{% url 'polyclassifiedads.views.delete' ad.pk %}" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i> {% trans "Delete" %}</a>

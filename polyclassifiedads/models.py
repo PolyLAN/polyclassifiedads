@@ -3,6 +3,8 @@ from django.conf import settings
 
 from django.utils.translation import ugettext_lazy as _
 import datetime
+import markdown
+import bleach
 
 
 class Ad(models.Model):
@@ -17,7 +19,7 @@ class Ad(models.Model):
     is_deleted = models.BooleanField(default=False)  # Is the ad deleted ?
 
     title = models.CharField(max_length=255)
-    content = models.TextField(_('Text of your ad'))
+    content = models.TextField(_('Text of your ad'), help_text=_('You may use markdown to format your content.'))
 
     online_date = models.DateField(blank=True, null=True, help_text=_('Starting date to display the ad. Leave empty to start as soon as the ad is validataed.'))
     offline_date = models.DateField(blank=True, null=True, help_text=_('Ending date to display the ad. Maximum 60 days from today.'))
@@ -35,6 +37,10 @@ class Ad(models.Model):
             return False
 
         return True
+
+    def content_formated(self):
+        """Return the formated content"""
+        return bleach.clean(markdown.markdown(self.content, safe_mode='escape'), tags=bleach.ALLOWED_TAGS + ['p', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'img'])
 
 
 class AdTag(models.Model):

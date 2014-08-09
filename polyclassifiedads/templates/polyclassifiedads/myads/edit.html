@@ -1,6 +1,7 @@
 {% extends "polyclassifiedads/base.html" %}
 {% load i18n %}
 {% load bootstrap3 %}
+{% load staticfiles %}
 
 
 {% block title %}{{block.super}} :: {% if form.instance.pk %}{% trans "Edition of an ad" %}{% else %}{% trans "New ad" %}{% endif %}{% endblock %}
@@ -28,13 +29,87 @@
     </div>
 </div>
 
+<div class="modal fade" id="markdownModal" tabindex="-1" role="dialog" aria-labelledby="markDownlabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="markDownlabel">{% trans "Markdown quick reference" %}</h4>
+      </div>
+      <div class="modal-body">
+          <h4>{% trans "Formating" %}</h4>
+            <div class="row">
+                <div class="col-md-6"><pre>**{% trans "Bold text" %}**</pre></div>
+                <div class="col-md-6"><b>{% trans "Bold text" %}</b></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><pre>_{% trans "Italics text" %}_</pre></div>
+                <div class="col-md-6"><i>{% trans "Italics text" %}</i></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><pre># {% trans "Header 1" %}
+## {% trans "Header 2" %}</pre></div>
+                <div class="col-md-6"><h3 style="margin-top: 0px;">{% trans "Header 1" %}</h3><h4>{% trans "Header 2" %}</h4></div>
+            </div>
+
+
+          <h4>{% trans "Links" %}</h4>
+            <div class="row">
+                <div class="col-md-6"><pre>[{% trans "Text of the link" %}](http://url)</pre></div>
+                <div class="col-md-5"><a href="http://url" onclick="return false;">{% trans "Text of the link" %}</a></div>
+            </div>
+
+          <h4>{% trans "Lists" %}</h4>
+            <div class="row">
+                <div class="col-md-6"><pre>* {% trans "Item" %}
+* {% trans "Item" %}
+ * {% trans "Item" %}</pre></div>
+                    <div class="col-md-6"><ul><li>{% trans "Item" %}</li><li>{% trans "Item" %}<ul><li>{% trans "Item" %}</li></ul></li></ul></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><pre>1. {% trans "Item" %}
+2. {% trans "Item" %}</pre></div>
+                    <div class="col-md-6"><ol><li>{% trans "Item" %}</li><li>{% trans "Item" %}</li></ol></div>
+            </div>
+
+          <h4>{% trans "Links" %}</h4>
+            <div class="row">
+                <div class="col-md-6"><pre>[Text of the link](http://url)</pre></div>
+                <div class="col-md-6"><a href="http://url" onclick="return false;">Text of the link</a></div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">$('#polyads-menu-{% if form.instance.pk %}myads{% else %}newad{% endif %}').addClass('active');</script>
+
+<script src="{% static 'polyclassifiedads/epiceditor/js/epiceditor.min.js' %}"></script>
 
 <script type="text/javascript">
 
     $('#id_offline_date, #id_online_date').datepicker({
         format: "{{date_format}}"
     });
+
+    $('#id_content').before('<div class="form-control" style="padding: 1px; height: inherit;"><div id="epiceditor"></div></div>');
+    $('#id_content').hide();
+
+    $('#id_content').parent().find('.help-block').append('<a href="#" data-toggle="modal" data-target="#markdownModal" class="btn btn-xs btn-default">{% trans "Quick reference" %}</a>');
+
+    var editor = new EpicEditor({
+        textarea: 'id_content',
+        clientSideStorage: false,
+        basePath: '../../../..',
+        theme: {
+            base: '{% static 'polyclassifiedads/epiceditor/themes/base/epiceditor.css' %}',
+            preview: '{% static 'polyclassifiedads/epiceditor/themes/preview/github.css' %}',
+            editor: '{% static 'polyclassifiedads/epiceditor/themes/editor/epic-light.css' %}'
+        },
+    }).load();
 
 </script>
 {% endblock %}
