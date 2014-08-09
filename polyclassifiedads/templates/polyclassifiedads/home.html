@@ -23,7 +23,7 @@
         <div class="col-lg-4">
             <h2>{% trans "I'm a student" %}</h2>
             <p>{% trans "Click one of the button bellow to begin to use the site ! If you're not already logged in, you will be redirected to tequila to identify you "%}</p>
-            <p><a class="btn btn-primary" href="#" role="button"><i class="glyphicon glyphicon-search"></i> {% trans "Browse ads" %}</a> <a class="btn btn-success" href="{% url 'polyclassifiedads.views.new' %}" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Submit an ad" %}</a></p>
+            <p><a class="btn btn-primary" href="{% url 'polyclassifiedads.views.browse' %}" role="button"><i class="glyphicon glyphicon-search"></i> {% trans "Browse ads" %}</a> <a class="btn btn-success" href="{% url 'polyclassifiedads.views.new' %}" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Submit an ad" %}</a></p>
         </div>
         <div class="col-lg-4">
             <h2>{% trans "I'm not a student" %}</h2>

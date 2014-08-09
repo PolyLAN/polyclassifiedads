@@ -8,7 +8,6 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.conf import settings
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from datetime import datetime, timedelta
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.contrib import messages
@@ -21,6 +20,30 @@ import datetime
 def home(request):
 
     return render_to_response('polyclassifiedads/home.html', {}, context_instance=RequestContext(request))
+
+
+@login_required
+def browse(request):
+
+    now = datetime.date.today()
+
+    liste = Ad.objects.filter(is_validated=True, is_deleted=False, online_date__lte=now, offline_date__gte=now).order_by('-last_modification_date')
+
+    paginator = Paginator(liste, 50)
+
+    # Make sure page request is an int. If not, deliver first page.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # If page request (9999) is out of range, deliver last page of results.
+    try:
+        liste = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        liste = paginator.page(paginator.num_pages)
+
+    return render_to_response('polyclassifiedads/browse.html', {'liste': liste}, context_instance=RequestContext(request))
 
 
 @login_required
