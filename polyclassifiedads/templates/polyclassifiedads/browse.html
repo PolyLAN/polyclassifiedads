@@ -9,80 +9,80 @@
 <h1 class="page-header">{% trans "Browse ads" %}</h1>
 
 
-{% if not liste %}
-    <div class="alert alert-warning">
-        {% trans "No ads yet !" %}
-    </div>
-{% else %}
-    <div class="row">
-        <div class="col-md-9">
-            <table class="table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>{% trans "Title" %}</th>
-                        <th>{% trans "Content" %}</th>
-                        <th>{% trans "Tags" %}</th>
-                        <th>{% trans "Author" %}</th>
-                        <th>{% trans "Last modification" %}</th>
-                        <th></th>
-                    </tr>
-                </thead>
 
-                <tbody>
-                    {% for ad in liste %}
-                        <tr>
-                            <td><a href="{% url 'polyclassifiedads.views.show' ad.pk %}">{{ad.title}}</a></td>
-                            <td>{{ad.content_formated|safe|truncatewords_html:10}} <a href="{% url 'polyclassifiedads.views.show' ad.pk %}" class="btn btn-xs btn-info pull-right"><i class="glyphicon glyphicon-folder-open"></i> {% trans "More" %}</a></td>
-                            <td>{% for t in ad.tags_for_list %}<a href="?tag={{t.tag}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a> {% endfor %}</td>
-                            <td>{% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}{% endif %}</i></td>
-                            <td>{{ad.last_modification_date|date}}</td>
-                            <td>
-                                {% if ad.author == user or user.is_staff %}
-                                    <a href="{% url 'polyclassifiedads.views.delete' ad.pk %}" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i> {% trans "Delete" %}</a>
-                                    <a href="{% url 'polyclassifiedads.views.put_offline' ad.pk %}" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-minus"></i> {% trans "Put offline" %}</a>
-                                    <a href="{% url 'polyclassifiedads.views.edit' ad.pk %}" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-pencil"></i> {% trans "Edit" %}</a>
-                                {% endif %}
-
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-
-            </table>
-        </div>
-        <div class="col-md-3">
-
-            <h3>{% trans "Tags" %}</h3>
-
-            {% if tag %}<a href="?" class="btn btn-primary btn-xs pull-right">{% trans "Clear filter" %}</a>{% endif %}
-
-            {% for t in tags %}
-                <a href="?tag={{t.0.tag}}" class="label label-{% if t.0.tag == tag %}success{% else %}default{% endif %}" style="display: inline-block; font-size: {{t.1}}%;"><i class="glyphicon glyphicon-tag"></i> {{t.0.tag}}</a>
-            {% endfor %}
-
-
-        </div>
-    </div>
-
-    <ul class="pager">
-        {% if liste.has_previous %}
-            <li class="previous"><a href="?page={{liste.previous_page_number}}{% if tag %}&tag={{tag}}{% endif %}">&larr; {% trans "Newer" %}</a></li>
+<div class="row">
+    <div class="col-md-9">
+        {% if not liste %}
+            <div class="alert alert-warning">
+                {% trans "No ads for your search !" %}
+            </div>
         {% else %}
-            <li class="previous disabled"><a href="#">&larr; {% trans "Newer" %}</a></li>
+
+            <div class="row">
+
+                {% for ad in liste %}
+                    <div class="col-sm-3 col-md-3">
+                        <div class="thumbnail">
+                        <div class="caption">
+                            <h3 style="margin-top: 0px;">
+                                {{ad.title}}
+                                <small>{% trans "By" %} {% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}</i>{% endif %}</small>
+                            </h3>
+
+                            {{ad.content_formated|safe|truncatewords_html:10}}
+                            <a href="{% url 'polyclassifiedads.views.show' ad.pk %}" style="margin-bottom: 2px;" class="btn btn-info btn-xs pull-right"><i class="glyphicon glyphicon-folder-open"></i> {% trans "More" %}</a>
+                            <hr style="clear: both; margin-bottom: 0px;"/>
+                            {% for t in ad.tags_for_list %}<a href="?tag={{t.tag}}&q={{q}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a> {% endfor %}
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <ul class="pager">
+                {% if liste.has_previous %}
+                <li class="previous"><a href="?page={{liste.previous_page_number}}{% if tag %}&tag={{tag}}{% endif %}&q={{q}}">&larr; {% trans "Newer" %}</a></li>
+                {% else %}
+                    <li class="previous disabled"><a href="#">&larr; {% trans "Newer" %}</a></li>
+                {% endif %}
+
+                <li>{% blocktrans with n=liste.number p=liste.paginator.num_pages %}Page {{n}} of {{p}}{% endblocktrans %}</li>
+
+                {% if liste.has_next %}
+                    <li class="next"><a href="?page={{liste.next_page_number}}{% if tag %}&tag={{tag}}{% endif %}&q={{q}}">{% trans "Older" %} &rarr;</a></li>
+                {% else %}
+                    <li class="next disabled"><a href="#">{% trans "Older" %} &rarr;</a></li>
+                {% endif %}
+
+            </ul>
         {% endif %}
 
-        <li>{% blocktrans with n=liste.number p=liste.paginator.num_pages %}Page {{n}} of {{p}}{% endblocktrans %}</li>
+    </div>
+    <div class="col-md-3">
 
-        {% if liste.has_next %}
-            <li class="next"><a href="?page={{liste.next_page_number}}{% if tag %}&tag={{tag}}{% endif %}">{% trans "Older" %} &rarr;</a></li>
-        {% else %}
-            <li class="next disabled"><a href="#">{% trans "Older" %} &rarr;</a></li>
-        {% endif %}
+        <h3>{% trans "Filters" %}</h3>
 
-    </ul>
+        <form action="" method="GET">
+            <input type="hidden" name="tag" value="{{tag}}">
+            <div class="input-group">
+                <input class="form-control" type="text" name="q" value="{{q}}" placeholder="{% trans "Search in ads" %}">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+            </div>
+
+            <button type="submit" class="btn btn-info btn-xs pull-right" style="margin-top: 4px;"><i class="glyphicon glyphicon-search"></i> {% trans "Search" %}</button>
+            {% if tag or q %}<a href="?" class="btn btn-primary btn-xs pull-right" style="margin-top: 4px; margin-right: 4px;"><i class="glyphicon glyphicon-remove"></i> {% trans "Clear filter" %}</a>{% endif %}
+        </form>
+
+        <hr style="clear: both; margin-bottom: 4px; visibility: hidden;"/>
+
+        {% for t in tags %}
+            <a href="?tag={{t.0.tag}}&q={{q}}" class="label label-{% if t.0.tag == tag %}success{% else %}default{% endif %}" style="display: inline-block; font-size: {{t.1}}%;"><i class="glyphicon glyphicon-tag"></i> {{t.0.tag}}</a>
+        {% endfor %}
 
 
-{% endif %}
+    </div>
+</div>
+
 
 <a class="btn btn-success pull-right" href="{% url 'polyclassifiedads.views.new' %}" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Submit an ad" %}</a>
 

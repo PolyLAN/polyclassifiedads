@@ -12,12 +12,15 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.contrib import messages
+from django.db.models import Q
 
-from .models import Ad, AdTag
-from .forms import AdForm
+
 import datetime
 import json
 from math import log10
+
+from .models import Ad, AdTag
+from .forms import AdForm
 
 
 def home(request):
@@ -29,6 +32,7 @@ def home(request):
 def browse(request):
 
     tag = request.GET.get('tag', '')
+    q = request.GET.get('q', '')
 
     now = datetime.date.today()
 
@@ -36,6 +40,8 @@ def browse(request):
 
     if tag:
         liste = liste.filter(tags__tag=tag)
+    if q:
+        liste = liste.filter(Q(title__icontains=q) | Q(content__icontains=q) | Q(contact_email__icontains=q))
 
     paginator = Paginator(liste, 50)
 
@@ -67,7 +73,7 @@ def browse(request):
 
     tags = map(lambda t: (t, int((log10(t.count) / log10(total)) * (max_size - min_size) + min_size)), tags)
 
-    return render_to_response('polyclassifiedads/browse.html', {'liste': liste, 'tag': tag, 'tags': tags}, context_instance=RequestContext(request))
+    return render_to_response('polyclassifiedads/browse.html', {'liste': liste, 'tag': tag, 'tags': tags, 'q': q}, context_instance=RequestContext(request))
 
 
 @login_required
