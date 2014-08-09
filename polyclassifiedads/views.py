@@ -16,6 +16,7 @@ from .models import Ad, AdTag
 from .forms import AdForm
 import datetime
 import json
+from math import log10
 
 
 def home(request):
@@ -26,9 +27,14 @@ def home(request):
 @login_required
 def browse(request):
 
+    tag = request.GET.get('tag', '')
+
     now = datetime.date.today()
 
     liste = Ad.objects.filter(is_validated=True, is_deleted=False, online_date__lte=now, offline_date__gte=now).order_by('-last_modification_date')
+
+    if tag:
+        liste = liste.filter(tags__tag=tag)
 
     paginator = Paginator(liste, 50)
 
@@ -44,7 +50,23 @@ def browse(request):
     except (EmptyPage, InvalidPage):
         liste = paginator.page(paginator.num_pages)
 
-    return render_to_response('polyclassifiedads/browse.html', {'liste': liste}, context_instance=RequestContext(request))
+    # Tags
+    min_size = 50
+    max_size = 150
+
+    tags = AdTag.objects.all()
+
+    total = 0
+
+    for t in tags:
+        t.count = t.ads.filter(is_validated=True, is_deleted=False, online_date__lte=now, offline_date__gte=now).count()
+        total += t.count
+
+    tags = filter(lambda t: t.count, tags)
+
+    tags = map(lambda t: (t, int((log10(t.count) / log10(total)) * (max_size - min_size) + min_size)), tags)
+
+    return render_to_response('polyclassifiedads/browse.html', {'liste': liste, 'tag': tag, 'tags': tags}, context_instance=RequestContext(request))
 
 
 @login_required

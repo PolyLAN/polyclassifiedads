@@ -42,6 +42,9 @@ class Ad(models.Model):
         """Return the formated content"""
         return bleach.clean(markdown.markdown(self.content, safe_mode='escape'), tags=bleach.ALLOWED_TAGS + ['p', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'img'])
 
+    def tags_for_list(self):
+        return self.tags.all()[:10]
+
 
 class AdTag(models.Model):
 
