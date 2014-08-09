@@ -17,6 +17,11 @@
 
             {% bootstrap_form form %}
 
+            <div class="form-group">
+                <label class="control-label" for="tags">{% trans "Tags" %}</label>
+                <input class="form-control" id="tags" name="tags" placeholder="{% trans "Tags" %}" value="{{tags}}" type="hidden" />
+            </div>
+
             <div class="form-actions pull-right">
                 <div class="row">
                     <div class="col-md-12">
@@ -89,6 +94,11 @@
 
 <script src="{% static 'polyclassifiedads/epiceditor/js/epiceditor.min.js' %}"></script>
 
+<script src="{% static 'polyclassifiedads/select2/select2.min.js' %}"></script>
+<link href="{% static 'polyclassifiedads/select2/select2.css' %}" rel="stylesheet">
+<link href="{% static 'polyclassifiedads/select2/select2-bootstrap.css' %}" rel="stylesheet">
+
+
 <script type="text/javascript">
 
     $('#id_offline_date, #id_online_date').datepicker({
@@ -110,6 +120,49 @@
             editor: '{% static 'polyclassifiedads/epiceditor/themes/editor/epic-light.css' %}'
         },
     }).load();
+
+
+    $('#tags').select2({
+        tags: true,
+        tokenSeparators: [",", " "],
+        createSearchChoice: function(term, data) {
+            if ($(data).filter(function() {
+                return this.text.localeCompare(term) === 0;
+            }).length === 0) {
+                return {
+                    id: term,
+                    text: term
+                };
+            }
+        },
+        multiple: true,
+        ajax: {
+            url: '{% url 'polyclassifiedads.views.search_in_tags' %}',
+            dataType: "json",
+            data: function(term, page) {
+                return {
+                    q: term
+                };
+            },
+            results: function(data, page) {
+                return {
+                    results: data
+                };
+            }
+        },
+        initSelection: function (element, callback) {
+
+            var ids = $(element).val();
+
+            var data = new Array();
+
+            $(ids.split(',')).each(function (_, e) {
+                data.push({id: e, text: e});
+            });
+
+            callback(data);
+        }
+    });
 
 </script>
 {% endblock %}

@@ -13,4 +13,6 @@ urlpatterns = patterns('polyclassifiedads.views',
     url(r'^myads/(?P<id>[0-9]*)/delete$', 'delete'),
     url(r'^myads/(?P<id>[0-9]*)/put_offline$', 'put_offline'),
 
+    url(r'^search_in_tags$', 'search_in_tags'),
+
 )

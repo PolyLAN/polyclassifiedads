@@ -12,9 +12,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 
-from .models import Ad
+from .models import Ad, AdTag
 from .forms import AdForm
 import datetime
+import json
 
 
 def home(request):
@@ -60,8 +61,17 @@ def edit(request, id):
     if request.method == 'POST':  # If the form has been submitted...
         form = AdForm(request.POST, instance=object)
 
+        tags = request.POST.get('tags')
+
         if form.is_valid():  # If the form is valid
             object = form.save()
+
+            object.tags.clear()
+
+            for t in tags.split(','):
+                if t.strip():
+                    tag, __ = AdTag.objects.get_or_create(tag=t.strip())
+                    object.tags.add(tag)
 
             messages.success(request, _('The ad has been saved !'))
 
@@ -69,9 +79,11 @@ def edit(request, id):
     else:
         form = AdForm(instance=object)
 
+        tags = ','.join([tag.tag for tag in object.tags.all()]) if object.pk else ''
+
     date_format = form.fields['offline_date'].widget.format.replace('%Y', 'yyyy').replace('%m', 'mm').replace('%d', 'dd')
 
-    return render_to_response('polyclassifiedads/myads/edit.html', {'form': form, 'date_format': date_format}, context_instance=RequestContext(request))
+    return render_to_response('polyclassifiedads/myads/edit.html', {'form': form, 'date_format': date_format, 'tags': tags}, context_instance=RequestContext(request))
 
 
 @login_required
@@ -117,3 +129,15 @@ def my_ads(request):
     liste = Ad.objects.filter(author=request.user, is_deleted=False)
 
     return render_to_response('polyclassifiedads/myads/list.html', {'liste': liste}, context_instance=RequestContext(request))
+
+
+def search_in_tags(request):
+
+    q = request.GET.get('q')
+
+    retour = []
+
+    for tag in AdTag.objects.filter(tag__istartswith=q)[:20]:
+        retour.append({'id': tag.tag, 'text': tag.tag})
+
+    return HttpResponse(json.dumps(retour), content_type='text/json')
