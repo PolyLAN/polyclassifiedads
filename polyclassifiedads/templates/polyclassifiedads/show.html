@@ -1,0 +1,59 @@
+{% extends "polyclassifiedads/base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+
+{% block title %}{{block.super}} :: {{ad.title}}{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">{{ad.title}}</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="well">{{ad.content_formated|safe}}</div>
+    </div>
+
+    <div class="col-md-4">
+        <h4>{% trans "Contact" %}</h4>
+        <dl>
+            <dt>{% trans "Email" %}</dt>
+            <dd><a href="mailto:{{ad.contact_email}}">{{ad.contact_email}}</a></dd>
+            {% if ad.contact_phone %}
+                <dt>{% trans "Phone" %}</dt>
+                <dd>{{ad.contact_phone}}</dd>
+            {% endif %}
+        </dl>
+        <h4>{% trans "Metadata" %}</h4>
+        <dl>
+             <dt>{% trans "Author" %}</dt>
+             <dd>{% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}</i>{% endif %}</dd>
+             <dt>{% trans "Last modification" %}</dt>
+             <dd>{{ad.last_modification_date}} ({{ad.last_modification_date|timesince}})</dd>
+             <dt>{% trans "Tags" %}</dt>
+             <dd>{% for t in ad.tags_for_list %}<a href="{% url 'polyclassifiedads.views.browse' %}?tag={{t.tag}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a> {% endfor %}</dd>
+             {% if ad.author == user or user.is_staff %}
+                <dt>{% trans "Online date" %}</dt>
+                <dd>{{ad.online_date|date}}</dd>
+                <dt>{% trans "Offline date" %}</dt>
+                <dd>{{ad.offline_date|date}}</dd>
+                <dt>{% trans "Validated ?" %}</dt>
+                <dd><span class="label label-{{ad.is_validated|yesno:"success,danger"}}">{{ad.is_validated|yesno}}</span></dd>
+                <dt>{% trans "Online ?" %}</dt>
+                <dd><span class="label label-{{ad.is_validated|yesno:"success,danger"}}">{{ad.is_online|yesno}}</span></dd>
+             {% endif %}
+        </dl>
+        {% if ad.author == user or user.is_staff %}
+            <h4>{% trans "Actions" %}</h4>
+            <a href="{% url 'polyclassifiedads.views.delete' ad.pk %}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> {% trans "Delete" %}</a>
+            <a href="{% url 'polyclassifiedads.views.put_offline' ad.pk %}" class="btn btn-warning"><i class="glyphicon glyphicon-minus"></i> {% trans "Put offline" %}</a>
+            <a href="{% url 'polyclassifiedads.views.edit' ad.pk %}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> {% trans "Edit" %}</a>
+        {% endif %}
+
+
+    </div>
+</div>
+
+<script type="text/javascript">$('#polyads-menu-myads').addClass('active');</script>
+
+{% endblock %}

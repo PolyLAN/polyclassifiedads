@@ -6,6 +6,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
+from django.http import Http404
 from django.conf import settings
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.utils.translation import ugettext_lazy as _
@@ -111,7 +112,13 @@ def edit(request, id):
 @login_required
 def show(request, id):
 
-    pass
+    ad = get_object_or_404(Ad, pk=id, is_deleted=False)
+
+    if ad.author != request.user and not request.user.is_staff:
+        if not ad.is_validated or ad.online_date > datetime.date.today() or ad.offline_date < datetime.date.today():
+            raise Http404
+
+    return render_to_response('polyclassifiedads/show.html', {'ad': ad}, context_instance=RequestContext(request))
 
 
 @login_required

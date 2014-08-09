@@ -33,7 +33,7 @@
                         <tr>
                             <td><a href="{% url 'polyclassifiedads.views.show' ad.pk %}">{{ad.title}}</a></td>
                             <td>{{ad.content_formated|safe|truncatewords_html:10}} <a href="{% url 'polyclassifiedads.views.show' ad.pk %}" class="btn btn-xs btn-info pull-right"><i class="glyphicon glyphicon-folder-open"></i> {% trans "More" %}</a></td>
-                            <td>{% for t in ad.tags_for_list %}<a href="?tag={{t.tag}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a> {% endfor %}
+                            <td>{% for t in ad.tags_for_list %}<a href="?tag={{t.tag}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a> {% endfor %}</td>
                             <td>{% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}{% endif %}</i></td>
                             <td>{{ad.last_modification_date|date}}</td>
                             <td>
