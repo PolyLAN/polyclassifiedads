@@ -1,0 +1,39 @@
+{% load i18n %}{% blocktrans with name=ad.author.get_full_name title=ad.title %}
+Hi,
+
+The ad submited by {{name}} and with title "{{title}}" has been edited and has to be validated again.
+{% endblocktrans %}
+
+{% trans "Validation's page:" %} https://{{site.domain}}{% url 'polyclassifiedads.views.validate' ad.pk %}
+
+====
+
+{% trans "Ad details" %}
+
+{% trans "Title" %}
+    {{ad.title}}
+
+{% trans "Contact email" %}
+    {{ad.contact_email}}
+
+{% trans "Contact phone" %}
+    {{ad.contact_phone}}
+
+{% trans "Online date" %}
+    {{ad.online_date}}
+
+{% trans "Offline date" %}
+    {{ad.offline_date}}
+
+{% trans "Tags" %}
+    {% for t in ad.tags.all %}{{t.tag}} {% endfor %}
+
+{% trans "Content" %}
+    {{ad.content|linebreaksbr}}
+
+====
+
+{% trans "Thank you! "%}
+
+{% trans "The AGEPoly's classified ads website" %}
+

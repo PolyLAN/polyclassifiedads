@@ -10,6 +10,12 @@
 
 <h1 class="page-header">{% if form.instance.pk %}{% trans "Edition of an ad" %}{% else %}{% trans "New ad" %}{% endif %}</h1>
 
+{% if form.instance.is_validated %}
+    <div class="alert alert-danger">
+        {% trans "Be carefull ! This has is already validated by our staff. If you save it, the ad will be put offline, waiting for revalidation !" %}
+    </div>
+{% endif %}
+
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
         <form method="POST">

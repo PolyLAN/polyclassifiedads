@@ -15,4 +15,9 @@ urlpatterns = patterns('polyclassifiedads.views',
 
     url(r'^search_in_tags$', 'search_in_tags'),
 
+
+    url(r'^admin/$', 'unvalidated_list'),
+    url(r'^admin/(?P<id>[0-9]*)/validate$', 'validate'),
+    url(r'^admin/(?P<id>[0-9]*)/unvalidate$', 'unvalidate'),
+
 )

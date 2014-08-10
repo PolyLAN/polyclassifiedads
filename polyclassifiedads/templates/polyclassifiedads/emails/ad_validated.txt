@@ -1,0 +1,11 @@
+{% load i18n %}{% blocktrans with name=ad.author.first_name title=ad.title %}
+Hi {{name}},
+
+We would like you to know that your ad "{{title}}" has been validated and will
+be online at the date your requested (or now) :)
+{% endblocktrans %}
+
+{% trans "Thank you! "%}
+
+{% trans "The AGEPoly's classified ads website" %}
+

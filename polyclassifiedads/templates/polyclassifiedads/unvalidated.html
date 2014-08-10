@@ -1,0 +1,45 @@
+{% extends "polyclassifiedads/base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+
+{% block title %}{{block.super}} :: {% trans "Unvalidated ads" %}{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">{% trans "Unvalidated ads" %}</h1>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>{% trans "Title" %}</th>
+            <th>{% trans "Author" %}</th>
+            <th>{% trans "Online date" %}</th>
+            <th>{% trans "Offline date" %}</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for ad in liste %}
+            <tr>
+                <td><a href="{% url 'polyclassifiedads.views.show' ad.pk %}">{{ad.title}}</a></td>
+                <td>{% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}</i>{% endif %}</td>
+                <td>{{ad.online_date|date}}</td>
+                <td>{{ad.offline_date|date}}</td>
+                <td>
+                    <a href="{% url 'polyclassifiedads.views.delete' ad.pk %}" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i> {% trans "Delete" %}</a>
+                    <a href="{% url 'polyclassifiedads.views.validate' ad.pk %}" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-check"></i> {% trans "Validate" %}</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+<script type="text/javascript">$('#polyads-menu-admin').addClass('active');</script>
+
+<script type="text/javascript">
+
+</script>
+{% endblock %}

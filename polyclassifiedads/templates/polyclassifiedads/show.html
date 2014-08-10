@@ -9,6 +9,12 @@
 
 <h1 class="page-header">{{ad.title}}</h1>
 
+{% if not ad.is_validated %}
+    <div class="alert alert-warning">
+        {% trans "This ad is not yet visible by anothers users. Our staff will validate it as soon as possible." %}
+    </div>
+{% endif %}
+
 <div class="row">
     <div class="col-md-8">
         <div class="well">{{ad.content_formated|safe}}</div>
@@ -48,9 +54,14 @@
             <a href="{% url 'polyclassifiedads.views.delete' ad.pk %}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> {% trans "Delete" %}</a>
             <a href="{% url 'polyclassifiedads.views.put_offline' ad.pk %}" class="btn btn-warning"><i class="glyphicon glyphicon-minus"></i> {% trans "Put offline" %}</a>
             <a href="{% url 'polyclassifiedads.views.edit' ad.pk %}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> {% trans "Edit" %}</a>
+            {% if user.is_staff %}
+                {% if ad.is_validated %}
+                    <a href="{% url 'polyclassifiedads.views.unvalidate' ad.pk %}" class="btn btn-warning"><i class="glyphicon glyphicon-unchecked"></i> {% trans "Unvalidate" %}</a>
+                {% else %}
+                    <a href="{% url 'polyclassifiedads.views.validate' ad.pk %}" class="btn btn-info"><i class="glyphicon glyphicon-check"></i> {% trans "Validate" %}</a>
+                {% endif %}
+            {% endif %}
         {% endif %}
-
-
     </div>
 </div>
 
