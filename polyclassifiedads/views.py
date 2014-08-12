@@ -35,6 +35,7 @@ def home(request):
 def browse(request):
 
     tag = request.GET.get('tag', '')
+    cat = request.GET.get('cat', '')
     q = request.GET.get('q', '')
 
     now = datetime.date.today()
@@ -45,6 +46,8 @@ def browse(request):
         liste = liste.filter(tags__tag=tag)
     if q:
         liste = liste.filter(Q(title__icontains=q) | Q(content__icontains=q) | Q(contact_email__icontains=q))
+    if cat:
+        liste = liste.filter(category=cat)
 
     paginator = Paginator(liste, 50)
 
@@ -76,7 +79,7 @@ def browse(request):
 
     tags = map(lambda t: (t, int((log10(t.count) / log10(total+1)) * (max_size - min_size) + min_size)), tags)
 
-    return render_to_response('polyclassifiedads/browse.html', {'liste': liste, 'tag': tag, 'tags': tags, 'q': q}, context_instance=RequestContext(request))
+    return render_to_response('polyclassifiedads/browse.html', {'liste': liste, 'tag': tag, 'tags': tags, 'q': q, 'cat': cat, 'CATEGORY_CHOICES': Ad.CATEGORY_CHOICES}, context_instance=RequestContext(request))
 
 
 @login_required

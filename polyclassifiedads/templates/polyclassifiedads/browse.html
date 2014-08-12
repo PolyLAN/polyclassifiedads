@@ -32,7 +32,7 @@
                             {{ad.content_formated|safe|truncatewords_html:10}}
                             <a href="{% url 'polyclassifiedads.views.show' ad.pk %}" style="margin-bottom: 2px;" class="btn btn-info btn-xs pull-right"><i class="glyphicon glyphicon-folder-open"></i> {% trans "More" %}</a>
                             <hr style="clear: both; margin-bottom: 0px;"/>
-                            {% for t in ad.tags_for_list %}<a href="?tag={{t.tag}}&q={{q}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a> {% endfor %}
+                            <a href="?tag={{tag}}&q={{q}}&cat={{ad.category}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-list-alt"></i> {{ad.get_category_display}}</a> {% for t in ad.tags_for_list %}<a href="?tag={{t.tag}}&q={{q}}&cat={{cat}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a> {% endfor %}
                         </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
 
             <ul class="pager">
                 {% if liste.has_previous %}
-                <li class="previous"><a href="?page={{liste.previous_page_number}}{% if tag %}&tag={{tag}}{% endif %}&q={{q}}">&larr; {% trans "Newer" %}</a></li>
+                    <li class="previous"><a href="?page={{liste.previous_page_number}}{% if tag %}&tag={{tag}}{% endif %}&q={{q}}&cat={{cat}}">&larr; {% trans "Newer" %}</a></li>
                 {% else %}
                     <li class="previous disabled"><a href="#">&larr; {% trans "Newer" %}</a></li>
                 {% endif %}
@@ -49,7 +49,7 @@
                 <li>{% blocktrans with n=liste.number p=liste.paginator.num_pages %}Page {{n}} of {{p}}{% endblocktrans %}</li>
 
                 {% if liste.has_next %}
-                    <li class="next"><a href="?page={{liste.next_page_number}}{% if tag %}&tag={{tag}}{% endif %}&q={{q}}">{% trans "Older" %} &rarr;</a></li>
+                    <li class="next"><a href="?page={{liste.next_page_number}}{% if tag %}&tag={{tag}}{% endif %}&q={{q}}&cat={{cat}}">{% trans "Older" %} &rarr;</a></li>
                 {% else %}
                     <li class="next disabled"><a href="#">{% trans "Older" %} &rarr;</a></li>
                 {% endif %}
@@ -68,9 +68,17 @@
                 <input class="form-control" type="text" name="q" value="{{q}}" placeholder="{% trans "Search in ads" %}">
                 <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
             </div>
+            <select class="form-control" name="cat" placeholder="{% trans "Select a category" %}" style="margin-top: 4px;">
+                <optgroup label="{% trans "Select a category" %}">
+                    <option></option>
+                    {% for cid, ctext in CATEGORY_CHOICES %}
+                        <option value="{{cid}}" {% if cid == cat %}selected{% endif %}>{{ctext}}</a>
+                    {% endfor %}
+                </optgroup>
+            </select>
 
             <button type="submit" class="btn btn-info btn-xs pull-right" style="margin-top: 4px;"><i class="glyphicon glyphicon-search"></i> {% trans "Search" %}</button>
-            {% if tag or q %}<a href="?" class="btn btn-primary btn-xs pull-right" style="margin-top: 4px; margin-right: 4px;"><i class="glyphicon glyphicon-remove"></i> {% trans "Clear filter" %}</a>{% endif %}
+            {% if tag or q or cat %}<a href="?" class="btn btn-primary btn-xs pull-right" style="margin-top: 4px; margin-right: 4px;"><i class="glyphicon glyphicon-remove"></i> {% trans "Clear filter" %}</a>{% endif %}
         </form>
 
         <hr style="clear: both; margin-bottom: 4px; visibility: hidden;"/>

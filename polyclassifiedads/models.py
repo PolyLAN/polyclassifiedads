@@ -27,6 +27,15 @@ class Ad(models.Model):
     contact_email = models.EmailField(_('Contact\'s email'))
     contact_phone = models.CharField(_('Contact\'s phone'), max_length=32, blank=True, null=True)
 
+    CATEGORY_CHOICES = (
+        ('togive', _('To give away')),
+        ('torent', _('To rent')),
+        ('lookingfor', _('Looking for')),
+        ('tosell', _('To sell'))
+    )
+
+    category = models.CharField(max_length=64, choices=CATEGORY_CHOICES)
+
     tags = models.ManyToManyField('AdTag', related_name='ads')
 
     def is_online(self):
