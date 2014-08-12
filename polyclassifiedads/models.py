@@ -22,7 +22,7 @@ class Ad(models.Model):
     content = models.TextField(_('Text of your ad'), help_text=_('You may use markdown to format your content.'))
 
     online_date = models.DateField(blank=True, null=True, help_text=_('Starting date to display the ad. Leave empty to start as soon as the ad is validataed.'))
-    offline_date = models.DateField(blank=True, null=True, help_text=_('Ending date to display the ad. Maximum 60 days from today.'))
+    offline_date = models.DateField(blank=True, null=True, help_text=_('Ending date to display the ad. Maximum 30 days from today.'))
 
     contact_email = models.EmailField(_('Contact\'s email'))
     contact_phone = models.CharField(_('Contact\'s phone'), max_length=32, blank=True, null=True)

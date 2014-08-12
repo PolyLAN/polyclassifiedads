@@ -17,7 +17,7 @@ class AdForm(ModelForm):
 
         data = self.cleaned_data['offline_date']
 
-        if data and (data - datetime.timedelta(days=61)) > datetime.date.today():
-            raise ValidationError(_('Offline date is too far in the futur: Maximum 60 days !'))
+        if data and (data - datetime.timedelta(days=31)) > datetime.date.today():
+            raise ValidationError(_('Offline date is too far in the futur: Maximum 30 days !'))
 
         return data

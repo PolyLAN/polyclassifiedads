@@ -89,7 +89,7 @@ def edit(request, id):
         if not request.user.is_staff and not object.author == request.user:
             raise Http404
     except:
-        object = Ad(offline_date=datetime.date.today() + datetime.timedelta(days=60), author=request.user)
+        object = Ad(offline_date=datetime.date.today() + datetime.timedelta(days=30), author=request.user)
 
     if request.method == 'POST':  # If the form has been submitted...
         form = AdForm(request.POST, instance=object)
