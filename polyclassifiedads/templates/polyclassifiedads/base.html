@@ -84,7 +84,7 @@
             <li id="polyads-menu-browse"><a href="{% url 'polyclassifiedads.views.browse' %}">{% trans "Browse" %}</a></li>
             <li id="polyads-menu-newad"><a href="{% url 'polyclassifiedads.views.new' %}">{% trans "New ad" %}</a></li>
             <li id="polyads-menu-myads"><a href="{% url 'polyclassifiedads.views.my_ads' %}">{% trans "My ads" %}</a></li>
-            <li id="polyads-menu-notifications"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "Notifications" %}</a></li>
+            <li id="polyads-menu-notifications"><a href="{% url 'polyclassifiedads.views.notifications' %}">{% trans "Notifications" %}</a></li>
             {% if user.is_staff %}<li id="polyads-menu-admin"><a href="{% url 'polyclassifiedads.views.unvalidated_list' %}">{% trans "Ad to validate" %}</a></li>{% endif %}
           </ul>
 

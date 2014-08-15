@@ -27,6 +27,8 @@ class Ad(models.Model):
     contact_email = models.EmailField(_('Contact\'s email'))
     contact_phone = models.CharField(_('Contact\'s phone'), max_length=32, blank=True, null=True)
 
+    notifications_send = models.CharField(max_length=128, default='')  # List of type of notifications already sent
+
     CATEGORY_CHOICES = (
         ('togive', _('To give away')),
         ('torent', _('To rent')),
@@ -58,3 +60,18 @@ class Ad(models.Model):
 class AdTag(models.Model):
 
     tag = models.CharField(max_length=255)
+
+
+class AdNotification(models.Model):
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+
+    TYPE_CHOICES = (
+        ('daily', _('Daily')),
+        ('weekly', _('Weekly')),
+    )
+
+    type = models.CharField(max_length=32, choices=TYPE_CHOICES)
+
+    filter_categories = models.CharField(max_length=128)
+    filter = models.CharField(max_length=512)

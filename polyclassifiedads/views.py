@@ -19,7 +19,7 @@ import datetime
 import json
 from math import log10
 
-from .models import Ad, AdTag
+from .models import Ad, AdTag, AdNotification
 from .forms import AdForm
 from .utils import send_templated_mail
 
@@ -219,6 +219,7 @@ def validate(request, id):
 
     if request.method == 'POST':
         ad.is_validated = True
+        ad.notifications_send = ''  # If needed, resend notifications
 
         if not ad.online_date:
             ad.online_date = datetime.date.today()
@@ -247,3 +248,52 @@ def unvalidate(request, id):
 
         return redirect('polyclassifiedads.views.unvalidated_list')
     return render_to_response('polyclassifiedads/unvalidate.html', {'ad': ad}, context_instance=RequestContext(request))
+
+
+@login_required
+def notifications(request):
+
+    if request.method == 'POST':
+
+        if request.POST.get('action') == 'create':
+            AdNotification.objects.get_or_create(user=request.user, type=request.POST.get('type'))
+            messages.success(request, _('Notification activated !'))
+
+        if request.POST.get('action') == 'delete':
+            adn, __ = AdNotification.objects.get_or_create(user=request.user, type=request.POST.get('type'))
+            adn.delete()
+            messages.success(request, _('Notification desactivated !'))
+
+        if request.POST.get('action') == 'save':
+            adn, __ = AdNotification.objects.get_or_create(user=request.user, type=request.POST.get('type'))
+            adn.filter_categories = request.POST.get('categories')
+            adn.filter = request.POST.get('words')
+            adn.save()
+
+            messages.success(request, _('Filter saved !'))
+
+
+    try:
+        daily = AdNotification.objects.get(user=request.user, type='daily')
+    except AdNotification.DoesNotExist:
+        daily = None
+
+    try:
+        weekly = AdNotification.objects.get(user=request.user, type='weekly')
+    except AdNotification.DoesNotExist:
+        weekly = None
+
+    return render_to_response('polyclassifiedads/notifications.html', {'daily': daily, 'weekly': weekly, 'CATEGORY_CHOICES': Ad.CATEGORY_CHOICES}, context_instance=RequestContext(request))
+
+
+def search_in_categories(request):
+
+    q = request.GET.get('q')
+
+    retour = []
+
+    for (val, text) in Ad.CATEGORY_CHOICES:
+        if q in text:
+            retour.append({'id': val, 'text': unicode(text)})
+
+    return HttpResponse(json.dumps(retour), content_type='text/json')

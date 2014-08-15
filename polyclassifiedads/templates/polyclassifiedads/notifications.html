@@ -1,0 +1,39 @@
+{% extends "polyclassifiedads/base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+
+{% block title %}{{block.super}} :: {% trans "Notifications" %}{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">{% trans "Notifications" %}</h1>
+
+
+<script src="{% static 'polyclassifiedads/select2/select2.min.js' %}"></script>
+<link href="{% static 'polyclassifiedads/select2/select2.css' %}" rel="stylesheet">
+<link href="{% static 'polyclassifiedads/select2/select2-bootstrap.css' %}" rel="stylesheet">
+
+<script type="text/javascript">
+    var id_cat = [];
+
+    {% for val, text in CATEGORY_CHOICES %}
+        id_cat['{{val}}'] = '{{text|escapejs}}';
+    {% endfor %}
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+        {% with notification_type='daily' notification_text='Daily' notification_object=daily %}
+            {% include "polyclassifiedads/notification_block.html" %}
+        {% endwith %}
+        {% with notification_type='weekly' notification_text='Weekly' notification_object=weekly %}
+            {% include "polyclassifiedads/notification_block.html" %}
+        {% endwith %}
+    </div>
+</div>
+
+<script type="text/javascript">$('#polyads-menu-notifications').addClass('active');</script>
+
+{% endblock %}
