@@ -48,7 +48,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-              {% if user %}<li><a href="#" onclick="return false;">{% trans "Welcome" %} {{user.get_full_name}}</a></li>{% endif %}
+              {% if user.pk %}<li><a href="#" onclick="return false;">{% trans "Welcome" %} {{user.get_full_name}}</a></li>{% endif %}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Language" %}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -64,7 +64,7 @@
                 </li>
 
               </li>
-              {% if user %}<li><a href="#">{% trans "Logout" %}</a></li>{% endif %}
+              {% if user.pk %}<li><a href="#">{% trans "Logout" %}</a></li>{% endif %}
               <li><a href="https://agepoly.ch">{% trans "Back to the AGEPoly's website" %}</a></li>
           </ul>
         </div>
@@ -90,8 +90,8 @@
 
 
           <ul class="nav nav-sidebar">
-            <li class="dropdown&#45;header">{% trans "External users" %}</li> 
-            <li id="polyads-menu-newpulicad"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "New ad" %}</a></li>
+            <li class="dropdown&#45;header">{% trans "External users" %}</li>
+            <li id="polyads-menu-newpulicad"><a href="{% url 'polyclassifiedads.views.external_new' %}">{% trans "New ad" %}</a></li>
           </ul>
 
         </div>

@@ -28,7 +28,7 @@
         <div class="col-lg-4">
             <h2>{% trans "I'm not a student" %}</h2>
             <p>{% trans "The service is only for EPFL's students, and you cannot browse ads. However, if you have an ad interesting for students, you can submit it using the button bellow" %}</p>
-          <p><a class="btn btn-info" href="#" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Summit an ad without login" %}</a></p>
+            <p><a class="btn btn-info" href="{% url 'polyclassifiedads.views.external_new' %}" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Summit an ad without login" %}</a></p>
        </div>
         <div class="col-lg-4">
             <h2>{% trans "I'm looking for/proposing a job" %}</h2>

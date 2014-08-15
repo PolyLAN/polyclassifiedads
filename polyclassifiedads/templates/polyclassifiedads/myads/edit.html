@@ -31,7 +31,7 @@
             <div class="form-actions pull-right">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="{% if form.instance.pk %}{% url 'polyclassifiedads.views.home' %}{% else %}{% url 'polyclassifiedads.views.home' %}{% endif %}" class="btn btn-danger">{% trans "Cancel" %}</a>
+                        <a href="{% if form.instance.pk %}{% if secret_key %}{% url 'polyclassifiedads.views.external_show' form.instance.pk %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.show' form.instance.pk %}{% endif %}{% else %}{% url 'polyclassifiedads.views.home' %}{% endif %}" class="btn btn-danger">{% trans "Cancel" %}</a>
                         <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> {% trans "Save" %}</button>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
   </div>
 </div>
 
-<script type="text/javascript">$('#polyads-menu-{% if form.instance.pk %}myads{% else %}newad{% endif %}').addClass('active');</script>
+<script type="text/javascript">$('#polyads-menu-{% if secret_key %}external{% else %}{% if form.instance.pk %}myads{% else %}newad{% endif %}{% endif %}').addClass('active');</script>
 
 <script src="{% static 'polyclassifiedads/epiceditor/js/epiceditor.min.js' %}"></script>
 

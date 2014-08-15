@@ -19,12 +19,12 @@
     {% csrf_token %}
 
     <span class="pull-right">
-        <a href="{% url 'polyclassifiedads.views.my_ads' %}" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"></i> {% trans "No - Don't put offline" %}</a>
+        <a href="{% if secret_key %}{% url 'polyclassifiedads.views.external_show' %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.my_ads' %}{% endif %}" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"></i> {% trans "No - Don't put offline" %}</a>
         <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-ban-circle"></i> {% trans "Yes" %}</button>
     </span>
 
 </form>
 
-<script type="text/javascript">$('#polyads-menu-myads').addClass('active');</script>
+<script type="text/javascript">$('#polyads-menu-{% if secret_key %}external{% else %}myads{% endif %}').addClass('active');</script>
 
 {% endblock %}

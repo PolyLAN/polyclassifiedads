@@ -25,6 +25,8 @@ from .utils import send_templated_mail
 
 from django.contrib.sites.models import get_current_site
 
+import uuid
+
 
 def home(request):
 
@@ -84,15 +86,27 @@ def browse(request):
 
 @login_required
 def edit(request, id):
+    return _edit(request, id)
+
+
+def _edit(request, id, secret_key=None):
     """Allow a logged user to edit/add an ad"""
+
+    if not secret_key and not request.user.pk:
+        raise Http404
 
     try:
         object = Ad.objects.get(pk=id, is_deleted=False)
 
-        if not request.user.is_staff and not object.author == request.user:
+        if not request.user.is_staff and ((not secret_key and (object.author != request.user or object.secret_key)) or (secret_key and (object.secret_key != secret_key or object.author))):
             raise Http404
     except:
-        object = Ad(offline_date=datetime.date.today() + datetime.timedelta(days=30), author=request.user)
+        object = Ad(offline_date=datetime.date.today() + datetime.timedelta(days=30))
+
+        if not secret_key:
+            object.author = request.user
+        else:
+            object.secret_key = secret_key
 
     if request.method == 'POST':  # If the form has been submitted...
         form = AdForm(request.POST, instance=object)
@@ -100,6 +114,7 @@ def edit(request, id):
         tags = request.POST.get('tags')
 
         if form.is_valid():  # If the form is valid
+            was_a_new_object = not form.instance.pk
             object = form.save()
 
             object.tags.clear()
@@ -122,6 +137,17 @@ def edit(request, id):
 
                 send_templated_mail(_('AGEPoly\'s classified ads: New ad with ID %s need to be validated') % (object.id,), settings.POLYCLASSIFIEDADS_EMAIL_FROM, [settings.POLYCLASSIFIEDADS_EMAIL_MANAGERS], 'new_ad_to_validate', {'ad': object, 'site': get_current_site(request)})
 
+            if secret_key and was_a_new_object:
+                send_templated_mail(_('AGEPoly\'s classified ads: New ad (%s)') % (object.title,), settings.POLYCLASSIFIEDADS_EMAIL_FROM, [object.contact_email], 'external_ad', {'ad': object, 'site': get_current_site(request)})
+
+            if secret_key:
+                r = redirect('polyclassifiedads.views.external_show', id=object.pk)
+
+                key, val = r._headers['location']
+
+                r._headers['location'] = (key, '%s?secret_key=%s' % (val, secret_key,))  # Todo: Hackpourri
+
+                return r
             return redirect('polyclassifiedads.views.show', id=object.pk)
     else:
         form = AdForm(instance=object)
@@ -130,27 +156,41 @@ def edit(request, id):
 
     date_format = form.fields['offline_date'].widget.format.replace('%Y', 'yyyy').replace('%m', 'mm').replace('%d', 'dd')
 
-    return render_to_response('polyclassifiedads/myads/edit.html', {'form': form, 'date_format': date_format, 'tags': tags}, context_instance=RequestContext(request))
+    return render_to_response('polyclassifiedads/myads/edit.html', {'form': form, 'date_format': date_format, 'tags': tags, 'secret_key': secret_key}, context_instance=RequestContext(request))
 
 
 @login_required
 def show(request, id):
+    return _show(request, id)
+
+
+def _show(request, id, secret_key=None):
 
     ad = get_object_or_404(Ad, pk=id, is_deleted=False)
 
-    if ad.author != request.user and not request.user.is_staff:
+    if not ad.can_edit(request.user, secret_key):
         if not ad.is_validated or ad.online_date > datetime.date.today() or ad.offline_date < datetime.date.today():
             raise Http404
+        can_edit = False
 
-    return render_to_response('polyclassifiedads/show.html', {'ad': ad}, context_instance=RequestContext(request))
+        if not request.user.pk:
+            raise Http404
+    else:
+        can_edit = True
+
+    return render_to_response('polyclassifiedads/show.html', {'ad': ad, 'secret_key': secret_key, 'can_edit': can_edit, 'site': get_current_site(request)}, context_instance=RequestContext(request))
 
 
 @login_required
 def delete(request, id):
+    return _delete(request, id)
+
+
+def _delete(request, id, secret_key=None):
 
     ad = get_object_or_404(Ad, pk=id, is_deleted=False)
 
-    if not request.user.is_staff and not ad.author == request.user:
+    if not ad.can_edit(request.user, secret_key):
         raise Http404
 
     if request.method == 'POST':
@@ -158,17 +198,24 @@ def delete(request, id):
         ad.is_deleted = True
         ad.save()
         messages.success(request, _('The ad has been deleted !'))
+
+        if secret_key:
+            return redirect('polyclassifiedads.views.home')
         return redirect('polyclassifiedads.views.my_ads')
 
-    return render_to_response('polyclassifiedads/myads/delete.html', {'ad': ad}, context_instance=RequestContext(request))
+    return render_to_response('polyclassifiedads/myads/delete.html', {'ad': ad, 'secret_key': None}, context_instance=RequestContext(request))
 
 
 @login_required
 def put_offline(request, id):
+    return _put_offline(request, id)
+
+
+def _put_offline(request, id, secret_key=None):
 
     ad = get_object_or_404(Ad, pk=id, is_deleted=False)
 
-    if not request.user.is_staff and not ad.author == request.user:
+    if not ad.can_edit(request.user, secret_key):
         raise Http404
 
     if request.method == 'POST':
@@ -176,9 +223,12 @@ def put_offline(request, id):
         ad.offline_date = datetime.date.today() - datetime.timedelta(days=1)
         ad.save()
         messages.success(request, _('The ad has been put offline !'))
+
+        if secret_key:
+            return redirect('polyclassifiedads.views.home')
         return redirect('polyclassifiedads.views.my_ads')
 
-    return render_to_response('polyclassifiedads/myads/put_offline.html', {'ad': ad}, context_instance=RequestContext(request))
+    return render_to_response('polyclassifiedads/myads/put_offline.html', {'ad': ad, 'secret_key': None}, context_instance=RequestContext(request))
 
 
 @login_required
@@ -296,3 +346,36 @@ def search_in_categories(request):
             retour.append({'id': val, 'text': unicode(text)})
 
     return HttpResponse(json.dumps(retour), content_type='text/json')
+
+
+def external_edit(request, id):
+    secret_key = request.GET.get('secret_key', str(uuid.uuid4()))
+
+    return _edit(request, id, secret_key)
+
+
+def external_show(request, id):
+    secret_key = request.GET.get('secret_key')
+
+    if not secret_key:
+        raise Http404
+
+    return _show(request, id, secret_key)
+
+
+def external_delete(request, id):
+    secret_key = request.GET.get('secret_key')
+
+    if not secret_key:
+        raise Http404
+
+    return _delete(request, id, secret_key)
+
+
+def external_put_offline(request, id):
+    secret_key = request.GET.get('secret_key')
+
+    if not secret_key:
+        raise Http404
+
+    return _put_offline(request, id, secret_key)

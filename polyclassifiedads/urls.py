@@ -22,4 +22,11 @@ urlpatterns = patterns('polyclassifiedads.views',
     url(r'^admin/(?P<id>[0-9]*)/validate$', 'validate'),
     url(r'^admin/(?P<id>[0-9]*)/unvalidate$', 'unvalidate'),
 
+
+    url(r'^external/new$', 'external_edit', {'id': None}, name='polyclassifiedads.views.external_new'),
+
+    url(r'^external/(?P<id>[0-9]*)$', 'external_show'),
+    url(r'^external/(?P<id>[0-9]*)/edit$', 'external_edit'),
+    url(r'^external/(?P<id>[0-9]*)/delete$', 'external_delete'),
+    url(r'^external/(?P<id>[0-9]*)/put_offline$', 'external_put_offline'),
 )

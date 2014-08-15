@@ -1,4 +1,4 @@
-{% load i18n %}{% blocktrans with name=ad.author.first_name title=ad.title %}
+{% load i18n %}{% blocktrans with name=ad.author.first_name|default:ad.contact_email title=ad.title %}
 Hi {{name}},
 
 We would like you to know that your ad "{{title}}" has been validated and will

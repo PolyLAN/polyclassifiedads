@@ -21,3 +21,11 @@ class AdForm(ModelForm):
             raise ValidationError(_('Offline date is too far in the futur: Maximum 30 days !'))
 
         return data
+
+    def clean_contact_phone(self):
+        data = self.cleaned_data['contact_phone']
+
+        if not data and not self.instance.author:
+            raise ValidationError(_('You must set an contact phone as you\'re not logged in !'))
+
+        return data

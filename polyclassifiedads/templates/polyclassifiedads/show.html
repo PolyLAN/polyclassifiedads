@@ -15,6 +15,17 @@
     </div>
 {% endif %}
 
+{% if secret_key %}
+
+    <div class="alert alert-danger">
+        {% trans "To be able to edit this ad in the futur, please keep the following link in a safe place:" %}<br />
+        <b><a href="https://{{site.domain}}{% url 'polyclassifiedads.views.external_show' ad.pk %}?secret_key={{secret_key}}">https://{{site.domain}}{% url 'polyclassifiedads.views.external_show' ad.pk %}?secret_key={{secret_key}}</a></b><br /><br/>
+
+        <u>{% trans "Don't share this link with others persons or they will be able to edit your ad !" %}</u>
+    </div>
+
+{% endif %}
+
 <div class="row">
     <div class="col-md-8">
         <div class="well">{{ad.content_formated|safe}}</div>
@@ -42,7 +53,7 @@
                 <dt>{% trans "Tags" %}</dt>
                 <dd>{% for t in ad.tags_for_list %}<a href="{% url 'polyclassifiedads.views.browse' %}?tag={{t.tag}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a> {% endfor %}</dd>
              {% endif %}
-             {% if ad.author == user or user.is_staff %}
+             {% if can_edit %}
                 <dt>{% trans "Online date" %}</dt>
                 <dd>{{ad.online_date|date}}</dd>
                 <dt>{% trans "Offline date" %}</dt>
@@ -53,11 +64,11 @@
                 <dd><span class="label label-{{ad.is_validated|yesno:"success,danger"}}">{{ad.is_online|yesno}}</span></dd>
              {% endif %}
         </dl>
-        {% if ad.author == user or user.is_staff %}
+        {% if can_edit %}
             <h4>{% trans "Actions" %}</h4>
-            <a href="{% url 'polyclassifiedads.views.delete' ad.pk %}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> {% trans "Delete" %}</a>
-            <a href="{% url 'polyclassifiedads.views.put_offline' ad.pk %}" class="btn btn-warning"><i class="glyphicon glyphicon-minus"></i> {% trans "Put offline" %}</a>
-            <a href="{% url 'polyclassifiedads.views.edit' ad.pk %}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> {% trans "Edit" %}</a>
+            <a href="{% if secret_key %}{% url 'polyclassifiedads.views.external_delete' ad.pk %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.delete' ad.pk %}{% endif %}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> {% trans "Delete" %}</a>
+            <a href="{% if secret_key %}{% url 'polyclassifiedads.views.external_put_offline' ad.pk %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.external_put_offline' ad.pk %}{% endif %}" class="btn btn-warning"><i class="glyphicon glyphicon-minus"></i> {% trans "Put offline" %}</a>
+            <a href="{% if secret_key %}{% url 'polyclassifiedads.views.external_edit' ad.pk %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.edit' ad.pk %}{% endif %}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> {% trans "Edit" %}</a>
             {% if user.is_staff %}
                 {% if ad.is_validated %}
                     <a href="{% url 'polyclassifiedads.views.unvalidate' ad.pk %}" class="btn btn-warning"><i class="glyphicon glyphicon-unchecked"></i> {% trans "Unvalidate" %}</a>
@@ -69,6 +80,6 @@
     </div>
 </div>
 
-<script type="text/javascript">$('#polyads-menu-myads').addClass('active');</script>
+<script type="text/javascript">$('#polyads-menu-{% if secret_key %}external{% else %}myads{% endif %}').addClass('active');</script>
 
 {% endblock %}

@@ -1,0 +1,20 @@
+{% load i18n %}{% blocktrans with name=ad.contact_email %}
+Hi {{name}},
+
+
+You submited an ad to the AGEPoly's classified ads website !
+
+To be able to edit this ad in the futur, please keep the following link
+somewhere:
+
+{% endblocktrans %}
+
+https://{{site.domain}}{% url 'polyclassifiedads.views.external_show' ad.pk %}?secret_key={{ad.secret_key}}
+
+{% trans "NEVER SHARE THIS LINK WITH ANYONE !" %}
+
+
+{% trans "Thank you! "%}
+
+{% trans "The AGEPoly's classified ads website" %}
+

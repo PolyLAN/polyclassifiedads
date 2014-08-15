@@ -56,6 +56,17 @@ class Ad(models.Model):
     def tags_for_list(self):
         return self.tags.all()[:10]
 
+    def can_edit(self, user, secret_key):
+
+        if user.is_staff:
+            return True
+
+        if self.author:
+            return self.author == user
+
+        if self.secret_key:
+            return self.secret_key == secret_key
+
 
 class AdTag(models.Model):
 
