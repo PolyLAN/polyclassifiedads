@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 class AdForm(ModelForm):
     class Meta:
         model = Ad
-        exclude = ('author', 'secret_key', 'creation_date', 'last_modification_date', 'is_validated', 'is_deleted', 'tags')
+        exclude = ('author', 'secret_key', 'creation_date', 'last_modification_date', 'is_validated', 'is_deleted', 'tags', 'notifications_send')
 
     def __init__(self, *args, **kwargs):
         super(AdForm, self).__init__(*args, **kwargs)

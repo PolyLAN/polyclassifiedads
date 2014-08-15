@@ -272,7 +272,6 @@ def notifications(request):
 
             messages.success(request, _('Filter saved !'))
 
-
     try:
         daily = AdNotification.objects.get(user=request.user, type='daily')
     except AdNotification.DoesNotExist:
