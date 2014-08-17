@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-05 09:16+0200\n"
-"PO-Revision-Date: 2014-08-17 15:47+0100\n"
+"POT-Creation-Date: 2014-08-17 21:18+0200\n"
+"PO-Revision-Date: 2014-08-17 21:18+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -19,15 +19,19 @@ msgstr ""
 "X-Generator: Poedit 1.6.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: forms.py:21
+#: forms.py:23
 msgid "Offline date is too far in the futur: Maximum 30 days !"
 msgstr ""
 "La date de mise hors ligne est trop loin dans le futur: Maximum 30 jours !"
 
-#: forms.py:29
+#: forms.py:31
 msgid "You must set an contact phone as you're not logged in !"
 msgstr ""
 "Vous devez définir un téléphone de contact car vous n'êtes pas connecté !"
+
+#: forms.py:37
+msgid "Please copy the following code:"
+msgstr "Merci de recopier le code suivant:"
 
 #: models.py:22
 msgid "Text of your ad"
@@ -348,7 +352,7 @@ msgstr ""
 
 #: templates/polyclassifiedads/home.html:31
 msgid "Summit an ad without login"
-msgstr "Ajouter une annonce sans se logger"
+msgstr "Ajouter une annonce sans se connecter"
 
 #: templates/polyclassifiedads/home.html:34
 msgid "I'm looking for/proposing a job"

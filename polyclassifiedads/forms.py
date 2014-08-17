@@ -4,6 +4,8 @@ import datetime
 from .models import Ad
 from django.utils.translation import ugettext_lazy as _
 
+from captcha.fields import CaptchaField
+
 
 class AdForm(ModelForm):
     class Meta:
@@ -29,3 +31,7 @@ class AdForm(ModelForm):
             raise ValidationError(_('You must set an contact phone as you\'re not logged in !'))
 
         return data
+
+
+class AnonymousAdForm(AdForm):
+    captcha = CaptchaField(label=_('Please copy the following code:'))

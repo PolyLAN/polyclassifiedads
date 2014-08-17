@@ -28,5 +28,6 @@ setup(
         'django-bootstrap3',
         'markdown',
         'bleach',
+        'django-simple-captcha',
     ]
 )

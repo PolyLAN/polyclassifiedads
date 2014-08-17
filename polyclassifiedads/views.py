@@ -20,7 +20,7 @@ import json
 from math import log10
 
 from .models import Ad, AdTag, AdNotification
-from .forms import AdForm
+from .forms import AdForm, AnonymousAdForm
 from .utils import send_templated_mail
 
 from django.contrib.sites.models import get_current_site
@@ -86,10 +86,10 @@ def browse(request):
 
 @login_required
 def edit(request, id):
-    return _edit(request, id)
+    return _edit(request, id, AdForm)
 
 
-def _edit(request, id, secret_key=None):
+def _edit(request, id, Form, secret_key=None):
     """Allow a logged user to edit/add an ad"""
 
     if not secret_key and not request.user.pk:
@@ -109,7 +109,7 @@ def _edit(request, id, secret_key=None):
             object.secret_key = secret_key
 
     if request.method == 'POST':  # If the form has been submitted...
-        form = AdForm(request.POST, instance=object)
+        form = Form(request.POST, instance=object)
 
         tags = request.POST.get('tags')
 
@@ -150,7 +150,7 @@ def _edit(request, id, secret_key=None):
                 return r
             return redirect('polyclassifiedads.views.show', id=object.pk)
     else:
-        form = AdForm(instance=object)
+        form = Form(instance=object)
 
         tags = ','.join([tag.tag for tag in object.tags.all()]) if object.pk else ''
 
@@ -351,7 +351,7 @@ def search_in_categories(request):
 def external_edit(request, id):
     secret_key = request.GET.get('secret_key', str(uuid.uuid4()))
 
-    return _edit(request, id, secret_key)
+    return _edit(request, id, AnonymousAdForm, secret_key)
 
 
 def external_show(request, id):

@@ -19,7 +19,7 @@ PolyClassifiedAds has been developped by [Maximilien Cuony](https://github.com/t
 
 ### Update your setttings
 
-You need to activate this app, _bootstrap3_ and _south_.
+You need to activate this app, _bootstrap3_, _captcha_ and _south_.
 
 Add to your INSTALLED_APPS:
 
@@ -27,6 +27,7 @@ Add to your INSTALLED_APPS:
     'polyclassifiedads',
     'south',
     'bootstrap3',
+    'captcha',
 ```
 
 (Of course, you don't need to add a line twice if one app is already installed !)
@@ -47,6 +48,7 @@ and update values as you need. The first one is the sender for all email send by
 Add something like this:
 
 `url(r'^classifiedads/', include('polyclassifiedads.urls')),`
+`url(r'^captcha/', include('captcha.urls')),`
 
 ### Do the migrations
 
