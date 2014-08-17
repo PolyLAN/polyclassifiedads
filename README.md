@@ -51,3 +51,12 @@ Add something like this:
 ### Do the migrations
 
 `python manage.py migrate`
+
+### Notifications
+
+To activate notifications, add something like this in your crontab:
+
+```
+00 04 * * * cd /var/www/project/ && /usr/bin/python2.7 manage.py ads_notifications daily
+00 04 * * 1 cd /var/www/project/ && /usr/bin/python2.7 manage.py ads_notifications weekly
+```
