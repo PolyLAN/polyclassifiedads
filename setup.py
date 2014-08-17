@@ -25,7 +25,7 @@ setup(
     install_requires=[
         'south',
         'django',
-        'bootstrap3',
+        'django-bootstrap3',
         'markdown',
         'bleach',
     ]
