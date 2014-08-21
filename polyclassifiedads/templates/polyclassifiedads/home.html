@@ -21,13 +21,13 @@
 
     <div class="row">
         <div class="col-lg-4">
-            <h2>{% trans "I'm a student" %}</h2>
+            <h2>{% trans "I'm from EPFL" %}</h2>
             <p>{% trans "Click one of the button bellow to begin to use the site ! If you're not already logged in, you will be redirected to tequila to identify you "%}</p>
             <p><a class="btn btn-primary" href="{% url 'polyclassifiedads.views.browse' %}" role="button"><i class="glyphicon glyphicon-search"></i> {% trans "Browse ads" %}</a> <a class="btn btn-success" href="{% url 'polyclassifiedads.views.new' %}" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Submit an ad" %}</a></p>
         </div>
         <div class="col-lg-4">
-            <h2>{% trans "I'm not a student" %}</h2>
-            <p>{% trans "The service is only for EPFL's students, and you cannot browse ads. However, if you have an ad interesting for students, you can submit it using the button bellow" %}</p>
+            <h2>{% trans "I'm not from EPFL" %}</h2>
+            <p>{% trans "The service is only for EPFL's members, and you cannot browse ads. However, if you have an ad interesting for students, you can submit it using the button bellow" %}</p>
             <p><a class="btn btn-info" href="{% url 'polyclassifiedads.views.external_new' %}" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Summit an ad without login" %}</a></p>
        </div>
         <div class="col-lg-4">

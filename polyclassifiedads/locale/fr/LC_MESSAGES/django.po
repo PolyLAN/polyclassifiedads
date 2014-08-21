@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-17 21:18+0200\n"
-"PO-Revision-Date: 2014-08-17 21:18+0100\n"
+"POT-Creation-Date: 2014-08-21 14:53+0200\n"
+"PO-Revision-Date: 2014-08-21 14:54+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: forms.py:23
@@ -234,7 +234,7 @@ msgid "By"
 msgstr "Par"
 
 #: templates/polyclassifiedads/browse.html:29
-#: templates/polyclassifiedads/show.html:47
+#: templates/polyclassifiedads/show.html:50
 #: templates/polyclassifiedads/unvalidated.html:27
 #: templates/polyclassifiedads/validate.html:34
 msgid "Anonymous"
@@ -325,8 +325,8 @@ msgstr ""
 "\t"
 
 #: templates/polyclassifiedads/home.html:24
-msgid "I'm a student"
-msgstr "Je suis un étudiant"
+msgid "I'm from EPFL"
+msgstr "Je suis de l'EPFL"
 
 #: templates/polyclassifiedads/home.html:25
 msgid ""
@@ -338,17 +338,17 @@ msgstr ""
 "identifier"
 
 #: templates/polyclassifiedads/home.html:29
-msgid "I'm not a student"
-msgstr "Je ne suis pas un étudiant"
+msgid "I'm not from EPFL"
+msgstr "Je ne suis pas de l'EPFL"
 
 #: templates/polyclassifiedads/home.html:30
 msgid ""
-"The service is only for EPFL's students, and you cannot browse ads. However, "
+"The service is only for EPFL's members, and you cannot browse ads. However, "
 "if you have an ad interesting for students, you can submit it using the "
 "button bellow"
 msgstr ""
-"Le service est réservé au étudiants de l'EPFL et vous ne pouvez pas "
-"parcourir les annonces. Par contre,"
+"Le service est réservé au membres de l'EPFL et vous ne pouvez pas parcourir "
+"les annonces. Par contre,"
 
 #: templates/polyclassifiedads/home.html:31
 msgid "Summit an ad without login"
@@ -463,42 +463,46 @@ msgstr ""
 "Ne partagez pas ce lien avec d'autres personnes ou elles pourront éditer "
 "votre annonce !"
 
-#: templates/polyclassifiedads/show.html:35
+#: templates/polyclassifiedads/show.html:31
+msgid "Text of the ad"
+msgstr "Texte de l'annonce"
+
+#: templates/polyclassifiedads/show.html:36
 #: templates/polyclassifiedads/validate.html:22
 msgid "Contact"
 msgstr "Contact"
 
-#: templates/polyclassifiedads/show.html:37
+#: templates/polyclassifiedads/show.html:38
 #: templates/polyclassifiedads/validate.html:24
 msgid "Email"
 msgstr "Email"
 
-#: templates/polyclassifiedads/show.html:40
+#: templates/polyclassifiedads/show.html:41
 #: templates/polyclassifiedads/validate.html:27
 msgid "Phone"
 msgstr "Téléphone"
 
-#: templates/polyclassifiedads/show.html:44
+#: templates/polyclassifiedads/show.html:47
 #: templates/polyclassifiedads/validate.html:31
 msgid "Metadata"
 msgstr "Métadonnées"
 
-#: templates/polyclassifiedads/show.html:46
+#: templates/polyclassifiedads/show.html:49
 #: templates/polyclassifiedads/unvalidated.html:16
 #: templates/polyclassifiedads/validate.html:33
 msgid "Author"
 msgstr "Auteur"
 
-#: templates/polyclassifiedads/show.html:48
+#: templates/polyclassifiedads/show.html:51
 #: templates/polyclassifiedads/validate.html:35
 msgid "Last modification"
 msgstr "Dernière modification"
 
-#: templates/polyclassifiedads/show.html:50
+#: templates/polyclassifiedads/show.html:53
 msgid "Category"
 msgstr "Catégorie"
 
-#: templates/polyclassifiedads/show.html:53
+#: templates/polyclassifiedads/show.html:56
 #: templates/polyclassifiedads/validate.html:37
 #: templates/polyclassifiedads/emails/ad_to_revalidate.html:305
 #: templates/polyclassifiedads/emails/ad_to_revalidate.txt:28
@@ -509,7 +513,7 @@ msgstr "Catégorie"
 msgid "Tags"
 msgstr "Tags"
 
-#: templates/polyclassifiedads/show.html:57
+#: templates/polyclassifiedads/show.html:60
 #: templates/polyclassifiedads/unvalidated.html:17
 #: templates/polyclassifiedads/validate.html:39
 #: templates/polyclassifiedads/emails/ad_to_revalidate.html:289
@@ -520,7 +524,7 @@ msgstr "Tags"
 msgid "Online date"
 msgstr "Date de mise en ligne"
 
-#: templates/polyclassifiedads/show.html:59
+#: templates/polyclassifiedads/show.html:62
 #: templates/polyclassifiedads/unvalidated.html:18
 #: templates/polyclassifiedads/validate.html:41
 #: templates/polyclassifiedads/emails/ad_to_revalidate.html:297
@@ -531,41 +535,41 @@ msgstr "Date de mise en ligne"
 msgid "Offline date"
 msgstr "Date de mise hors ligne"
 
-#: templates/polyclassifiedads/show.html:61
+#: templates/polyclassifiedads/show.html:64
 #: templates/polyclassifiedads/myads/list.html:16
 msgid "Validated ?"
 msgstr "Validé ?"
 
-#: templates/polyclassifiedads/show.html:63
+#: templates/polyclassifiedads/show.html:66
 #: templates/polyclassifiedads/myads/list.html:19
 msgid "Online ?"
 msgstr "En ligne ?"
 
-#: templates/polyclassifiedads/show.html:68
+#: templates/polyclassifiedads/show.html:73
 msgid "Actions"
 msgstr "Actions"
 
-#: templates/polyclassifiedads/show.html:69
+#: templates/polyclassifiedads/show.html:74
 #: templates/polyclassifiedads/unvalidated.html:31
 #: templates/polyclassifiedads/myads/list.html:33
 msgid "Delete"
 msgstr "Supprimer"
 
-#: templates/polyclassifiedads/show.html:70
+#: templates/polyclassifiedads/show.html:75
 #: templates/polyclassifiedads/myads/list.html:34
 msgid "Put offline"
 msgstr "Mettre hors ligne"
 
-#: templates/polyclassifiedads/show.html:71
+#: templates/polyclassifiedads/show.html:76
 #: templates/polyclassifiedads/myads/list.html:35
 msgid "Edit"
 msgstr "Editer"
 
-#: templates/polyclassifiedads/show.html:74
+#: templates/polyclassifiedads/show.html:79
 msgid "Unvalidate"
 msgstr "Dévalider"
 
-#: templates/polyclassifiedads/show.html:76
+#: templates/polyclassifiedads/show.html:81
 #: templates/polyclassifiedads/unvalidated.html:32
 msgid "Validate"
 msgstr "Valider"
@@ -1030,3 +1034,9 @@ msgstr ""
 #: templates/polyclassifiedads/myads/put_offline.html:22
 msgid "No - Don't put offline"
 msgstr "Non - ne pas mettre hors ligne"
+
+#~ msgid "I'm a student"
+#~ msgstr "Je suis un étudiant"
+
+#~ msgid "I'm not a student"
+#~ msgstr "Je ne suis pas un étudiant"

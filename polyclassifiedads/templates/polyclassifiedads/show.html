@@ -27,20 +27,23 @@
 {% endif %}
 
 <div class="row">
-    <div class="col-md-8">
-        <div class="well">{{ad.content_formated|safe}}</div>
+    <div class="col-md-7">
+        <div class="well"><h4>{% trans "Text of the ad" %}</h4>{{ad.content_formated|safe}}</div>
     </div>
 
-    <div class="col-md-4">
-        <h4>{% trans "Contact" %}</h4>
-        <dl>
-            <dt>{% trans "Email" %}</dt>
-            <dd><a href="mailto:{{ad.contact_email}}">{{ad.contact_email}}</a></dd>
-            {% if ad.contact_phone %}
-                <dt>{% trans "Phone" %}</dt>
-                <dd>{{ad.contact_phone}}</dd>
-            {% endif %}
-        </dl>
+    <div class="col-md-5">
+        <div class="well">
+            <h4>{% trans "Contact" %}</h4>
+            <dl>
+                <dt>{% trans "Email" %}</dt>
+                <dd><a href="mailto:{{ad.contact_email}}">{{ad.contact_email}}</a></dd>
+                {% if ad.contact_phone %}
+                    <dt>{% trans "Phone" %}</dt>
+                    <dd>{{ad.contact_phone}}</dd>
+                {% endif %}
+            </dl>
+        </div>
+        <div class="well">
         <h4>{% trans "Metadata" %}</h4>
         <dl>
              <dt>{% trans "Author" %}</dt>
@@ -65,18 +68,21 @@
              {% endif %}
         </dl>
         {% if can_edit %}
-            <h4>{% trans "Actions" %}</h4>
-            <a href="{% if secret_key %}{% url 'polyclassifiedads.views.external_delete' ad.pk %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.delete' ad.pk %}{% endif %}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> {% trans "Delete" %}</a>
-            <a href="{% if secret_key %}{% url 'polyclassifiedads.views.external_put_offline' ad.pk %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.external_put_offline' ad.pk %}{% endif %}" class="btn btn-warning"><i class="glyphicon glyphicon-minus"></i> {% trans "Put offline" %}</a>
-            <a href="{% if secret_key %}{% url 'polyclassifiedads.views.external_edit' ad.pk %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.edit' ad.pk %}{% endif %}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> {% trans "Edit" %}</a>
-            {% if user.is_staff %}
-                {% if ad.is_validated %}
-                    <a href="{% url 'polyclassifiedads.views.unvalidate' ad.pk %}" class="btn btn-warning"><i class="glyphicon glyphicon-unchecked"></i> {% trans "Unvalidate" %}</a>
-                {% else %}
-                    <a href="{% url 'polyclassifiedads.views.validate' ad.pk %}" class="btn btn-info"><i class="glyphicon glyphicon-check"></i> {% trans "Validate" %}</a>
+            </div>
+                <div class="well">
+                <h4>{% trans "Actions" %}</h4>
+                <a href="{% if secret_key %}{% url 'polyclassifiedads.views.external_delete' ad.pk %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.delete' ad.pk %}{% endif %}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> {% trans "Delete" %}</a>
+                <a href="{% if secret_key %}{% url 'polyclassifiedads.views.external_put_offline' ad.pk %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.external_put_offline' ad.pk %}{% endif %}" class="btn btn-warning"><i class="glyphicon glyphicon-minus"></i> {% trans "Put offline" %}</a>
+                <a href="{% if secret_key %}{% url 'polyclassifiedads.views.external_edit' ad.pk %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.edit' ad.pk %}{% endif %}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i> {% trans "Edit" %}</a>
+                {% if user.is_staff %}
+                    {% if ad.is_validated %}
+                        <a href="{% url 'polyclassifiedads.views.unvalidate' ad.pk %}" class="btn btn-warning"><i class="glyphicon glyphicon-unchecked"></i> {% trans "Unvalidate" %}</a>
+                    {% else %}
+                        <a href="{% url 'polyclassifiedads.views.validate' ad.pk %}" class="btn btn-info"><i class="glyphicon glyphicon-check"></i> {% trans "Validate" %}</a>
+                    {% endif %}
                 {% endif %}
             {% endif %}
-        {% endif %}
+        </div>
     </div>
 </div>
 
