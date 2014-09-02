@@ -62,7 +62,7 @@ class Ad(models.Model):
         ('misc', _('Misc')),
     )
 
-    category = models.CharField(max_length=64, choices=CATEGORY_CHOICES)
+    category = models.CharField(_('Category'), max_length=64, choices=CATEGORY_CHOICES)
 
     TYPE_CHOICES = (
         ('togive', _('To give away')),
