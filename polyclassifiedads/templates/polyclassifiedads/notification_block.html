@@ -41,6 +41,11 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label" for="types_{{notification_type}}">{% trans "Filter by types" %}</label>
+            <input class="form-control" id="types_{{notification_type}}" name="types" placeholder="{% trans "Types" %}" value="{{notification_object.filter_types}}" type="hidden" />
+        </div>
+
+        <div class="form-group">
             <label class="control-label" for="words_{{notification_type}}">{% trans "Filter with words" %}</label>
             <input class="form-control" id="words_{{notification_type}}" name="words" placeholder="{% trans "Words" %}" value="{{notification_object.filter}}" type="hidden" />
         </div>
@@ -80,6 +85,40 @@
 
                 $(ids.split(',')).each(function (_, e) {
                     data.push({id: e, text: id_cat[e]});
+                });
+
+                callback(data);
+            }
+        });
+
+        $('#types_{{notification_type}}').select2({
+            tags: true,
+            tokenSeparators: [",", " "],
+            createSearchChoice: function(term, data) {
+            },
+            multiple: true,
+            ajax: {
+                url: '{% url 'polyclassifiedads.views.search_in_types' %}',
+                dataType: "json",
+                data: function(term, page) {
+                    return {
+                        q: term
+                    };
+                },
+                results: function(data, page) {
+                    return {
+                        results: data
+                    };
+                }
+            },
+            initSelection: function (element, callback) {
+
+                var ids = $(element).val();
+
+                var data = new Array();
+
+                $(ids.split(',')).each(function (_, e) {
+                    data.push({id: e, text: id_type[e]});
                 });
 
                 callback(data);

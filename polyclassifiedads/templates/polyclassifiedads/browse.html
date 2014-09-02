@@ -32,7 +32,7 @@
                             {{ad.content_formated|safe|truncatewords_html:10}}
                             <a href="{% url 'polyclassifiedads.views.show' ad.pk %}" style="margin-bottom: 2px;" class="btn btn-info btn-xs pull-right"><i class="glyphicon glyphicon-folder-open"></i> {% trans "More" %}</a>
                             <hr style="clear: both; margin-bottom: 0px;"/>
-                            <a href="?tag={{tag}}&q={{q}}&cat={{ad.category}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-list-alt"></i> {{ad.get_category_display}}</a> {% for t in ad.tags_for_list %}<a href="?tag={{t.tag}}&q={{q}}&cat={{cat}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a> {% endfor %}
+                            <a href="?tag={{tag}}&q={{q}}&cat={{ad.category}}&typ={{typ}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-list-alt"></i> {{ad.get_category_display}}</a> <a href="?tag={{tag}}&q={{q}}&cat={{cat}}&typ={{ad.type}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-list-alt"></i> {{ad.get_type_display}}</a> {% for t in ad.tags_for_list %}<a href="?tag={{t.tag}}&q={{q}}&cat={{cat}}&typ={{typ}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a> {% endfor %}
                         </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
 
             <ul class="pager">
                 {% if liste.has_previous %}
-                    <li class="previous"><a href="?page={{liste.previous_page_number}}{% if tag %}&tag={{tag}}{% endif %}&q={{q}}&cat={{cat}}">&larr; {% trans "Newer" %}</a></li>
+                    <li class="previous"><a href="?page={{liste.previous_page_number}}{% if tag %}&tag={{tag}}{% endif %}&q={{q}}&cat={{cat}}&typ={{typ}}">&larr; {% trans "Newer" %}</a></li>
                 {% else %}
                     <li class="previous disabled"><a href="#">&larr; {% trans "Newer" %}</a></li>
                 {% endif %}
@@ -49,7 +49,7 @@
                 <li>{% blocktrans with n=liste.number p=liste.paginator.num_pages %}Page {{n}} of {{p}}{% endblocktrans %}</li>
 
                 {% if liste.has_next %}
-                    <li class="next"><a href="?page={{liste.next_page_number}}{% if tag %}&tag={{tag}}{% endif %}&q={{q}}&cat={{cat}}">{% trans "Older" %} &rarr;</a></li>
+                <li class="next"><a href="?page={{liste.next_page_number}}{% if tag %}&tag={{tag}}{% endif %}&q={{q}}&cat={{cat}}&typ={{typ}}">{% trans "Older" %} &rarr;</a></li>
                 {% else %}
                     <li class="next disabled"><a href="#">{% trans "Older" %} &rarr;</a></li>
                 {% endif %}
@@ -69,12 +69,19 @@
                 <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
             </div>
             <select class="form-control" name="cat" placeholder="{% trans "Select a category" %}" style="margin-top: 4px;">
-                <optgroup label="{% trans "Select a category" %}">
-                    <option></option>
-                    {% for cid, ctext in CATEGORY_CHOICES %}
-                        <option value="{{cid}}" {% if cid == cat %}selected{% endif %}>{{ctext}}</a>
-                    {% endfor %}
-                </optgroup>
+                <option value='' disabled selected style='display:none;'>{% trans "Select a category" %}</option>
+                <option></option>
+                {% for cid, ctext in CATEGORY_CHOICES %}
+                    <option value="{{cid}}" {% if cid == cat %}selected{% endif %}>{{ctext}}</a>
+                {% endfor %}
+            </select>
+
+            <select class="form-control" name="typ" placeholder="{% trans "Select a type" %}" style="margin-top: 4px;">
+                <option value='' disabled selected style='display:none;'>{% trans "Select a type" %}</option>
+                <option></option>
+                {% for cid, ctext in TYPE_CHOICES %}
+                    <option value="{{cid}}" {% if cid == typ %}selected{% endif %}>{{ctext}}</a>
+                {% endfor %}
             </select>
 
             <button type="submit" class="btn btn-info btn-xs pull-right" style="margin-top: 4px;"><i class="glyphicon glyphicon-search"></i> {% trans "Search" %}</button>
@@ -84,7 +91,7 @@
         <hr style="clear: both; margin-bottom: 4px; visibility: hidden;"/>
 
         {% for t in tags %}
-            <a href="?tag={{t.0.tag}}&q={{q}}" class="label label-{% if t.0.tag == tag %}success{% else %}default{% endif %}" style="display: inline-block; font-size: {{t.1}}%;"><i class="glyphicon glyphicon-tag"></i> {{t.0.tag}}</a>
+            <a href="?tag={{t.0.tag}}&q={{q}}&cat={{cat}}" class="label label-{% if t.0.tag == tag %}success{% else %}default{% endif %}" style="display: inline-block; font-size: {{t.1}}%;"><i class="glyphicon glyphicon-tag"></i> {{t.0.tag}}</a>
         {% endfor %}
 
 

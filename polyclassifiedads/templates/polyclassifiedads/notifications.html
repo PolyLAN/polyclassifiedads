@@ -17,9 +17,13 @@
 
 <script type="text/javascript">
     var id_cat = [];
+    var id_type = [];
 
     {% for val, text in CATEGORY_CHOICES %}
         id_cat['{{val}}'] = '{{text|escapejs}}';
+    {% endfor %}
+    {% for val, text in TYPE_CHOICES %}
+        id_type['{{val}}'] = '{{text|escapejs}}';
     {% endfor %}
 </script>
 

@@ -37,6 +37,7 @@ def home(request):
 def browse(request):
 
     tag = request.GET.get('tag', '')
+    typ = request.GET.get('typ', '')
     cat = request.GET.get('cat', '')
     q = request.GET.get('q', '')
 
@@ -48,6 +49,8 @@ def browse(request):
         liste = liste.filter(tags__tag=tag)
     if q:
         liste = liste.filter(Q(title__icontains=q) | Q(content__icontains=q) | Q(contact_email__icontains=q))
+    if typ:
+        liste = liste.filter(type=typ)
     if cat:
         liste = liste.filter(category=cat)
 
@@ -81,7 +84,7 @@ def browse(request):
 
     tags = map(lambda t: (t, int((log10(t.count) / log10(total+1)) * (max_size - min_size) + min_size)), tags)
 
-    return render_to_response('polyclassifiedads/browse.html', {'liste': liste, 'tag': tag, 'tags': tags, 'q': q, 'cat': cat, 'CATEGORY_CHOICES': Ad.CATEGORY_CHOICES}, context_instance=RequestContext(request))
+    return render_to_response('polyclassifiedads/browse.html', {'liste': liste, 'tag': tag, 'tags': tags, 'q': q, 'typ': typ, 'cat': cat, 'TYPE_CHOICES': Ad.TYPE_CHOICES, 'CATEGORY_CHOICES': Ad.CATEGORY_CHOICES}, context_instance=RequestContext(request))
 
 
 @login_required
@@ -316,6 +319,7 @@ def notifications(request):
 
         if request.POST.get('action') == 'save':
             adn, __ = AdNotification.objects.get_or_create(user=request.user, type=request.POST.get('type'))
+            adn.filter_types = request.POST.get('types')
             adn.filter_categories = request.POST.get('categories')
             adn.filter = request.POST.get('words')
             adn.save()
@@ -332,7 +336,7 @@ def notifications(request):
     except AdNotification.DoesNotExist:
         weekly = None
 
-    return render_to_response('polyclassifiedads/notifications.html', {'daily': daily, 'weekly': weekly, 'CATEGORY_CHOICES': Ad.CATEGORY_CHOICES}, context_instance=RequestContext(request))
+    return render_to_response('polyclassifiedads/notifications.html', {'daily': daily, 'weekly': weekly, 'CATEGORY_CHOICES': Ad.CATEGORY_CHOICES, 'TYPE_CHOICES': Ad.TYPE_CHOICES}, context_instance=RequestContext(request))
 
 
 def search_in_categories(request):
@@ -342,6 +346,19 @@ def search_in_categories(request):
     retour = []
 
     for (val, text) in Ad.CATEGORY_CHOICES:
+        if q in text:
+            retour.append({'id': val, 'text': unicode(text)})
+
+    return HttpResponse(json.dumps(retour), content_type='text/json')
+
+
+def search_in_types(request):
+
+    q = request.GET.get('q')
+
+    retour = []
+
+    for (val, text) in Ad.TYPE_CHOICES:
         if q in text:
             retour.append({'id': val, 'text': unicode(text)})
 

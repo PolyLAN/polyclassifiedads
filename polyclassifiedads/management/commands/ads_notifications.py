@@ -35,11 +35,15 @@ class Command(BaseCommand):
             ads_for_user = []
 
             for ad in ads:
-                filter_ok = not adn.filter_categories and not adn.filter
+                filter_ok = not adn.filter_categories and not adn.filter_types and not adn.filter
 
                 if adn.filter_categories:
                     for c in adn.filter_categories.split(','):
                         if ad.category == c.strip():
+                            filter_ok = True
+                if adn.filter_types:
+                    for c in adn.filter_types.split(','):
+                        if ad.type == c.strip():
                             filter_ok = True
                 if adn.filter:
                     for w in adn.filter.split(','):

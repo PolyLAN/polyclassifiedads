@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-21 14:53+0200\n"
-"PO-Revision-Date: 2014-08-21 14:54+0100\n"
+"POT-Creation-Date: 2014-09-02 16:36+0200\n"
+"PO-Revision-Date: 2014-09-02 16:39+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -63,87 +63,207 @@ msgid "Contact's phone"
 msgstr "Téléphone de contact"
 
 #: models.py:33
+msgid "Pets & Accessories"
+msgstr "Animaux & accessoires"
+
+#: models.py:34
+msgid "Art & Antiques"
+msgstr "Art & Antiquités"
+
+#: models.py:35
+msgid "Audio - TV - Video"
+msgstr "Audio - TV - Vidéo"
+
+#: models.py:36
+msgid "Cars"
+msgstr "Automobiles"
+
+#: models.py:37
+msgid "Jewelry & Timepieces"
+msgstr "Bijouterie & Horlogerie"
+
+#: models.py:38
+msgid "Tickets & good"
+msgstr "Billets & bons"
+
+#: models.py:39
+msgid "DIY and Gardening"
+msgstr "Bricolage & Jardinage"
+
+#: models.py:40
+msgid "Camping"
+msgstr "Camping"
+
+#: models.py:41
+msgid "Collections"
+msgstr "Collections"
+
+#: models.py:42
+msgid "Kids & Baby"
+msgstr "Enfants & bébé"
+
+#: models.py:43
+msgid "Movies & DVD"
+msgstr "Films & DVD"
+
+#: models.py:44
+msgid "Real"
+msgstr "Immobilier"
+
+#: models.py:45
+msgid "Games"
+msgstr "Jeux - Bricolage"
+
+#: models.py:46
+msgid "Video Games"
+msgstr "Jeux vidéo"
+
+#: models.py:47
+msgid "Books - Comics - Journal"
+msgstr "Livres - BD - Revues"
+
+#: models.py:48
+msgid "Household & House"
+msgstr "Ménage & Maison"
+
+#: models.py:49
+msgid "Models - Hobby"
+msgstr "Modélisme - Hobby"
+
+#: models.py:50
+msgid "Motorcycle & Bike"
+msgstr "Moto & vélo"
+
+#: models.py:51
+msgid "Music - Instruments"
+msgstr "Musique - Instruments"
+
+#: models.py:52
+msgid "Computers & Office"
+msgstr "Ordinateurs & Bureau"
+
+#: models.py:53
+msgid "Movies"
+msgstr "Films"
+
+#: models.py:54
+msgid "Photography"
+msgstr "Photographie"
+
+#: models.py:55
+msgid "Services"
+msgstr "Services"
+
+#: models.py:56
+msgid "Health - Beauty"
+msgstr "Santé - Beauté"
+
+#: models.py:57
+msgid "Sports"
+msgstr "Sports"
+
+#: models.py:58
+msgid "Telephony"
+msgstr "Téléphonie"
+
+#: models.py:59
+msgid "Holidays - Travel"
+msgstr "Vacances - Voyages"
+
+#: models.py:60
+msgid "Clothing & Accessories"
+msgstr "Vêtements & accessoires"
+
+#: models.py:61
+msgid "Wines - Gastronomy"
+msgstr "Vins - Gastronomie"
+
+#: models.py:62
+msgid "Misc"
+msgstr "Divers"
+
+#: models.py:68
 msgid "To give away"
 msgstr "À donner"
 
-#: models.py:34
+#: models.py:69
 msgid "To rent"
 msgstr "À louer"
 
-#: models.py:35
+#: models.py:70
 msgid "Looking for"
 msgstr "Recherche"
 
-#: models.py:36
+#: models.py:71
 msgid "To sell"
 msgstr "À vendre"
 
-#: models.py:81
+#: models.py:116
 msgid "Daily"
 msgstr "Journalier"
 
-#: models.py:82
+#: models.py:117
 msgid "Weekly"
 msgstr "Hebodmaire"
 
-#: views.py:127
+#: views.py:130
 msgid "The ad has been saved !"
 msgstr "L'annone à été sauvegardée !"
 
-#: views.py:133
+#: views.py:136
 msgid "The ad has been put offline until validation !"
 msgstr "L'annonce à été mise hors ligne jusqu'à validation !"
 
-#: views.py:135
+#: views.py:138
 #, python-format
 msgid "AGEPoly's classified ads: Ad ID %s need to be validated again"
 msgstr "Petites annonces de l'AGEPoly: L'annonce n°%s doit être revalidée "
 
-#: views.py:138
+#: views.py:141
 #, python-format
 msgid "AGEPoly's classified ads: New ad with ID %s need to be validated"
 msgstr ""
 "Petites annonces de l'AGEPoly: Une nouvelle annonce n°%s doit être validée"
 
-#: views.py:141
+#: views.py:144
 #, python-format
 msgid "AGEPoly's classified ads: New ad (%s)"
 msgstr "Peittes annonces de l'AGEPoly: Nouvelle annonce (%s)"
 
-#: views.py:200
+#: views.py:203
 msgid "The ad has been deleted !"
 msgstr "L'annonce a été supprimée !"
 
-#: views.py:225
+#: views.py:228
 msgid "The ad has been put offline !"
 msgstr "L'annonce a été mise hors ligne !"
 
-#: views.py:279
+#: views.py:282
 #, python-format
 msgid "AGEPoly's classified ads: Your ad '%s' has been validated !"
 msgstr "Petites annonces de l'AGEPoly: Votre annonce \"%s\" a été validée !"
 
-#: views.py:281
+#: views.py:284
 msgid "The ad is now validated !"
 msgstr "L'annonce est maintenant validée !"
 
-#: views.py:297
+#: views.py:300
 msgid "The ad is now unvalidated !"
 msgstr "L'annonce a été dévalidée !"
 
-#: views.py:310
+#: views.py:313
 msgid "Notification activated !"
 msgstr "Notification activée !"
 
-#: views.py:315
+#: views.py:318
 msgid "Notification desactivated !"
 msgstr "Notification désactivée !"
 
-#: views.py:323
+#: views.py:327
 msgid "Filter saved !"
 msgstr "Filtre sauvegardé !"
 
-#: management/commands/ads_notifications.py:53
+#: management/commands/ads_notifications.py:57
 msgid "AGEPoly's classified ads: New ads !"
 msgstr "Petites annonces de l'AGEPoly: Nouvelle annonces !"
 
@@ -273,14 +393,19 @@ msgid "Select a category"
 msgstr "Sélectionnez une catégorie"
 
 #: templates/polyclassifiedads/browse.html:80
+#: templates/polyclassifiedads/browse.html:81
+msgid "Select a type"
+msgstr "Sélectionnez un type"
+
+#: templates/polyclassifiedads/browse.html:89
 msgid "Search"
 msgstr "Recherche"
 
-#: templates/polyclassifiedads/browse.html:81
+#: templates/polyclassifiedads/browse.html:90
 msgid "Clear filter"
 msgstr "Effacer le filtre"
 
-#: templates/polyclassifiedads/browse.html:95
+#: templates/polyclassifiedads/browse.html:104
 #: templates/polyclassifiedads/home.html:26
 msgid "Submit an ad"
 msgstr "Proposer une annonce"
@@ -417,14 +542,22 @@ msgid "Categories"
 msgstr "Categories"
 
 #: templates/polyclassifiedads/notification_block.html:44
+msgid "Filter by types"
+msgstr "Filter par types"
+
+#: templates/polyclassifiedads/notification_block.html:45
+msgid "Types"
+msgstr "Types"
+
+#: templates/polyclassifiedads/notification_block.html:49
 msgid "Filter with words"
 msgstr "Filter avec des mots"
 
-#: templates/polyclassifiedads/notification_block.html:45
+#: templates/polyclassifiedads/notification_block.html:50
 msgid "Words"
 msgstr "Mots"
 
-#: templates/polyclassifiedads/notification_block.html:48
+#: templates/polyclassifiedads/notification_block.html:53
 msgid ""
 "Without a filter, every ad will be notified. If you specify more than one "
 "category/word, as soon as one category/word is matched, the ad will be "
@@ -434,7 +567,7 @@ msgstr ""
 "d'une catégorie/mot, dès qu'une catégorie/mot est matché(e), l'annonce sera "
 "notifiée (OR)"
 
-#: templates/polyclassifiedads/notification_block.html:50
+#: templates/polyclassifiedads/notification_block.html:55
 #: templates/polyclassifiedads/myads/edit.html:35
 msgid "Save"
 msgstr "Sauvegarder"
@@ -499,11 +632,17 @@ msgid "Last modification"
 msgstr "Dernière modification"
 
 #: templates/polyclassifiedads/show.html:53
+#: templates/polyclassifiedads/validate.html:37
 msgid "Category"
 msgstr "Catégorie"
 
-#: templates/polyclassifiedads/show.html:56
-#: templates/polyclassifiedads/validate.html:37
+#: templates/polyclassifiedads/show.html:55
+#: templates/polyclassifiedads/validate.html:39
+msgid "Type"
+msgstr "Type"
+
+#: templates/polyclassifiedads/show.html:58
+#: templates/polyclassifiedads/validate.html:41
 #: templates/polyclassifiedads/emails/ad_to_revalidate.html:305
 #: templates/polyclassifiedads/emails/ad_to_revalidate.txt:28
 #: templates/polyclassifiedads/emails/new_ad_to_validate.html:306
@@ -513,9 +652,9 @@ msgstr "Catégorie"
 msgid "Tags"
 msgstr "Tags"
 
-#: templates/polyclassifiedads/show.html:60
+#: templates/polyclassifiedads/show.html:62
 #: templates/polyclassifiedads/unvalidated.html:17
-#: templates/polyclassifiedads/validate.html:39
+#: templates/polyclassifiedads/validate.html:43
 #: templates/polyclassifiedads/emails/ad_to_revalidate.html:289
 #: templates/polyclassifiedads/emails/ad_to_revalidate.txt:22
 #: templates/polyclassifiedads/emails/new_ad_to_validate.html:290
@@ -524,9 +663,9 @@ msgstr "Tags"
 msgid "Online date"
 msgstr "Date de mise en ligne"
 
-#: templates/polyclassifiedads/show.html:62
+#: templates/polyclassifiedads/show.html:64
 #: templates/polyclassifiedads/unvalidated.html:18
-#: templates/polyclassifiedads/validate.html:41
+#: templates/polyclassifiedads/validate.html:45
 #: templates/polyclassifiedads/emails/ad_to_revalidate.html:297
 #: templates/polyclassifiedads/emails/ad_to_revalidate.txt:25
 #: templates/polyclassifiedads/emails/new_ad_to_validate.html:298
@@ -535,41 +674,41 @@ msgstr "Date de mise en ligne"
 msgid "Offline date"
 msgstr "Date de mise hors ligne"
 
-#: templates/polyclassifiedads/show.html:64
+#: templates/polyclassifiedads/show.html:66
 #: templates/polyclassifiedads/myads/list.html:16
 msgid "Validated ?"
 msgstr "Validé ?"
 
-#: templates/polyclassifiedads/show.html:66
+#: templates/polyclassifiedads/show.html:68
 #: templates/polyclassifiedads/myads/list.html:19
 msgid "Online ?"
 msgstr "En ligne ?"
 
-#: templates/polyclassifiedads/show.html:73
+#: templates/polyclassifiedads/show.html:75
 msgid "Actions"
 msgstr "Actions"
 
-#: templates/polyclassifiedads/show.html:74
+#: templates/polyclassifiedads/show.html:76
 #: templates/polyclassifiedads/unvalidated.html:31
 #: templates/polyclassifiedads/myads/list.html:33
 msgid "Delete"
 msgstr "Supprimer"
 
-#: templates/polyclassifiedads/show.html:75
+#: templates/polyclassifiedads/show.html:77
 #: templates/polyclassifiedads/myads/list.html:34
 msgid "Put offline"
 msgstr "Mettre hors ligne"
 
-#: templates/polyclassifiedads/show.html:76
+#: templates/polyclassifiedads/show.html:78
 #: templates/polyclassifiedads/myads/list.html:35
 msgid "Edit"
 msgstr "Editer"
 
-#: templates/polyclassifiedads/show.html:79
+#: templates/polyclassifiedads/show.html:81
 msgid "Unvalidate"
 msgstr "Dévalider"
 
-#: templates/polyclassifiedads/show.html:81
+#: templates/polyclassifiedads/show.html:83
 #: templates/polyclassifiedads/unvalidated.html:32
 msgid "Validate"
 msgstr "Valider"
@@ -591,12 +730,12 @@ msgstr ""
 "\t"
 
 #: templates/polyclassifiedads/unvalidate.html:21
-#: templates/polyclassifiedads/validate.html:51
+#: templates/polyclassifiedads/validate.html:55
 msgid "No"
 msgstr "Non"
 
 #: templates/polyclassifiedads/unvalidate.html:22
-#: templates/polyclassifiedads/validate.html:52
+#: templates/polyclassifiedads/validate.html:56
 #: templates/polyclassifiedads/myads/delete.html:25
 #: templates/polyclassifiedads/myads/put_offline.html:23
 msgid "Yes"

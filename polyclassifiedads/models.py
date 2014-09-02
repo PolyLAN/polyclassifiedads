@@ -30,13 +30,48 @@ class Ad(models.Model):
     notifications_send = models.CharField(max_length=128, default='')  # List of type of notifications already sent
 
     CATEGORY_CHOICES = (
+        ('pets', _('Pets & Accessories')),
+        ('art', _('Art & Antiques')),
+        ('audio', _('Audio - TV - Video')),
+        ('cars', _('Cars')),
+        ('jewelry', _('Jewelry & Timepieces')),
+        ('tickets', _('Tickets & good')),
+        ('diy', _('DIY and Gardening')),
+        ('camp', _('Camping')),
+        ('coll', _('Collections')),
+        ('kids', _('Kids & Baby')),
+        ('mov', _('Movies & DVD')),
+        ('real', _('Real')),
+        ('games', _('Games')),
+        ('vgame', _('Video Games')),
+        ('books', _('Books - Comics - Journal')),
+        ('house', _('Household & House')),
+        ('model', _('Models - Hobby')),
+        ('moto', _('Motorcycle & Bike')),
+        ('music', _('Music - Instruments')),
+        ('comp', _('Computers & Office')),
+        ('mov', _('Movies')),
+        ('photo', _('Photography')),
+        ('servi', _('Services')),
+        ('headl', _('Health - Beauty')),
+        ('sport', _('Sports')),
+        ('tel', _('Telephony')),
+        ('travel', _('Holidays - Travel')),
+        ('cloth', _('Clothing & Accessories')),
+        ('wine', _('Wines - Gastronomy')),
+        ('misc', _('Misc')),
+    )
+
+    category = models.CharField(max_length=64, choices=CATEGORY_CHOICES)
+
+    TYPE_CHOICES = (
         ('togive', _('To give away')),
         ('torent', _('To rent')),
         ('lookingfor', _('Looking for')),
         ('tosell', _('To sell'))
     )
 
-    category = models.CharField(max_length=64, choices=CATEGORY_CHOICES)
+    type = models.CharField(max_length=64, choices=TYPE_CHOICES)
 
     tags = models.ManyToManyField('AdTag', related_name='ads')
 
@@ -85,4 +120,5 @@ class AdNotification(models.Model):
     type = models.CharField(max_length=32, choices=TYPE_CHOICES)
 
     filter_categories = models.CharField(max_length=128)
+    filter_types = models.CharField(max_length=128)
     filter = models.CharField(max_length=512)

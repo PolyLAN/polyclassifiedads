@@ -34,6 +34,10 @@
              <dd>{% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}</i>{% endif %}</dd>
              <dt>{% trans "Last modification" %}</dt>
              <dd>{{ad.last_modification_date}} ({{ad.last_modification_date|timesince}})</dd>
+             <dt>{% trans "Category" %}</dt>
+             <dd>{{ad.get_category_display}}</dd>
+             <dt>{% trans "Type" %}</dt>
+             <dd>{{ad.get_type_display}}</dd>
              <dt>{% trans "Tags" %}</dt>
              <dd>{% for t in ad.tags_for_list %}<a href="{% url 'polyclassifiedads.views.browse' %}?tag={{t.tag}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a> {% endfor %}</dd>
             <dt>{% trans "Online date" %}</dt>
