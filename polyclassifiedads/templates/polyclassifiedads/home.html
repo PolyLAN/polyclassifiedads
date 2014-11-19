@@ -8,7 +8,7 @@
     <h1 class="page-header">{% trans "Welcome on the AGEPoly's classified ads webpage !" %}</h1>
 
     <p>{% blocktrans %}
-    The AGEPoly's classified ads are a service of the AGEPoly, for students. You can publish an ad (for max. 30 days) and read others ads.<br /><br />
+    The AGEPoly's classified ads are a service of the AGEPoly, for the whole EPFL community. You can publish an ad (for max. 30 days) and read others ads.<br /><br />
 
     It's possible to subscrible for news ads, with a dailly or weekly email summary.<br /><br />
 
@@ -27,7 +27,7 @@
         </div>
         <div class="col-lg-4">
             <h2>{% trans "I'm not from EPFL" %}</h2>
-            <p>{% trans "The service is only for EPFL's members, and you cannot browse ads. However, if you have an ad interesting for students, you can submit it using the button bellow" %}</p>
+            <p>{% trans "The service is only for EPFL's members, and you cannot browse ads. However, if you have an ad interesting for the EPFL community, you can submit it using the button bellow" %}</p>
             <p><a class="btn btn-info" href="{% url 'polyclassifiedads.views.external_new' %}" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Summit an ad without login" %}</a></p>
        </div>
         <div class="col-lg-4">
