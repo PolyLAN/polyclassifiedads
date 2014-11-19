@@ -64,7 +64,7 @@
                 </li>
 
               </li>
-              {% if user.pk %}<li><a href="#">{% trans "Logout" %}</a></li>{% endif %}
+              {% if user.pk %}<li><a href="{% url 'django.contrib.auth.views.logout' %}?next={% url 'polyclassifiedads.views.home' %}">{% trans "Logout" %}</a></li>{% endif %}
               <li><a href="https://agepoly.ch">{% trans "Back to the AGEPoly's website" %}</a></li>
           </ul>
         </div>
