@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-02 16:36+0200\n"
+"POT-Creation-Date: 2014-09-02 16:47+0200\n"
 "PO-Revision-Date: 2014-09-02 16:39+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
@@ -181,6 +181,11 @@ msgstr "Vins - Gastronomie"
 #: models.py:62
 msgid "Misc"
 msgstr "Divers"
+
+#: models.py:65 templates/polyclassifiedads/show.html:53
+#: templates/polyclassifiedads/validate.html:37
+msgid "Category"
+msgstr "Catégorie"
 
 #: models.py:68
 msgid "To give away"
@@ -392,20 +397,20 @@ msgstr "Rechercher dans les annonces"
 msgid "Select a category"
 msgstr "Sélectionnez une catégorie"
 
+#: templates/polyclassifiedads/browse.html:79
 #: templates/polyclassifiedads/browse.html:80
-#: templates/polyclassifiedads/browse.html:81
 msgid "Select a type"
 msgstr "Sélectionnez un type"
 
-#: templates/polyclassifiedads/browse.html:89
+#: templates/polyclassifiedads/browse.html:87
 msgid "Search"
 msgstr "Recherche"
 
-#: templates/polyclassifiedads/browse.html:90
+#: templates/polyclassifiedads/browse.html:88
 msgid "Clear filter"
 msgstr "Effacer le filtre"
 
-#: templates/polyclassifiedads/browse.html:104
+#: templates/polyclassifiedads/browse.html:102
 #: templates/polyclassifiedads/home.html:26
 msgid "Submit an ad"
 msgstr "Proposer une annonce"
@@ -630,11 +635,6 @@ msgstr "Auteur"
 #: templates/polyclassifiedads/validate.html:35
 msgid "Last modification"
 msgstr "Dernière modification"
-
-#: templates/polyclassifiedads/show.html:53
-#: templates/polyclassifiedads/validate.html:37
-msgid "Category"
-msgstr "Catégorie"
 
 #: templates/polyclassifiedads/show.html:55
 #: templates/polyclassifiedads/validate.html:39

@@ -82,7 +82,7 @@ def browse(request):
 
     tags = filter(lambda t: t.count, tags)
 
-    tags = map(lambda t: (t, int((log10(t.count) / log10(total+1)) * (max_size - min_size) + min_size)), tags)
+    tags = map(lambda t: (t, int((log10(t.count) / log10(total + 1)) * (max_size - min_size) + min_size)), tags)
 
     return render_to_response('polyclassifiedads/browse.html', {'liste': liste, 'tag': tag, 'tags': tags, 'q': q, 'typ': typ, 'cat': cat, 'TYPE_CHOICES': Ad.TYPE_CHOICES, 'CATEGORY_CHOICES': Ad.CATEGORY_CHOICES}, context_instance=RequestContext(request))
 
