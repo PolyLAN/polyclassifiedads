@@ -39,6 +39,7 @@ Add to your settings.py
 ```
 POLYCLASSIFIEDADS_EMAIL_FROM = ''
 POLYCLASSIFIEDADS_EMAIL_MANAGERS = ''
+POLYCLASSIFIEDADS_RSS_SECRET = 'A random string'
 ```
 
 and update values as you need. The first one is the sender for all email send by the system and the second one is the email of someone who should be alerted e.g. to validate ads.

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-19 21:30+0100\n"
-"PO-Revision-Date: 2014-11-19 21:32+0100\n"
+"POT-Creation-Date: 2014-11-19 22:30+0100\n"
+"PO-Revision-Date: 2014-11-19 22:31+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -18,6 +18,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 1.6.10\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+
+#: feeds.py:11 feeds.py:13
+msgid "Latest AGEPoly's classified ads"
+msgstr "Dernières petites annonces de l'AGEPoly"
 
 #: forms.py:23
 msgid "Offline date is too far in the futur: Maximum 30 days !"
@@ -211,60 +215,60 @@ msgstr "Journalier"
 msgid "Weekly"
 msgstr "Hebodmaire"
 
-#: views.py:130
+#: views.py:131
 msgid "The ad has been saved !"
 msgstr "L'annonce à été sauvegardée !"
 
-#: views.py:136
+#: views.py:137
 msgid "The ad has been put offline until validation !"
 msgstr "L'annonce à été mise hors ligne jusqu'à validation !"
 
-#: views.py:138
+#: views.py:139
 #, python-format
 msgid "AGEPoly's classified ads: Ad ID %s need to be validated again"
 msgstr "Petites annonces de l'AGEPoly: L'annonce n°%s doit être revalidée "
 
-#: views.py:141
+#: views.py:142
 #, python-format
 msgid "AGEPoly's classified ads: New ad with ID %s need to be validated"
 msgstr ""
 "Petites annonces de l'AGEPoly: Une nouvelle annonce n°%s doit être validée"
 
-#: views.py:144
+#: views.py:145
 #, python-format
 msgid "AGEPoly's classified ads: New ad (%s)"
 msgstr "Peittes annonces de l'AGEPoly: Nouvelle annonce (%s)"
 
-#: views.py:203
+#: views.py:204
 msgid "The ad has been deleted !"
 msgstr "L'annonce a été supprimée !"
 
-#: views.py:228
+#: views.py:229
 msgid "The ad has been put offline !"
 msgstr "L'annonce a été mise hors ligne !"
 
-#: views.py:282
+#: views.py:283
 #, python-format
 msgid "AGEPoly's classified ads: Your ad '%s' has been validated !"
 msgstr "Petites annonces de l'AGEPoly: Votre annonce \"%s\" a été validée !"
 
-#: views.py:284
+#: views.py:285
 msgid "The ad is now validated !"
 msgstr "L'annonce est maintenant validée !"
 
-#: views.py:300
+#: views.py:301
 msgid "The ad is now unvalidated !"
 msgstr "L'annonce a été dévalidée !"
 
-#: views.py:313
+#: views.py:314
 msgid "Notification activated !"
 msgstr "Notification activée !"
 
-#: views.py:318
+#: views.py:319
 msgid "Notification desactivated !"
 msgstr "Notification désactivée !"
 
-#: views.py:327
+#: views.py:328
 msgid "Filter saved !"
 msgstr "Filtre sauvegardé !"
 
@@ -272,145 +276,149 @@ msgstr "Filtre sauvegardé !"
 msgid "AGEPoly's classified ads: New ads !"
 msgstr "Petites annonces de l'AGEPoly: Nouvelle annonces !"
 
-#: templates/polyclassifiedads/base.html:15
+#: templates/polyclassifiedads/base.html:16
 msgid "Classified ads"
 msgstr "Petites annonces"
 
-#: templates/polyclassifiedads/base.html:46
+#: templates/polyclassifiedads/base.html:32
+msgid "RSS for news ADs"
+msgstr "RSS des nouvelles annonces"
+
+#: templates/polyclassifiedads/base.html:49
 msgid "AGEPoly's classified ads"
 msgstr "Petites annonces de l'AGEPoly"
 
-#: templates/polyclassifiedads/base.html:51
+#: templates/polyclassifiedads/base.html:54
 msgid "Welcome"
 msgstr "Bienvenue"
 
-#: templates/polyclassifiedads/base.html:53
+#: templates/polyclassifiedads/base.html:56
 msgid "Language"
 msgstr "Langue"
 
-#: templates/polyclassifiedads/base.html:67
+#: templates/polyclassifiedads/base.html:70
 msgid "Logout"
 msgstr "Déconnection"
 
-#: templates/polyclassifiedads/base.html:68
+#: templates/polyclassifiedads/base.html:71
 msgid "Back to the AGEPoly's website"
 msgstr "Retourner sur le site de l'AGEPoly"
 
-#: templates/polyclassifiedads/base.html:78
+#: templates/polyclassifiedads/base.html:81
 msgid "General"
 msgstr "Général"
 
-#: templates/polyclassifiedads/base.html:79
+#: templates/polyclassifiedads/base.html:82
 #: templates/polyclassifiedads/home.html:4
 msgid "Home"
 msgstr "Accueil"
 
-#: templates/polyclassifiedads/base.html:83
+#: templates/polyclassifiedads/base.html:86
 msgid "Logged users"
 msgstr "Utilisateurs connectés"
 
-#: templates/polyclassifiedads/base.html:84
+#: templates/polyclassifiedads/base.html:87
 msgid "Browse"
 msgstr "Parcourir"
 
-#: templates/polyclassifiedads/base.html:85
-#: templates/polyclassifiedads/base.html:94
+#: templates/polyclassifiedads/base.html:88
+#: templates/polyclassifiedads/base.html:97
 #: templates/polyclassifiedads/myads/edit.html:7
 #: templates/polyclassifiedads/myads/edit.html:11
 msgid "New ad"
 msgstr "Nouvelle annonce"
 
-#: templates/polyclassifiedads/base.html:86
+#: templates/polyclassifiedads/base.html:89
 #: templates/polyclassifiedads/myads/list.html:6
 #: templates/polyclassifiedads/myads/list.html:10
 msgid "My ads"
 msgstr "Mes annonces"
 
-#: templates/polyclassifiedads/base.html:87
+#: templates/polyclassifiedads/base.html:90
 #: templates/polyclassifiedads/notifications.html:7
 #: templates/polyclassifiedads/notifications.html:11
 msgid "Notifications"
 msgstr "Notifications"
 
-#: templates/polyclassifiedads/base.html:88
+#: templates/polyclassifiedads/base.html:91
 msgid "Ad to validate"
 msgstr "Annonces à valider"
 
-#: templates/polyclassifiedads/base.html:93
+#: templates/polyclassifiedads/base.html:96
 msgid "External users"
 msgstr "Utilisateurs externes"
 
-#: templates/polyclassifiedads/base.html:113
+#: templates/polyclassifiedads/base.html:116
 msgid "Fork me on Github!"
 msgstr "Forquez-moi sur Github !"
 
-#: templates/polyclassifiedads/browse.html:5
-#: templates/polyclassifiedads/browse.html:9
+#: templates/polyclassifiedads/browse.html:7
+#: templates/polyclassifiedads/browse.html:11
 #: templates/polyclassifiedads/home.html:26
 msgid "Browse ads"
 msgstr "Parcourir les annonces"
 
-#: templates/polyclassifiedads/browse.html:17
+#: templates/polyclassifiedads/browse.html:19
 msgid "No ads for your search !"
 msgstr "Pas d'annonces pour votre recherche !"
 
-#: templates/polyclassifiedads/browse.html:29
+#: templates/polyclassifiedads/browse.html:31
 msgid "By"
 msgstr "Par"
 
-#: templates/polyclassifiedads/browse.html:29
+#: templates/polyclassifiedads/browse.html:31
 #: templates/polyclassifiedads/show.html:50
 #: templates/polyclassifiedads/unvalidated.html:27
 #: templates/polyclassifiedads/validate.html:34
 msgid "Anonymous"
 msgstr "Anonyme"
 
-#: templates/polyclassifiedads/browse.html:33
+#: templates/polyclassifiedads/browse.html:35
 msgid "More"
 msgstr "Plus"
 
-#: templates/polyclassifiedads/browse.html:44
 #: templates/polyclassifiedads/browse.html:46
+#: templates/polyclassifiedads/browse.html:48
 msgid "Newer"
 msgstr "Plus récent"
 
-#: templates/polyclassifiedads/browse.html:49
+#: templates/polyclassifiedads/browse.html:51
 #, python-format
 msgid "Page %(n)s of %(p)s"
 msgstr "Page %(n)s sur %(p)s"
 
-#: templates/polyclassifiedads/browse.html:52
 #: templates/polyclassifiedads/browse.html:54
+#: templates/polyclassifiedads/browse.html:56
 msgid "Older"
 msgstr "Plus ancien"
 
-#: templates/polyclassifiedads/browse.html:63
+#: templates/polyclassifiedads/browse.html:65
 msgid "Filters"
 msgstr "Filtres"
 
-#: templates/polyclassifiedads/browse.html:68
+#: templates/polyclassifiedads/browse.html:70
 msgid "Search in ads"
 msgstr "Rechercher dans les annonces"
 
-#: templates/polyclassifiedads/browse.html:71
-#: templates/polyclassifiedads/browse.html:72
+#: templates/polyclassifiedads/browse.html:73
+#: templates/polyclassifiedads/browse.html:74
 msgid "Select a category"
 msgstr "Sélectionnez une catégorie"
 
-#: templates/polyclassifiedads/browse.html:79
-#: templates/polyclassifiedads/browse.html:80
+#: templates/polyclassifiedads/browse.html:81
+#: templates/polyclassifiedads/browse.html:82
 msgid "Select a type"
 msgstr "Sélectionnez un type"
 
-#: templates/polyclassifiedads/browse.html:87
+#: templates/polyclassifiedads/browse.html:89
 msgid "Search"
 msgstr "Recherche"
 
-#: templates/polyclassifiedads/browse.html:88
+#: templates/polyclassifiedads/browse.html:90
 msgid "Clear filter"
 msgstr "Effacer le filtre"
 
-#: templates/polyclassifiedads/browse.html:102
+#: templates/polyclassifiedads/browse.html:104
 #: templates/polyclassifiedads/home.html:26
 msgid "Submit an ad"
 msgstr "Proposer une annonce"

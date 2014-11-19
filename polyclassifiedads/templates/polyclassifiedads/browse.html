@@ -1,12 +1,14 @@
 {% extends "polyclassifiedads/base.html" %}
 {% load i18n %}
 {% load bootstrap3 %}
+{% load polyclassifiedads_extras %}
+{% load staticfiles %}
 
 {% block title %}{{block.super}} :: {% trans "Browse ads" %}{% endblock %}
 
 {% block content %}
 
-<h1 class="page-header">{% trans "Browse ads" %}</h1>
+<h1 class="page-header">{% trans "Browse ads" %} <a href="{% polyclassifiedads_rss_link %}" target="_blank"><img src="{% static "polyclassifiedads/rss.png" %}"></img></a></h1>
 
 
 

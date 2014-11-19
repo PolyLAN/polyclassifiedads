@@ -21,9 +21,10 @@ from math import log10
 
 from .models import Ad, AdTag, AdNotification
 from .forms import AdForm, AnonymousAdForm
-from .utils import send_templated_mail
+from .utils import send_templated_mail, check_secret_rss_key
 
 from django.contrib.sites.models import get_current_site
+from django.contrib.auth import get_user_model
 
 import uuid
 
@@ -396,3 +397,14 @@ def external_put_offline(request, id):
         raise Http404
 
     return _put_offline(request, id, secret_key)
+
+
+def rss(request, user_id, key):
+    """Return a RSS feed with lastest ads"""
+
+    from .feeds import LatestAdFeed  # Need to be imported later to allow resolution of urls in the class
+
+    if not check_secret_rss_key(get_object_or_404(get_user_model(), pk=user_id), key):
+        raise Http404
+
+    return LatestAdFeed()(request)

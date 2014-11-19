@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load staticfiles %}
+{% load polyclassifiedads_extras %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +28,8 @@
     <script src="{% static 'polyclassifiedads/bootstrap/js/bootstrap.min.js' %}"></script>
     
     <script src="{% static 'polyclassifiedads/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+
+    {% if user.pk %}<link rel="alternate" type="application/rss+xml" href="{% polyclassifiedads_rss_link %}" title="{% trans "RSS for news ADs" %}">{% endif %}
 
 
 

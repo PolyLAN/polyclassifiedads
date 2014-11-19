@@ -30,4 +30,7 @@ urlpatterns = patterns('polyclassifiedads.views',
     url(r'^external/(?P<id>[0-9]*)/edit$', 'external_edit'),
     url(r'^external/(?P<id>[0-9]*)/delete$', 'external_delete'),
     url(r'^external/(?P<id>[0-9]*)/put_offline$', 'external_put_offline'),
+
+
+    url(r'^rss/(?P<user_id>[0-9]*)/(?P<key>[0-9a-f]*)$', 'rss'),
 )
