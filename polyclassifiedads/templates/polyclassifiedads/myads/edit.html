@@ -170,5 +170,33 @@
         }
     });
 
+
+  $('#id_category, #id_type').select2({
+        allowClear: true,
+        sortResults: function(results, container, query) {
+            return results.sort(function(a, b) {
+                if (a.disabled) {
+                    return -1;
+                }
+
+                if (b.disabled) {
+                    return 1;
+                }
+
+                if (a.text.length == 1) {
+                    return -1;
+                }
+
+                if (b.text.length == 1) {
+                    return -1;
+                }
+
+                return a.text > b.text;
+            });
+        }
+    
+    });
+
+
 </script>
 {% endblock %}

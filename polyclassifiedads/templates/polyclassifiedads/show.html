@@ -1,5 +1,6 @@
 {% extends "polyclassifiedads/base.html" %}
 {% load i18n %}
+{% load l10n %}
 {% load bootstrap3 %}
 
 
@@ -28,7 +29,14 @@
 
 <div class="row">
     <div class="col-md-7">
-        <div class="well"><h4>{% trans "Text of the ad" %}</h4>{{ad.content_formated|safe}}</div>
+        <div class="well">
+            <h4>{% trans "Text of the ad" %}</h4>
+            {{ad.content_formated|safe}}
+            {% if ad.price %}
+                <h4>{% trans "Price" %}</h4>
+                {{ad.price|localize}} CHF
+            {% endif %}
+        </div>
     </div>
 
     <div class="col-md-5">

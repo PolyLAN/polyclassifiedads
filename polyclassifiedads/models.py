@@ -21,6 +21,8 @@ class Ad(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField(_('Text of your ad'), help_text=_('You may use markdown to format your content.'))
 
+    price = models.IntegerField(_('Price (CHF)'), blank=True, null=True, help_text=_('Optionnal price for your item'))
+
     online_date = models.DateField(blank=True, null=True, help_text=_('Starting date to display the ad. Leave empty to start as soon as the ad is validataed.'))
     offline_date = models.DateField(blank=True, null=True, help_text=_('Ending date to display the ad. Maximum 30 days from today.'))
 
