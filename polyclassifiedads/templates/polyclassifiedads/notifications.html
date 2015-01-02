@@ -28,10 +28,12 @@
 </script>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         {% with notification_type='daily' notification_text='Daily' notification_object=daily %}
             {% include "polyclassifiedads/notification_block.html" %}
         {% endwith %}
+    </div>
+    <div class="col-md-6">
         {% with notification_type='weekly' notification_text='Weekly' notification_object=weekly %}
             {% include "polyclassifiedads/notification_block.html" %}
         {% endwith %}

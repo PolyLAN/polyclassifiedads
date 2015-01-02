@@ -37,109 +37,139 @@
 
 <body>
 
-       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'polyclassifiedads.views.home' %}"><img src="{% static 'polyclassifiedads/logo-agep.png' %}" height="40" style="margin-top: -8px;"> {% trans "AGEPoly's classified ads" %}</a>
+    <div class="container">
+
+       <div class="navbar navbar-default navbar-inverse" role="navigation" style="text-align: right;">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapseA">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="{% url 'polyclassifiedads.views.home' %}">{% trans "AGEPoly's classified ads" %}</a>
+
+
+              <a href="https://agepoly.ch"><img src="{% static 'polyclassifiedads/logo-agep.png' %}" height="40" style="margin-top: 4px;"></a>
+              <img src="{% static 'polyclassifiedads/logo-epfl.png' %}" height="40" style="margin-top: 4px; padding: 3px; background-color: #fff;">
+
+            </div>
+
+            <div class="navbar-collapse navbar-collapseA collapse">
+              <ul class="nav navbar-nav navbar-right">
+                  {% if user.pk %}<li><a href="#" onclick="return false;">{% trans "Welcome" %} {{user.get_full_name}}</a></li>{% endif %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Language" %}<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            {% for lang in LANGUAGES %}
+                                <li>
+                                    <a href="#" onclick="document.setLang{{ lang.1 }}.submit();return false;">{{ lang.1 }}</a>
+                                    <form name="setLang{{lang.1}}" action="{% url 'django.views.i18n.set_language' %}" method="POST">{% csrf_token %}
+                                        <input type="hidden" name="language" value="{{ lang.0 }}" />
+                                    </form>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+
+                  </li>
+                  {% if user.pk %}<li><a href="{% url 'django.contrib.auth.views.logout' %}?next={% url 'polyclassifiedads.views.home' %}">{% trans "Logout" %}</a></li>{% endif %}
+              </ul>
+            </div>
+
+
+          </div>
+        </div>
+
+
+       <div class="navbar navbar-default navbar-2" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapseB">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+
+            <div class="navbar-collapse  navbar-collapseB collapse">
+              <ul class="nav navbar-nav">
+
+
+                <li id="polyads-menu-home"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "Home" %}</a></li>
+
+                {# <li class="navbar-mblock">{% trans "Logged users" %}</li> #}
+                <li id="polyads-menu-browse"><a href="{% url 'polyclassifiedads.views.browse' %}">{% trans "Browse" %}</a></li>
+                <li id="polyads-menu-newad"><a href="{% url 'polyclassifiedads.views.new' %}">{% trans "New ad" %}</a></li>
+                <li id="polyads-menu-myads"><a href="{% url 'polyclassifiedads.views.my_ads' %}">{% trans "My ads" %}</a></li>
+                <li id="polyads-menu-notifications"><a href="{% url 'polyclassifiedads.views.notifications' %}">{% trans "Notifications" %}</a></li>
+                {% if user.is_staff %}<li id="polyads-menu-admin"><a href="{% url 'polyclassifiedads.views.unvalidated_list' %}">{% trans "Ad to validate" %}</a></li>{% endif %}
+
+
+                {# <li class="navbar-mblock">{% trans "External users" %}</li> #}
+                <li id="polyads-menu-external"><a href="{% url 'polyclassifiedads.views.external_new' %}">{% trans "New ad" %} ({% trans "External users" %})</a></li>
+              </ul>
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="container-fluid main-block">
+          <div class="row">
+
+            <div class="col-md-12">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+              {% block content %}
+              {% endblock %}
+
+
+                <hr />
+
+            </div>
+
+
+            <div class="footer">
+
+
+                &copy; Maximilien Cuony - 2014 - <a href="http://opensource.org/licenses/BSD-2-Clause" target="_blank">BSD</a> - <a href="http://agepoly.epfl.ch">AGEPoly</a>/<a href="http://polylan.ch">PolyLAN</a> - <a href="https://github.com/PolyLAN/polyclassifiedads">{% trans "Fork me on Github!" %}</a>
+                <br />
+                Using <a href="https://www.djangoproject.com/" target="_blank">Django</a> with <a href="http://djangopony.com/" target="_blank">ponies and magic</a> and <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>.
+
+            </div>
+
+          </div>
 
         </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-              {% if user.pk %}<li><a href="#" onclick="return false;">{% trans "Welcome" %} {{user.get_full_name}}</a></li>{% endif %}
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Language" %}<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        {% for lang in LANGUAGES %}
-                            <li>
-                                <a href="#" onclick="document.setLang{{ lang.1 }}.submit();return false;">{{ lang.1 }}</a>
-                                <form name="setLang{{lang.1}}" action="{% url 'django.views.i18n.set_language' %}" method="POST">{% csrf_token %}
-                                    <input type="hidden" name="language" value="{{ lang.0 }}" />
-                                </form>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </li>
 
-              </li>
-              {% if user.pk %}<li><a href="{% url 'django.contrib.auth.views.logout' %}?next={% url 'polyclassifiedads.views.home' %}">{% trans "Logout" %}</a></li>{% endif %}
-              <li><a href="https://agepoly.ch">{% trans "Back to the AGEPoly's website" %}</a></li>
-          </ul>
-        </div>
-      </div>
+
+        {% if settings.GOOGLE_ANALYTICS_ID %}
+            <script> 
+
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', '{{ settings.GOOGLE_ANALYTICS_ID }}', 'auto');
+                ga('set', 'contentGroup1', 'PetitesAnnonces');
+                ga('send', 'pageview');
+
+            </script>
+        {% endif %}
+
     </div>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <!-- <li class="dropdown&#45;header">{% trans "General" %}</li> -->
-            <li id="polyads-menu-home"><a href="{% url 'polyclassifiedads.views.home' %}">{% trans "Home" %}</a></li>
-          </ul>
-
-          <ul class="nav nav-sidebar">
-            <li class="dropdown&#45;header">{% trans "Logged users" %}</li>
-            <li id="polyads-menu-browse"><a href="{% url 'polyclassifiedads.views.browse' %}">{% trans "Browse" %}</a></li>
-            <li id="polyads-menu-newad"><a href="{% url 'polyclassifiedads.views.new' %}">{% trans "New ad" %}</a></li>
-            <li id="polyads-menu-myads"><a href="{% url 'polyclassifiedads.views.my_ads' %}">{% trans "My ads" %}</a></li>
-            <li id="polyads-menu-notifications"><a href="{% url 'polyclassifiedads.views.notifications' %}">{% trans "Notifications" %}</a></li>
-            {% if user.is_staff %}<li id="polyads-menu-admin"><a href="{% url 'polyclassifiedads.views.unvalidated_list' %}">{% trans "Ad to validate" %}</a></li>{% endif %}
-          </ul>
-
-
-          <ul class="nav nav-sidebar">
-            <li class="dropdown&#45;header">{% trans "External users" %}</li>
-            <li id="polyads-menu-newpulicad"><a href="{% url 'polyclassifiedads.views.external_new' %}">{% trans "New ad" %}</a></li>
-          </ul>
-
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-
-          {% block content %}
-          {% endblock %}
-        </div>
-
-        <div class="footer">
-
-            &copy; Maximilien Cuony - 2014 - <a href="http://opensource.org/licenses/BSD-2-Clause" target="_blank">BSD</a> - <a href="http://agepoly.epfl.ch">AGEPoly</a>/<a href="http://polylan.ch">PolyLAN</a> - <a href="https://github.com/PolyLAN/polyclassifiedads">{% trans "Fork me on Github!" %}</a>
-            <br />
-            Using <a href="https://www.djangoproject.com/" target="_blank">Django</a> with <a href="http://djangopony.com/" target="_blank">ponies and magic</a> and <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>.
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    {% if settings.GOOGLE_ANALYTICS_ID %}
-        <script> 
-
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', '{{ settings.GOOGLE_ANALYTICS_ID }}', 'auto');
-            ga('set', 'contentGroup1', 'PetitesAnnonces');
-            ga('send', 'pageview');
-
-        </script>
-    {% endif %}
-
-   
+       
 </body>
 
 </html>

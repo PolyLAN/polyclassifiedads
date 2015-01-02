@@ -8,12 +8,12 @@
 
 {% block content %}
 
-<h1 class="page-header">{% trans "Browse ads" %} <a href="{% polyclassifiedads_rss_link %}" target="_blank"><img src="{% static "polyclassifiedads/rss.png" %}"></img></a></h1>
-
-
 
 <div class="row">
     <div class="col-md-9">
+
+        <h1 class="page-header">{% trans "Browse ads" %} <a href="{% polyclassifiedads_rss_link %}" target="_blank"><img src="{% static "polyclassifiedads/rss.png" %}"></img></a></h1>
+
         {% if not liste %}
             <div class="alert alert-warning">
                 {% trans "No ads for your search !" %}
@@ -70,17 +70,17 @@
                 <input class="form-control" type="text" name="q" value="{{q}}" placeholder="{% trans "Search in ads" %}">
                 <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
             </div>
-            <select class="form-control" name="cat" placeholder="{% trans "Select a category" %}" style="margin-top: 4px;">
-                <option value='' disabled selected style='display:none;'>{% trans "Select a category" %}</option>
-                <option></option>
+            <select class="form-control" id="cat-select" name="cat" data-placeholder="{% trans "Select a category" %}" style="margin-top: 4px;">
+                {# <option value='' disabled selected style='display:none;'>{% trans "Select a category" %}</option> #}
+                <option>&nbsp;</option>
                 {% for cid, ctext in CATEGORY_CHOICES %}
                     <option value="{{cid}}" {% if cid == cat %}selected{% endif %}>{{ctext}}</a>
                 {% endfor %}
             </select>
 
-            <select class="form-control" name="typ" placeholder="{% trans "Select a type" %}" style="margin-top: 4px;">
-                <option value='' disabled selected style='display:none;'>{% trans "Select a type" %}</option>
-                <option></option>
+            <select class="form-control" id="typ-select" name="typ" data-placeholder="{% trans "Select a type" %}" style="margin-top: 4px;">
+                {# <option value='' disabled selected style='display:none;'>{% trans "Select a type" %}</option> #}
+                <option>&nbsp;</option>
                 {% for cid, ctext in TYPE_CHOICES %}
                     <option value="{{cid}}" {% if cid == typ %}selected{% endif %}>{{ctext}}</a>
                 {% endfor %}
@@ -103,9 +103,43 @@
 
 <a class="btn btn-success pull-right" href="{% url 'polyclassifiedads.views.new' %}" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Submit an ad" %}</a>
 
+<br />
+<br />
+
 <script type="text/javascript">$('#polyads-menu-browse').addClass('active');</script>
 
+<script src="{% static 'polyclassifiedads/select2/select2.min.js' %}"></script>
+<link href="{% static 'polyclassifiedads/select2/select2.css' %}" rel="stylesheet">
+<link href="{% static 'polyclassifiedads/select2/select2-bootstrap.css' %}" rel="stylesheet">
+
 <script type="text/javascript">
+
+    
+    $('#typ-select, #cat-select').select2({
+        allowClear: true,
+        sortResults: function(results, container, query) {
+            return results.sort(function(a, b) {
+                if (a.disabled) {
+                    return -1;
+                }
+
+                if (b.disabled) {
+                    return 1;
+                }
+
+                if (a.text.length == 1) {
+                    return -1;
+                }
+
+                if (b.text.length == 1) {
+                    return -1;
+                }
+
+                return a.text > b.text;
+            });
+        }
+    
+    });
 
 </script>
 {% endblock %}

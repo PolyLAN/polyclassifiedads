@@ -5,7 +5,20 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
+  padding-top: 20px;
+  font-size: 12px;
+
+  background-color: #eee;
+}
+
+.main-block {
+
+  background-color: #fff;
+
+  border: 1px #ddd;
+
+  border-radius: 4px;
+
 }
 
 
@@ -77,12 +90,12 @@ body {
 }
 @media (min-width: 768px) {
   .main {
-    padding-right: 40px;
-    padding-left: 40px;
+    /* padding-right: 40px; */
+    /* padding-left: 40px; */
   }
 }
-.main .page-header {
-  margin-top: 0;
+.page-header {
+  margin-top: 15px;
 }
 
 
@@ -110,4 +123,29 @@ body {
     float: right;
     margin-right: 15px;
     text-align: right;
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+.navbar-mblock {
+float: left;
+height: 50px;
+padding: 15px;
+font-size: 14px;
+line-height: 20px;
+}
+
+.navbar-inverse {
+
+  margin-bottom: -2px;
+  z-index: 100;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+
+}
+
+.navbar-2 {
+
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
