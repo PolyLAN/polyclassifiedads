@@ -39,7 +39,7 @@ msgstr "Merci de recopier le code suivant:"
 
 #: models.py:22
 msgid "Text of your ad"
-msgstr "Texte de votre annone"
+msgstr "Texte de votre annonce"
 
 #: models.py:22
 msgid "You may use markdown to format your content."
