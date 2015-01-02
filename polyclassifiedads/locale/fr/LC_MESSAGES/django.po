@@ -897,7 +897,7 @@ msgstr ""
 "\n"
 "                              Bonjour %(name)s,<br><br>\n"
 "                                Pour information, votre annonce \"%(title)s"
-"\" a été validée et sera en ligne à la date prévue (ou dès mainteant) :)\n"
+"\" a été validée et sera en ligne à la date prévue (ou dès maintenant) :)\n"
 "                            "
 
 #: templates/polyclassifiedads/emails/ad_validated.txt:1
@@ -914,7 +914,7 @@ msgstr ""
 "Bonjour %(name)s,\n"
 "\n"
 "Pour information, votre annonce \"%(title)s\" a été validée et sera en ligne "
-"à la date prévue (ou dès mainteant) :)\n"
+"à la date prévue (ou dès maintenant) :)\n"
 
 #: templates/polyclassifiedads/emails/external_ad.html:219
 #, python-format
