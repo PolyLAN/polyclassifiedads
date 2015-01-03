@@ -29,5 +29,6 @@ setup(
         'markdown',
         'bleach',
         'django-simple-captcha',
+        'django-jfu',
     ]
 )

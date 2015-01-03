@@ -33,4 +33,7 @@ urlpatterns = patterns('polyclassifiedads.views',
 
 
     url(r'^rss/(?P<user_id>[0-9]*)/(?P<key>[0-9a-f]*)$', 'rss'),
+
+    url(r'^upload/$', 'jfu_upload', name='pca_jfu_upload'),
+    url(r'^upload/delete/(?P<pk>\d+)$', 'jfu_delete', name='pca_jfu_delete'),
 )

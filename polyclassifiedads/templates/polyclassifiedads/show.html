@@ -36,6 +36,37 @@
                 <h4>{% trans "Price" %}</h4>
                 {{ad.price|localize}} CHF
             {% endif %}
+            {% if ad.adphoto_set.all %}
+                <h4>{% trans "Photos" %}</h4>
+
+                <div class="row">
+                        {% for photo in ad.adphoto_set.all %}
+                            <div class="col-md-3">
+                                <a href="{{MEDIA_URL}}{{photo.file}}" title="{{photo.basename}}" download="{{MEDIA_URL}}{{photo.file}}" data-gallery class="thumbnail"><img src="{{MEDIA_URL}}{{photo.file}}" /></a>
+                            </div>
+
+                            {% if forloop.counter|divisibleby:4 %}
+                <div class="row">
+                </div>
+                            {% endif %}
+                        {% endfor %}
+                </div>
+
+                <link rel="stylesheet" href="{{STATIC_URL}}demo/blueimp-gallery.min.css">
+                <script src="{{STATIC_URL}}demo/jquery.blueimp-gallery.min.js"></script>
+
+                <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+                    <div class="slides"></div>
+                    <h3 class="title"></h3>
+                    <a class="prev">&larr;</a>
+                    <a class="next">&rarr;</a>
+                    <a class="close">x</a>
+                    <a class="play-pause"></a>
+                    <ol class="indicator"></ol>
+                </div>
+
+
+            {% endif %}
         </div>
     </div>
 

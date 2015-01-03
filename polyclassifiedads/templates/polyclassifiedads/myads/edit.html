@@ -18,8 +18,10 @@
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12">
-        <form method="POST">
+        <form method="POST" id="main_form">
             {% csrf_token %}
+
+            <input type="hidden" name="file_key" value="{{file_key}}">
 
             {% bootstrap_form form %}
 
@@ -28,15 +30,24 @@
                 <input class="form-control" id="tags" name="tags" placeholder="{% trans "Tags" %}" value="{{tags}}" type="hidden" />
             </div>
 
-            <div class="form-actions pull-right">
-                <div class="row">
-                    <div class="col-md-12">
-                        <a href="{% if form.instance.pk %}{% if secret_key %}{% url 'polyclassifiedads.views.external_show' form.instance.pk %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.show' form.instance.pk %}{% endif %}{% else %}{% url 'polyclassifiedads.views.home' %}{% endif %}" class="btn btn-danger">{% trans "Cancel" %}</a>
-                        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> {% trans "Save" %}</button>
-                    </div>
+        </form>
+
+        <div class="form-group">
+            <label class="control-label" for="tags">{% trans "Photos" %}</label>
+
+              {% load jfutags %}
+              {% jfu 'polyclassifiedads/jfu.html' 'pca_jfu_upload' %}
+
+        </div>
+
+        <div class="form-actions pull-right">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="{% if form.instance.pk %}{% if secret_key %}{% url 'polyclassifiedads.views.external_show' form.instance.pk %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.show' form.instance.pk %}{% endif %}{% else %}{% url 'polyclassifiedads.views.home' %}{% endif %}" class="btn btn-danger">{% trans "Cancel" %}</a>
+                    <button type="submit" onclick="$('#main_form').submit();" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> {% trans "Save" %}</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 

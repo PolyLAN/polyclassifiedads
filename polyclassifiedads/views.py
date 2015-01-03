@@ -19,7 +19,7 @@ import datetime
 import json
 from math import log10
 
-from .models import Ad, AdTag, AdNotification
+from .models import Ad, AdTag, AdNotification, AdPhoto
 from .forms import AdForm, AnonymousAdForm
 from .utils import send_templated_mail, check_secret_rss_key
 
@@ -27,6 +27,10 @@ from django.contrib.sites.models import get_current_site
 from django.contrib.auth import get_user_model
 
 import uuid
+
+import os
+from django.views.decorators.http import require_POST
+from jfu.http import upload_receive, UploadResponse, JFUResponse
 
 
 def home(request):
@@ -117,6 +121,8 @@ def _edit(request, id, Form, secret_key=None):
 
         tags = request.POST.get('tags')
 
+        file_key = request.POST['file_key']
+
         if form.is_valid():  # If the form is valid
             was_a_new_object = not form.instance.pk
             object = form.save()
@@ -127,6 +133,19 @@ def _edit(request, id, Form, secret_key=None):
                 if t.strip():
                     tag, __ = AdTag.objects.get_or_create(tag=t.strip())
                     object.tags.add(tag)
+
+            for file_pk in request.session['files_%s' % (file_key,)]:
+                photo = AdPhoto.objects.get(pk=file_pk)
+                photo.ad = object
+                photo.save()
+
+            for photo in object.adphoto_set.all():
+                if photo.pk not in request.session['files_%s' % (file_key,)]:
+                    os.unlink(photo.file.path)
+                    photo.delete()
+
+            # Clean up session
+            del request.session['files_%s' % (file_key,)]
 
             messages.success(request, _('The ad has been saved !'))
 
@@ -158,9 +177,15 @@ def _edit(request, id, Form, secret_key=None):
 
         tags = ','.join([tag.tag for tag in object.tags.all()]) if object.pk else ''
 
+        file_key = str(uuid.uuid4())
+
+        request.session['files_%s' % (file_key,)] = [f.pk for f in object.adphoto_set.all()] if object.pk else []
+
+    files = [AdPhoto.objects.get(pk=pk) for pk in request.session['files_%s' % (file_key,)]]
+
     date_format = form.fields['offline_date'].widget.format.replace('%Y', 'yyyy').replace('%m', 'mm').replace('%d', 'dd')
 
-    return render_to_response('polyclassifiedads/myads/edit.html', {'form': form, 'date_format': date_format, 'tags': tags, 'secret_key': secret_key}, context_instance=RequestContext(request))
+    return render_to_response('polyclassifiedads/myads/edit.html', {'form': form, 'date_format': date_format, 'tags': tags, 'secret_key': secret_key, 'file_key': file_key, 'files': files}, context_instance=RequestContext(request))
 
 
 @login_required
@@ -408,3 +433,60 @@ def rss(request, user_id, key):
         raise Http404
 
     return LatestAdFeed()(request)
+
+
+@require_POST
+def jfu_upload(request):
+
+    key = request.GET.get('key')
+
+    file = upload_receive(request)
+
+    instance = AdPhoto(file=file)
+    instance.save()
+
+    basename = os.path.basename(instance.file.path)
+
+    file_dict = {
+        'name': basename,
+        'size': file.size,
+
+        'url': '%s/%s' % (settings.MEDIA_URL, instance.file,),
+        'thumbnailUrl': '%s/%s' % (settings.MEDIA_URL, instance.file,),
+
+        'deleteUrl': reverse('pca_jfu_delete', kwargs={'pk': instance.pk}) + '?key=' + key,
+        'deleteType': 'POST',
+    }
+
+    # Can't do it in one line !
+    file_list = request.session['files_%s' % (key,)]
+    file_list.append(instance.pk)
+    request.session['files_%s' % (key,)] = file_list
+
+    return UploadResponse(request, file_dict)
+
+
+@require_POST
+def jfu_delete(request, pk):
+    success = True
+
+    key = request.GET.get('key')
+
+    if int(pk) not in request.session['files_%s' % (key,)]:
+        raise Http404()
+
+    try:
+        instance = AdPhoto.objects.get(pk=pk)
+
+        if not instance.ad:  # Deleted later
+            os.unlink(instance.file.path)
+            instance.delete()
+
+        file_list = request.session['files_%s' % (key,)]
+        file_list.remove(int(pk))
+        request.session['files_%s' % (key,)] = file_list
+
+    except AdPhoto.DoesNotExist:
+        success = False
+
+    return JFUResponse(request, success)

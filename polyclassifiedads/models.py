@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 import datetime
 import markdown
 import bleach
+import os
 
 
 class Ad(models.Model):
@@ -124,3 +125,12 @@ class AdNotification(models.Model):
     filter_categories = models.CharField(max_length=128)
     filter_types = models.CharField(max_length=128)
     filter = models.CharField(max_length=512)
+
+
+class AdPhoto(models.Model):
+
+    file = models.ImageField(upload_to='polyclassifiedads/photos')
+    ad = models.ForeignKey(Ad, blank=True, null=True)
+
+    def basename(self):
+        return os.path.basename(self.file.path)
