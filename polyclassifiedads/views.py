@@ -41,6 +41,12 @@ def home(request):
 @login_required
 def browse(request):
 
+    mode_liste = request.session.get('pca_mode_liste', True)
+
+    if request.GET.get('mode_liste'):
+        mode_liste = request.GET.get('mode_liste') == 'true'
+        request.session['pca_mode_liste'] = mode_liste
+
     tag = request.GET.get('tag', '')
     typ = request.GET.get('typ', '')
     cat = request.GET.get('cat', '')
@@ -89,7 +95,7 @@ def browse(request):
 
     tags = map(lambda t: (t, int((log10(t.count) / log10(total + 1)) * (max_size - min_size) + min_size)), tags)
 
-    return render_to_response('polyclassifiedads/browse.html', {'liste': liste, 'tag': tag, 'tags': tags, 'q': q, 'typ': typ, 'cat': cat, 'TYPE_CHOICES': Ad.TYPE_CHOICES, 'CATEGORY_CHOICES': Ad.CATEGORY_CHOICES}, context_instance=RequestContext(request))
+    return render_to_response('polyclassifiedads/browse.html', {'liste': liste, 'tag': tag, 'tags': tags, 'q': q, 'typ': typ, 'cat': cat, 'TYPE_CHOICES': Ad.TYPE_CHOICES, 'CATEGORY_CHOICES': Ad.CATEGORY_CHOICES, 'mode_liste': mode_liste}, context_instance=RequestContext(request))
 
 
 @login_required
@@ -134,18 +140,18 @@ def _edit(request, id, Form, secret_key=None):
                     tag, __ = AdTag.objects.get_or_create(tag=t.strip())
                     object.tags.add(tag)
 
-            for file_pk in request.session['files_%s' % (file_key,)]:
+            for file_pk in request.session['pca_files_%s' % (file_key,)]:
                 photo = AdPhoto.objects.get(pk=file_pk)
                 photo.ad = object
                 photo.save()
 
             for photo in object.adphoto_set.all():
-                if photo.pk not in request.session['files_%s' % (file_key,)]:
+                if photo.pk not in request.session['pca_files_%s' % (file_key,)]:
                     os.unlink(photo.file.path)
                     photo.delete()
 
             # Clean up session
-            del request.session['files_%s' % (file_key,)]
+            del request.session['pca_files_%s' % (file_key,)]
 
             messages.success(request, _('The ad has been saved !'))
 
@@ -179,9 +185,9 @@ def _edit(request, id, Form, secret_key=None):
 
         file_key = str(uuid.uuid4())
 
-        request.session['files_%s' % (file_key,)] = [f.pk for f in object.adphoto_set.all()] if object.pk else []
+        request.session['pca_files_%s' % (file_key,)] = [f.pk for f in object.adphoto_set.all()] if object.pk else []
 
-    files = [AdPhoto.objects.get(pk=pk) for pk in request.session['files_%s' % (file_key,)]]
+    files = [AdPhoto.objects.get(pk=pk) for pk in request.session['pca_files_%s' % (file_key,)]]
 
     date_format = form.fields['offline_date'].widget.format.replace('%Y', 'yyyy').replace('%m', 'mm').replace('%d', 'dd')
 
@@ -459,9 +465,9 @@ def jfu_upload(request):
     }
 
     # Can't do it in one line !
-    file_list = request.session['files_%s' % (key,)]
+    file_list = request.session['pca_files_%s' % (key,)]
     file_list.append(instance.pk)
-    request.session['files_%s' % (key,)] = file_list
+    request.session['pca_files_%s' % (key,)] = file_list
 
     return UploadResponse(request, file_dict)
 
@@ -472,7 +478,7 @@ def jfu_delete(request, pk):
 
     key = request.GET.get('key')
 
-    if int(pk) not in request.session['files_%s' % (key,)]:
+    if int(pk) not in request.session['pca_files_%s' % (key,)]:
         raise Http404()
 
     try:
@@ -482,9 +488,9 @@ def jfu_delete(request, pk):
             os.unlink(instance.file.path)
             instance.delete()
 
-        file_list = request.session['files_%s' % (key,)]
+        file_list = request.session['pca_files_%s' % (key,)]
         file_list.remove(int(pk))
-        request.session['files_%s' % (key,)] = file_list
+        request.session['pca_files_%s' % (key,)] = file_list
 
     except AdPhoto.DoesNotExist:
         success = False

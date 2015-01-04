@@ -12,6 +12,8 @@
 <div class="row">
     <div class="col-md-9">
 
+        <a href="?tag={{tag}}&q={{q}}&cat={{cat}}&typ={{typ}}&mode_liste={{mode_liste|yesno:'false,true'}}" class="pull-right" style="margin-top: 15px;"><i class="glyphicon glyphicon-th-{{mode_liste|yesno:'large,list'}}"></i></a>
+
         <h1 class="page-header">{% trans "Browse ads" %} <a href="{% polyclassifiedads_rss_link %}" target="_blank"><img src="{% static "polyclassifiedads/rss.png" %}"></img></a></h1>
 
         {% if not liste %}
@@ -20,26 +22,73 @@
             </div>
         {% else %}
 
-            <div class="row">
+            {% if mode_liste %}
 
-                {% for ad in liste %}
-                    <div class="col-sm-3 col-md-3">
-                        <div class="thumbnail">
-                        <div class="caption">
-                            <h3 style="margin-top: 0px;">
-                                {{ad.title}}
-                                <small>{% trans "By" %} {% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}</i>{% endif %}</small>
-                            </h3>
+                <table class="table table-condensed table-striped table-hower">
 
-                            {{ad.content_formated|safe|truncatewords_html:10}}
-                            <a href="{% url 'polyclassifiedads.views.show' ad.pk %}" style="margin-bottom: 2px;" class="btn btn-info btn-xs pull-right"><i class="glyphicon glyphicon-folder-open"></i> {% trans "More" %}</a>
-                            <hr style="clear: both; margin-bottom: 0px;"/>
-                            <a href="?tag={{tag}}&q={{q}}&cat={{ad.category}}&typ={{typ}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-list-alt"></i> {{ad.get_category_display}}</a> <a href="?tag={{tag}}&q={{q}}&cat={{cat}}&typ={{ad.type}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-list-alt"></i> {{ad.get_type_display}}</a> {% for t in ad.tags_for_list %}<a href="?tag={{t.tag}}&q={{q}}&cat={{cat}}&typ={{typ}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a> {% endfor %}
+                    <thead>
+                        <tr>
+                            <th>{% trans "Title" %}</th>
+                            <th>{% trans "Author" %}</th>
+                            <th>{% trans "Text" %}</th>
+                            <th>{% trans "Tags" %}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    {% for ad in liste %}
+                        <tr>
+                            <td><a href="{% url 'polyclassifiedads.views.show' ad.pk %}">{{ad.title}}</a></td>
+                            <td>{% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}</i>{% endif %}</td>
+                            <td>{{ad.content_formated|safe|removetags:"br p"|truncatewords_html:10}}...</td>
+                            <td>
+                                <a href="?tag={{tag}}&q={{q}}&cat={{ad.category}}&typ={{typ}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-list-alt"></i> {{ad.get_category_display}}</a>
+                                <a href="?tag={{tag}}&q={{q}}&cat={{cat}}&typ={{ad.type}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-list-alt"></i> {{ad.get_type_display}}</a>
+                                {% for t in ad.tags_for_list %}
+                                    <a href="?tag={{t.tag}}&q={{q}}&cat={{cat}}&typ={{typ}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a>
+                                {% endfor %}
+                            </td>
+                            <td><a href="{% url 'polyclassifiedads.views.show' ad.pk %}" style="margin-bottom: 2px;" class="btn btn-info btn-xs pull-right"><i class="glyphicon glyphicon-folder-open"></i> {% trans "More" %}</a></td>
+                        </tr>
+
+
+                    {% endfor %}
+                </table>
+
+            {% else %}
+
+                <div class="row">
+
+                    {% for ad in liste %}
+                        <div class="col-sm-3 col-md-3">
+                            <div class="thumbnail">
+                            <div class="caption">
+                                <h4 style="margin-top: 0px;">
+                                    <a href="{% url 'polyclassifiedads.views.show' ad.pk %}">{{ad.title}}</a>
+                                    <small>{% trans "By" %} {% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}</i>{% endif %}</small>
+                                </h4>
+
+                                {{ad.content_formated|safe|truncatewords_html:10}}
+                                <a href="{% url 'polyclassifiedads.views.show' ad.pk %}" style="margin-bottom: 2px;" class="btn btn-info btn-xs pull-right"><i class="glyphicon glyphicon-folder-open"></i> {% trans "More" %}</a>
+                                <hr style="clear: both; margin-bottom: 0px;"/>
+                                <a href="?tag={{tag}}&q={{q}}&cat={{ad.category}}&typ={{typ}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-list-alt"></i> {{ad.get_category_display}}</a>
+                                <a href="?tag={{tag}}&q={{q}}&cat={{cat}}&typ={{ad.type}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-list-alt"></i> {{ad.get_type_display}}</a>
+                                {% for t in ad.tags_for_list %}
+                                    <a href="?tag={{t.tag}}&q={{q}}&cat={{cat}}&typ={{typ}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a>
+                                {% endfor %}
+                            </div>
+                            </div>
                         </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+
+                        {% if forloop.counter|divisibleby:4 %}
+                </div>
+                <div class="row">
+                        {% endif %}
+
+                    {% endfor %}
+                </div>
+
+            {% endif %}
 
             <ul class="pager">
                 {% if liste.has_previous %}
@@ -62,7 +111,7 @@
     </div>
     <div class="col-md-3">
 
-        <h3>{% trans "Filters" %}</h3>
+        <h3 class="page-header">{% trans "Filters" %}</h3>
 
         <form action="" method="GET">
             <input type="hidden" name="tag" value="{{tag}}">
@@ -70,7 +119,7 @@
                 <input class="form-control" type="text" name="q" value="{{q}}" placeholder="{% trans "Search in ads" %}">
                 <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
             </div>
-            <select class="form-control" id="cat-select" name="cat" data-placeholder="{% trans "Select a category" %}" style="margin-top: 4px;">
+            <select class="form-control" id="cat-select" name="cat" data-placeholder="{% trans "Filter by category" %}" style="margin-top: 4px;">
                 {# <option value='' disabled selected style='display:none;'>{% trans "Select a category" %}</option> #}
                 <option>&nbsp;</option>
                 {% for cid, ctext in CATEGORY_CHOICES %}
@@ -78,7 +127,7 @@
                 {% endfor %}
             </select>
 
-            <select class="form-control" id="typ-select" name="typ" data-placeholder="{% trans "Select a type" %}" style="margin-top: 4px;">
+            <select class="form-control" id="typ-select" name="typ" data-placeholder="{% trans "Filter by type" %}" style="margin-top: 4px;">
                 {# <option value='' disabled selected style='display:none;'>{% trans "Select a type" %}</option> #}
                 <option>&nbsp;</option>
                 {% for cid, ctext in TYPE_CHOICES %}
@@ -93,7 +142,7 @@
         <hr style="clear: both; margin-bottom: 4px; visibility: hidden;"/>
 
         {% for t in tags %}
-            <a href="?tag={{t.0.tag}}&q={{q}}&cat={{cat}}" class="label label-{% if t.0.tag == tag %}success{% else %}default{% endif %}" style="display: inline-block; font-size: {{t.1}}%;"><i class="glyphicon glyphicon-tag"></i> {{t.0.tag}}</a>
+            <a href="?tag={{t.0.tag}}&q={{q}}&cat={{cat}}&typ={{typ}}" class="label label-{% if t.0.tag == tag %}success{% else %}default{% endif %}" style="display: inline-block; font-size: {{t.1}}%;"><i class="glyphicon glyphicon-tag"></i> {{t.0.tag}}</a>
         {% endfor %}
 
 
@@ -114,7 +163,6 @@
 
 <script type="text/javascript">
 
-    
     $('#typ-select, #cat-select').select2({
         allowClear: true,
         sortResults: function(results, container, query) {
@@ -138,7 +186,6 @@
                 return a.text > b.text;
             });
         }
-    
     });
 
 </script>
