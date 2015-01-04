@@ -134,3 +134,10 @@ class AdPhoto(models.Model):
 
     def basename(self):
         return os.path.basename(self.file.path)
+
+
+class AdSeen(models.Model):
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    ad = models.ForeignKey(Ad)
+    when = models.DateTimeField(auto_now_add=True)

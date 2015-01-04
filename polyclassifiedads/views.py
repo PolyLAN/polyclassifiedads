@@ -19,7 +19,7 @@ import datetime
 import json
 from math import log10
 
-from .models import Ad, AdTag, AdNotification, AdPhoto
+from .models import Ad, AdTag, AdNotification, AdPhoto, AdSeen
 from .forms import AdForm, AnonymousAdForm
 from .utils import send_templated_mail, check_secret_rss_key
 
@@ -212,6 +212,9 @@ def _show(request, id, secret_key=None):
             raise Http404
     else:
         can_edit = True
+
+    if request.user.pk:
+        AdSeen.objects.get_or_create(user=request.user, ad=ad)
 
     return render_to_response('polyclassifiedads/show.html', {'ad': ad, 'secret_key': secret_key, 'can_edit': can_edit, 'site': get_current_site(request)}, context_instance=RequestContext(request))
 

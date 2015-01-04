@@ -37,8 +37,12 @@
                     </thead>
 
                     {% for ad in liste %}
+                        {% polyclassifiedads_is_seen ad as ad_seen %}
                         <tr>
-                            <td><a href="{% url 'polyclassifiedads.views.show' ad.pk %}">{{ad.title}}</a></td>
+                            <td>
+                                {% if not ad_seen %}<small><small><i class="glyphicon glyphicon-asterisk"></i></small></small>{% endif %}
+                                <a style="{% if not ad_seen %}font-weight: bold;{% endif %}" href="{% url 'polyclassifiedads.views.show' ad.pk %}">{{ad.title}}</a>
+                            </td>
                             <td>{% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}</i>{% endif %}</td>
                             <td>{{ad.content_formated|safe|removetags:"br p"|truncatewords_html:10}}...</td>
                             <td>
@@ -60,10 +64,12 @@
                 <div class="row">
 
                     {% for ad in liste %}
+                        {% polyclassifiedads_is_seen ad as ad_seen %}
                         <div class="col-sm-3 col-md-3">
                             <div class="thumbnail">
                             <div class="caption">
-                                <h4 style="margin-top: 0px;">
+                                <h4 style="margin-top: 0px; {% if not ad_seen %}font-weight: bold;{% endif %}">
+                                    {% if not ad_seen %}<small><small><i class="glyphicon glyphicon-asterisk"></i></small></small>{% endif %}
                                     <a href="{% url 'polyclassifiedads.views.show' ad.pk %}">{{ad.title}}</a>
                                     <small>{% trans "By" %} {% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}</i>{% endif %}</small>
                                 </h4>
