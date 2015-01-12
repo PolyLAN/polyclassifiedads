@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import get_object_or_404, render_to_response, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.template import RequestContext
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
@@ -35,7 +35,7 @@ from jfu.http import upload_receive, UploadResponse, JFUResponse
 
 def home(request):
 
-    return render_to_response('polyclassifiedads/home.html', {}, context_instance=RequestContext(request))
+    return render(request, 'polyclassifiedads/home.html', {})
 
 
 @login_required
@@ -95,7 +95,7 @@ def browse(request):
 
     tags = map(lambda t: (t, int((log10(t.count) / log10(total + 1)) * (max_size - min_size) + min_size)), tags)
 
-    return render_to_response('polyclassifiedads/browse.html', {'liste': liste, 'tag': tag, 'tags': tags, 'q': q, 'typ': typ, 'cat': cat, 'TYPE_CHOICES': Ad.TYPE_CHOICES, 'CATEGORY_CHOICES': Ad.CATEGORY_CHOICES, 'mode_liste': mode_liste}, context_instance=RequestContext(request))
+    return render(request, 'polyclassifiedads/browse.html', {'liste': liste, 'tag': tag, 'tags': tags, 'q': q, 'typ': typ, 'cat': cat, 'TYPE_CHOICES': Ad.TYPE_CHOICES, 'CATEGORY_CHOICES': Ad.CATEGORY_CHOICES, 'mode_liste': mode_liste})
 
 
 @login_required
@@ -191,7 +191,7 @@ def _edit(request, id, Form, secret_key=None):
 
     date_format = form.fields['offline_date'].widget.format.replace('%Y', 'yyyy').replace('%m', 'mm').replace('%d', 'dd')
 
-    return render_to_response('polyclassifiedads/myads/edit.html', {'form': form, 'date_format': date_format, 'tags': tags, 'secret_key': secret_key, 'file_key': file_key, 'files': files}, context_instance=RequestContext(request))
+    return render(request, 'polyclassifiedads/myads/edit.html', {'form': form, 'date_format': date_format, 'tags': tags, 'secret_key': secret_key, 'file_key': file_key, 'files': files})
 
 
 @login_required
@@ -216,7 +216,7 @@ def _show(request, id, secret_key=None):
     if request.user.pk:
         AdSeen.objects.get_or_create(user=request.user, ad=ad)
 
-    return render_to_response('polyclassifiedads/show.html', {'ad': ad, 'secret_key': secret_key, 'can_edit': can_edit, 'site': get_current_site(request)}, context_instance=RequestContext(request))
+    return render(request, 'polyclassifiedads/show.html', {'ad': ad, 'secret_key': secret_key, 'can_edit': can_edit, 'site': get_current_site(request)})
 
 
 @login_required
@@ -241,7 +241,7 @@ def _delete(request, id, secret_key=None):
             return redirect('polyclassifiedads.views.home')
         return redirect('polyclassifiedads.views.my_ads')
 
-    return render_to_response('polyclassifiedads/myads/delete.html', {'ad': ad, 'secret_key': None}, context_instance=RequestContext(request))
+    return render(request, 'polyclassifiedads/myads/delete.html', {'ad': ad, 'secret_key': None})
 
 
 @login_required
@@ -266,7 +266,7 @@ def _put_offline(request, id, secret_key=None):
             return redirect('polyclassifiedads.views.home')
         return redirect('polyclassifiedads.views.my_ads')
 
-    return render_to_response('polyclassifiedads/myads/put_offline.html', {'ad': ad, 'secret_key': None}, context_instance=RequestContext(request))
+    return render(request, 'polyclassifiedads/myads/put_offline.html', {'ad': ad, 'secret_key': None})
 
 
 @login_required
@@ -275,7 +275,7 @@ def my_ads(request):
 
     liste = Ad.objects.filter(author=request.user, is_deleted=False).order_by('-pk')
 
-    return render_to_response('polyclassifiedads/myads/list.html', {'liste': liste}, context_instance=RequestContext(request))
+    return render(request, 'polyclassifiedads/myads/list.html', {'liste': liste})
 
 
 def search_in_tags(request):
@@ -296,7 +296,7 @@ def unvalidated_list(request):
 
     liste = Ad.objects.filter(is_validated=False, is_deleted=False).order_by('pk').all()
 
-    return render_to_response('polyclassifiedads/unvalidated.html', {'liste': liste}, context_instance=RequestContext(request))
+    return render(request, 'polyclassifiedads/unvalidated.html', {'liste': liste})
 
 
 @login_required
@@ -319,7 +319,7 @@ def validate(request, id):
         messages.success(request, _('The ad is now validated !'))
 
         return redirect('polyclassifiedads.views.unvalidated_list')
-    return render_to_response('polyclassifiedads/validate.html', {'ad': ad}, context_instance=RequestContext(request))
+    return render(request, 'polyclassifiedads/validate.html', {'ad': ad})
 
 
 @login_required
@@ -335,7 +335,7 @@ def unvalidate(request, id):
         messages.success(request, _('The ad is now unvalidated !'))
 
         return redirect('polyclassifiedads.views.unvalidated_list')
-    return render_to_response('polyclassifiedads/unvalidate.html', {'ad': ad}, context_instance=RequestContext(request))
+    return render(request, 'polyclassifiedads/unvalidate.html', {'ad': ad})
 
 
 @login_required
@@ -371,7 +371,7 @@ def notifications(request):
     except AdNotification.DoesNotExist:
         weekly = None
 
-    return render_to_response('polyclassifiedads/notifications.html', {'daily': daily, 'weekly': weekly, 'CATEGORY_CHOICES': Ad.CATEGORY_CHOICES, 'TYPE_CHOICES': Ad.TYPE_CHOICES}, context_instance=RequestContext(request))
+    return render(request, 'polyclassifiedads/notifications.html', {'daily': daily, 'weekly': weekly, 'CATEGORY_CHOICES': Ad.CATEGORY_CHOICES, 'TYPE_CHOICES': Ad.TYPE_CHOICES})
 
 
 def search_in_categories(request):
