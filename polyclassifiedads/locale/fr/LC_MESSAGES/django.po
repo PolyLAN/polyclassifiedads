@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 18:58+0100\n"
-"PO-Revision-Date: 2015-01-19 18:59+0100\n"
+"POT-Creation-Date: 2015-01-19 19:03+0100\n"
+"PO-Revision-Date: 2015-01-19 19:01+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -540,20 +540,20 @@ msgid "Summit an ad without login"
 msgstr "Ajouter une annonce sans se connecter"
 
 #: templates/polyclassifiedads/home.html:36
-msgid "I'm looking for/proposing a job"
+msgid "Looking for/ offering a job"
 msgstr "Je recherche/propose un job"
 
 #: templates/polyclassifiedads/home.html:37
-msgid "All job-relateds ads will be refused !"
-msgstr "Toutes les annonces liées au travail seront refusées !"
+msgid "All job-related ads will be rejected"
+msgstr "Toutes les annonces liées au travail seront refusées"
 
 #: templates/polyclassifiedads/home.html:38
 msgid ""
-"MyJob, another AGEPoly's service, already offer the same service, for ads. "
-"Please use MyJob instead of this platefrom, thank you !"
+"MyJob, another service provided by AGEPoly, already offers such ads. Please "
+"use MyJob instead of this plateform, thank you!"
 msgstr ""
 "MyJob, un autre service de l'AGEPoly, propose déjà le même service. Merci "
-"d'utiliser MyJob au lieu de cette plateforme, merci !"
+"d'utiliser MyJob au lieu de cette plateforme&nbsp;!"
 
 #: templates/polyclassifiedads/home.html:39
 msgid "Go to MyJob"
