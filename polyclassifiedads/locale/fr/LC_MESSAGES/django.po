@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-19 17:48+0100\n"
-"PO-Revision-Date: 2015-01-19 17:48+0100\n"
+"PO-Revision-Date: 2015-01-19 17:49+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -306,7 +306,7 @@ msgstr "Langue"
 
 #: templates/polyclassifiedads/base.html:79
 msgid "Logout"
-msgstr "Déconnection"
+msgstr "Se déconnecter"
 
 #: templates/polyclassifiedads/base.html:81
 msgid "Login"
