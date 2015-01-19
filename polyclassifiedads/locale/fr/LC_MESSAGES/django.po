@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-19 18:58+0100\n"
-"PO-Revision-Date: 2015-01-19 18:58+0100\n"
+"PO-Revision-Date: 2015-01-19 18:59+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -221,7 +221,7 @@ msgstr "Journalier"
 
 #: models.py:120
 msgid "Weekly"
-msgstr "Hebodmaire"
+msgstr "Hebdomadaire"
 
 #: views.py:156
 msgid "The ad has been saved !"
