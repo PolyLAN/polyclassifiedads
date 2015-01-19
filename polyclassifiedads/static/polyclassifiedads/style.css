@@ -144,6 +144,9 @@ line-height: 20px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
 
+  background-color: #ddd;
+  border: 1px #ccc solid;
+
 }
 
 .navbar-2 {
@@ -160,5 +163,20 @@ line-height: 20px;
 }
 
 .navbar-inverse .navbar-brand {
-  color: #aaa;
+  color: #777;
+}
+
+
+.navbar-inverse .navbar-brand:hover {
+  color: #000;
+}
+
+
+.navbar-inverse a:hover {
+  color: #000 !important;
+}
+
+
+.navbar-inverse .open > a{
+  color: #ddd !important;
 }
