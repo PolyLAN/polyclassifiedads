@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 19:03+0100\n"
-"PO-Revision-Date: 2015-01-19 19:01+0100\n"
+"POT-Creation-Date: 2015-01-19 19:04+0100\n"
+"PO-Revision-Date: 2015-01-19 19:04+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -540,8 +540,8 @@ msgid "Summit an ad without login"
 msgstr "Ajouter une annonce sans se connecter"
 
 #: templates/polyclassifiedads/home.html:36
-msgid "Looking for/ offering a job"
-msgstr "Je recherche/propose un job"
+msgid "Looking for / offering a job"
+msgstr "Je cherche/propose un job"
 
 #: templates/polyclassifiedads/home.html:37
 msgid "All job-related ads will be rejected"
