@@ -21,3 +21,8 @@ def polyclassifiedads_is_seen(context, ad):
 @register.simple_tag()
 def polyclassifiedads_loginurl():
     return settings.LOGIN_URL
+
+
+@register.simple_tag()
+def polyclassifiedads_abuseemail():
+    return settings.POLYCLASSIFIEDADS_EMAIL_MANAGERS

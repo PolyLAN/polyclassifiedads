@@ -144,6 +144,11 @@
 
             <div class="footer">
 
+                <div class="pull-left">
+                    <a href="{% if not user.pk %}javascript:alert('{% trans "Please login first !" %}');{% else %}mailto:{% polyclassifiedads_abuseemail %}{% endif %}">{% trans "Report an abuse" %}</a>
+
+                </div>
+
 
                 &copy; Maximilien Cuony - 2014 - <a href="http://opensource.org/licenses/BSD-2-Clause" target="_blank">BSD</a> - <a href="http://agepoly.epfl.ch">AGEPoly</a>/<a href="http://polylan.ch">PolyLAN</a> - <a href="https://github.com/PolyLAN/polyclassifiedads">{% trans "Fork me on Github!" %}</a>
                 <br />
