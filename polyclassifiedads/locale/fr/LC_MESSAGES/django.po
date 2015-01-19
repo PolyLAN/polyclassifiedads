@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 18:57+0100\n"
-"PO-Revision-Date: 2015-01-19 18:02+0100\n"
+"POT-Creation-Date: 2015-01-19 18:58+0100\n"
+"PO-Revision-Date: 2015-01-19 18:58+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -211,11 +211,15 @@ msgstr "Recherche"
 msgid "To sell"
 msgstr "À vendre"
 
-#: models.py:118
+#: models.py:74
+msgid "To exchange"
+msgstr "À échanger"
+
+#: models.py:119
 msgid "Daily"
 msgstr "Journalier"
 
-#: models.py:119
+#: models.py:120
 msgid "Weekly"
 msgstr "Hebodmaire"
 

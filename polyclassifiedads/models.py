@@ -70,7 +70,8 @@ class Ad(models.Model):
         ('togive', _('To give away')),
         ('torent', _('To rent')),
         ('lookingfor', _('Looking for')),
-        ('tosell', _('To sell'))
+        ('tosell', _('To sell')),
+        ('toexchange', _('To exchange')),
     )
 
     type = models.CharField(max_length=64, choices=TYPE_CHOICES)
