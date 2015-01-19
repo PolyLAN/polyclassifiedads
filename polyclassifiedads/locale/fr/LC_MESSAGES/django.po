@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 17:57+0100\n"
-"PO-Revision-Date: 2015-01-19 17:58+0100\n"
+"POT-Creation-Date: 2015-01-19 18:01+0100\n"
+"PO-Revision-Date: 2015-01-19 18:02+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -539,15 +539,15 @@ msgstr ""
 msgid "Summit an ad without login"
 msgstr "Ajouter une annonce sans se connecter"
 
-#: templates/polyclassifiedads/home.html:34
+#: templates/polyclassifiedads/home.html:36
 msgid "I'm looking for/proposing a job"
 msgstr "Je recherche/propose un job"
 
-#: templates/polyclassifiedads/home.html:35
+#: templates/polyclassifiedads/home.html:37
 msgid "All job-relateds ads will be refused !"
 msgstr "Toutes les annonces liées au travail seront refusées !"
 
-#: templates/polyclassifiedads/home.html:36
+#: templates/polyclassifiedads/home.html:38
 msgid ""
 "MyJob, another AGEPoly's service, already offer the same service, for ads. "
 "Please use MyJob instead of this platefrom, thank you !"
@@ -555,9 +555,40 @@ msgstr ""
 "MyJob, un autre service de l'AGEPoly, propose déjà le même service. Merci "
 "d'utiliser MyJob au lieu de cette plateforme, merci !"
 
-#: templates/polyclassifiedads/home.html:37
+#: templates/polyclassifiedads/home.html:39
 msgid "Go to MyJob"
 msgstr "Aller sur MyJob"
+
+#: templates/polyclassifiedads/home.html:43
+msgid "Looking / renting an accommodation"
+msgstr "Je cherche/propose un logement"
+
+#: templates/polyclassifiedads/home.html:44
+msgid "All ads regarding rooms, flats and houses rental will be rejected."
+msgstr ""
+"Toutes les annonces de location de chambres, d’appartements et de maisons "
+"seront refusées."
+
+#: templates/polyclassifiedads/home.html:45
+msgid ""
+"Only ads regarding holidays rental, garages, or house sales will be accepted."
+msgstr ""
+"Seules les annonces de locations de vacances, de locaux ou de vente de biens "
+"immobiliers seront acceptées."
+
+#: templates/polyclassifiedads/home.html:47
+msgid ""
+"The EPFL Housing office already offers a complete list of house rental ads "
+"and its dedicated team is at your disposal should you wish to offer of find "
+"an accommodation (rental only)."
+msgstr ""
+"Le Bureau du Logement offre d’ores et déjà une liste exhaustive d'annonces "
+"immobilières et son équipe dédiée se tient à votre disposition si vous "
+"souhaitez proposer ou trouver un logement (location uniquement). "
+
+#: templates/polyclassifiedads/home.html:48
+msgid "Visit the EPFL Housing office website"
+msgstr "Visitez le site du Bureau du Logement EPFL"
 
 #: templates/polyclassifiedads/jfu.html:24
 msgid "Add files..."

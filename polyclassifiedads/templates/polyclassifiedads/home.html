@@ -20,21 +20,32 @@
     {% endblocktrans %}
 
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <h2>{% trans "I'm from EPFL" %}</h2>
             <p>{% trans "Click one of the button bellow to begin to use the site ! If you're not already logged in, you will be redirected to tequila to identify you "%}</p>
             <p><a class="btn btn-primary" href="{% url 'polyclassifiedads.views.browse' %}" role="button"><i class="glyphicon glyphicon-search"></i> {% trans "Browse ads" %}</a> <a class="btn btn-success" href="{% url 'polyclassifiedads.views.new' %}" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Submit an ad" %}</a></p>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <h2>{% trans "I'm not from EPFL" %}</h2>
             <p>{% trans "The service is only for EPFL's members, and you cannot browse ads. However, if you have an ad interesting for the EPFL community, you can submit it using the button bellow" %}</p>
             <p><a class="btn btn-info" href="{% url 'polyclassifiedads.views.external_new' %}" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Summit an ad without login" %}</a></p>
        </div>
-        <div class="col-lg-4">
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
             <h2>{% trans "I'm looking for/proposing a job" %}</h2>
             <p class="alert alert-danger">{% trans "All job-relateds ads will be refused !" %}</p>
             <p>{% trans "MyJob, another AGEPoly's service, already offer the same service, for ads. Please use MyJob instead of this platefrom, thank you !" %}</p>
             <p><a class="btn btn-danger" href="http://myjob.epfl.ch" role="button"><i class="glyphicon glyphicon-forward"></i> {% trans "Go to MyJob" %}</a></p>
+        </div>
+
+        <div class="col-lg-6">
+            <h2>{% trans "Looking / renting an accommodation" %}</h2>
+            <p class="alert alert-danger">{% trans "All ads regarding rooms, flats and houses rental will be rejected." %}</p>
+            <p>{% trans "Only ads regarding holidays rental, garages, or house sales will be accepted." %}<br /><br />
+
+                {% trans "The EPFL Housing office already offers a complete list of house rental ads and its dedicated team is at your disposal should you wish to offer of find an accommodation (rental only)." %}</p>
+            <p><a class="btn btn-danger" href="http://logement.epfl.ch/housing" role="button"><i class="glyphicon glyphicon-forward"></i> {% trans "Visit the EPFL Housing office website" %}</a></p>
         </div>
       </div>
 
