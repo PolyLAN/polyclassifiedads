@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-04 19:03+0100\n"
-"PO-Revision-Date: 2015-01-04 19:04+0100\n"
+"POT-Creation-Date: 2015-01-19 17:48+0100\n"
+"PO-Revision-Date: 2015-01-19 17:48+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -292,59 +292,63 @@ msgstr "Petites annonces"
 msgid "RSS for news ADs"
 msgstr "RSS des nouvelles annonces"
 
-#: templates/polyclassifiedads/base.html:51
+#: templates/polyclassifiedads/base.html:52
 msgid "AGEPoly's classified ads"
 msgstr "Petites annonces de l'AGEPoly"
 
-#: templates/polyclassifiedads/base.html:61
+#: templates/polyclassifiedads/base.html:62
 msgid "Welcome"
 msgstr "Bienvenue"
 
-#: templates/polyclassifiedads/base.html:63
+#: templates/polyclassifiedads/base.html:64
 msgid "Language"
 msgstr "Langue"
 
-#: templates/polyclassifiedads/base.html:77
+#: templates/polyclassifiedads/base.html:79
 msgid "Logout"
 msgstr "Déconnection"
 
-#: templates/polyclassifiedads/base.html:101
+#: templates/polyclassifiedads/base.html:81
+msgid "Login"
+msgstr "Connexion"
+
+#: templates/polyclassifiedads/base.html:105
 #: templates/polyclassifiedads/home.html:4
 msgid "Home"
 msgstr "Accueil"
 
-#: templates/polyclassifiedads/base.html:104
+#: templates/polyclassifiedads/base.html:108
 msgid "Browse"
 msgstr "Parcourir"
 
-#: templates/polyclassifiedads/base.html:105
-#: templates/polyclassifiedads/base.html:112
+#: templates/polyclassifiedads/base.html:109
+#: templates/polyclassifiedads/base.html:116
 #: templates/polyclassifiedads/myads/edit.html:7
 #: templates/polyclassifiedads/myads/edit.html:11
 msgid "New ad"
 msgstr "Nouvelle annonce"
 
-#: templates/polyclassifiedads/base.html:106
+#: templates/polyclassifiedads/base.html:110
 #: templates/polyclassifiedads/myads/list.html:6
 #: templates/polyclassifiedads/myads/list.html:10
 msgid "My ads"
 msgstr "Mes annonces"
 
-#: templates/polyclassifiedads/base.html:107
+#: templates/polyclassifiedads/base.html:111
 #: templates/polyclassifiedads/notifications.html:7
 #: templates/polyclassifiedads/notifications.html:11
 msgid "Notifications"
 msgstr "Notifications"
 
-#: templates/polyclassifiedads/base.html:108
+#: templates/polyclassifiedads/base.html:112
 msgid "Ad to validate"
 msgstr "Annonces à valider"
 
-#: templates/polyclassifiedads/base.html:112
+#: templates/polyclassifiedads/base.html:116
 msgid "External users"
 msgstr "Utilisateurs externes"
 
-#: templates/polyclassifiedads/base.html:144
+#: templates/polyclassifiedads/base.html:148
 msgid "Fork me on Github!"
 msgstr "Forquez-moi sur Github !"
 

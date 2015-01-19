@@ -75,10 +75,13 @@
                     </li>
 
                   </li>
-                  {% if user.pk %}<li><a href="{% url 'django.contrib.auth.views.logout' %}?next={% url 'polyclassifiedads.views.home' %}">{% trans "Logout" %}</a></li>{% endif %}
+                  {% if user.pk %}
+                      <li><a href="{% url 'django.contrib.auth.views.logout' %}?next={% url 'polyclassifiedads.views.home' %}">{% trans "Logout" %}</a></li>
+                  {% else %}
+                      <li><a href="{% polyclassifiedads_loginurl %}?next={% url 'polyclassifiedads.views.home' %}">{% trans "Login" %}</a></li>
+                  {% endif %}
               </ul>
             </div>
-
 
           </div>
         </div>
