@@ -53,7 +53,6 @@ class Ad(models.Model):
         ('moto', _('Motorcycle & Bike')),
         ('music', _('Music - Instruments')),
         ('comp', _('Computers & Office')),
-        ('mov', _('Movies')),
         ('photo', _('Photography')),
         ('servi', _('Services')),
         ('headl', _('Health - Beauty')),

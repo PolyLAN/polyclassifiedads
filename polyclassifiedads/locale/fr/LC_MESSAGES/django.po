@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 18:01+0100\n"
+"POT-Creation-Date: 2015-01-19 18:57+0100\n"
 "PO-Revision-Date: 2015-01-19 18:02+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
@@ -155,71 +155,67 @@ msgid "Computers & Office"
 msgstr "Ordinateurs & Bureau"
 
 #: models.py:56
-msgid "Movies"
-msgstr "Films"
-
-#: models.py:57
 msgid "Photography"
 msgstr "Photographie"
 
-#: models.py:58
+#: models.py:57
 msgid "Services"
 msgstr "Services"
 
-#: models.py:59
+#: models.py:58
 msgid "Health - Beauty"
 msgstr "Santé - Beauté"
 
-#: models.py:60
+#: models.py:59
 msgid "Sports"
 msgstr "Sports"
 
-#: models.py:61
+#: models.py:60
 msgid "Telephony"
 msgstr "Téléphonie"
 
-#: models.py:62
+#: models.py:61
 msgid "Holidays - Travel"
 msgstr "Vacances - Voyages"
 
-#: models.py:63
+#: models.py:62
 msgid "Clothing & Accessories"
 msgstr "Vêtements & accessoires"
 
-#: models.py:64
+#: models.py:63
 msgid "Wines - Gastronomy"
 msgstr "Vins - Gastronomie"
 
-#: models.py:65
+#: models.py:64
 msgid "Misc"
 msgstr "Divers"
 
-#: models.py:68 templates/polyclassifiedads/show.html:92
+#: models.py:67 templates/polyclassifiedads/show.html:92
 #: templates/polyclassifiedads/validate.html:37
 msgid "Category"
 msgstr "Catégorie"
 
-#: models.py:71
+#: models.py:70
 msgid "To give away"
 msgstr "À donner"
 
-#: models.py:72
+#: models.py:71
 msgid "To rent"
 msgstr "À louer"
 
-#: models.py:73
+#: models.py:72
 msgid "Looking for"
 msgstr "Recherche"
 
-#: models.py:74
+#: models.py:73
 msgid "To sell"
 msgstr "À vendre"
 
-#: models.py:119
+#: models.py:118
 msgid "Daily"
 msgstr "Journalier"
 
-#: models.py:120
+#: models.py:119
 msgid "Weekly"
 msgstr "Hebodmaire"
 
@@ -1254,6 +1250,9 @@ msgstr ""
 #: templates/polyclassifiedads/myads/put_offline.html:22
 msgid "No - Don't put offline"
 msgstr "Non - ne pas mettre hors ligne"
+
+#~ msgid "Movies"
+#~ msgstr "Films"
 
 #~ msgid "Select a category"
 #~ msgstr "Sélectionnez une catégorie"
