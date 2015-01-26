@@ -113,7 +113,7 @@
 
 
                 {# <li class="navbar-mblock">{% trans "External users" %}</li> #}
-                <li id="polyads-menu-external"><a href="{% url 'polyclassifiedads.views.external_new' %}">{% trans "New ad" %} ({% trans "External users" %})</a></li>
+                {% if not user.pk %}<li id="polyads-menu-external"><a href="{% url 'polyclassifiedads.views.external_new' %}">{% trans "New ad" %} ({% trans "External users" %})</a></li>{% endif %}
               </ul>
             </div>
 
