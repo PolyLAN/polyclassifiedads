@@ -7,10 +7,12 @@
 
     <h1 class="page-header">{% trans "Welcome on the AGEPoly's classified ads webpage !" %}</h1>
 
-    <p>{% blocktrans %}
+    {% url 'polyclassifiedads.views.notifications' as surl %}
+
+    <p>{% blocktrans with surl=surl %}
     The AGEPoly's classified ads are a service of the AGEPoly, for the whole EPFL community. You can publish an ad (for max. 30 days) and read others ads.<br /><br />
 
-    It's possible to subscrible for news ads, with a dailly or weekly email summary.<br /><br />
+    Receive daily/weekly email notifications about new ads: subscribe <a href="{{surl}}">here</a><br /><br />
 
     External users (i.e. users without a tequila account) cannot read ads. However, they have the possibility to publish ads. All ads published on the plateform are moderated.<br /><br />
 
@@ -22,13 +24,13 @@
     <div class="row">
         <div class="col-lg-6">
             <h2>{% trans "I'm from EPFL" %}</h2>
-            <p>{% trans "Click one of the button bellow to begin to use the site ! If you're not already logged in, you will be redirected to tequila to identify you "%}</p>
+            <p>{% trans "Click one of the button bellow to start using the website. If you're not already logged in, you will be redirected to tequila to identify you "%}</p>
             <p><a class="btn btn-primary" href="{% url 'polyclassifiedads.views.browse' %}" role="button"><i class="glyphicon glyphicon-search"></i> {% trans "Browse ads" %}</a> <a class="btn btn-success" href="{% url 'polyclassifiedads.views.new' %}" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Submit an ad" %}</a></p>
         </div>
         <div class="col-lg-6">
             <h2>{% trans "I'm not from EPFL" %}</h2>
             <p>{% trans "The service is only for EPFL's members, and you cannot browse ads. However, if you have an ad interesting for the EPFL community, you can submit it using the button bellow" %}</p>
-            <p><a class="btn btn-info" href="{% url 'polyclassifiedads.views.external_new' %}" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Summit an ad without login" %}</a></p>
+            <p><a class="btn btn-info" href="{% url 'polyclassifiedads.views.external_new' %}" role="button"><i class="glyphicon glyphicon-plus"></i> {% trans "Submit an ad without login" %}</a></p>
        </div>
     </div>
     <div class="row">
@@ -40,7 +42,7 @@
         </div>
 
         <div class="col-lg-6">
-            <h2>{% trans "Looking / renting an accommodation" %}</h2>
+            <h2>{% trans "Looking for / renting an accommodation" %}</h2>
             <p class="alert alert-danger">{% trans "All ads regarding rooms, flats and houses rental will be rejected." %}</p>
             <p>{% trans "Only ads regarding holidays rental, garages, or house sales will be accepted." %}<br /><br />
 

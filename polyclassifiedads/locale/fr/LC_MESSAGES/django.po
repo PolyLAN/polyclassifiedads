@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 19:04+0100\n"
-"PO-Revision-Date: 2015-01-19 19:04+0100\n"
+"POT-Creation-Date: 2015-01-26 17:39+0100\n"
+"PO-Revision-Date: 2015-01-26 17:41+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: feeds.py:11 feeds.py:13
@@ -362,7 +362,7 @@ msgstr "Forquez-moi sur Github !"
 
 #: templates/polyclassifiedads/browse.html:7
 #: templates/polyclassifiedads/browse.html:17
-#: templates/polyclassifiedads/home.html:26
+#: templates/polyclassifiedads/home.html:28
 msgid "Browse ads"
 msgstr "Parcourir les annonces"
 
@@ -461,7 +461,7 @@ msgid "Clear filter"
 msgstr "Effacer le filtre"
 
 #: templates/polyclassifiedads/browse.html:159
-#: templates/polyclassifiedads/home.html:26
+#: templates/polyclassifiedads/home.html:28
 msgid "Submit an ad"
 msgstr "Proposer une annonce"
 
@@ -469,15 +469,16 @@ msgstr "Proposer une annonce"
 msgid "Welcome on the AGEPoly's classified ads webpage !"
 msgstr "Bienvenue sur le site des petites annonces de l'AGEPoly !"
 
-#: templates/polyclassifiedads/home.html:10
+#: templates/polyclassifiedads/home.html:12
+#, python-format
 msgid ""
 "\n"
 "    The AGEPoly's classified ads are a service of the AGEPoly, for the whole "
 "EPFL community. You can publish an ad (for max. 30 days) and read others ads."
 "<br /><br />\n"
 "\n"
-"    It's possible to subscrible for news ads, with a dailly or weekly email "
-"summary.<br /><br />\n"
+"    Receive daily/weekly email notifications about new ads: subscribe <a "
+"href=\"%(surl)s\">here</a><br /><br />\n"
 "\n"
 "    External users (i.e. users without a tequila account) cannot read ads. "
 "However, they have the possibility to publish ads. All ads published on the "
@@ -494,8 +495,8 @@ msgstr ""
 "communauté EPFL. Vous pouvez publier une annonce (pour max. 30 jours) et "
 "lire les autres annonces.<br /><br />\n"
 "\n"
-"\tIl est possible de s'inscrire pour les nouvelles annonces, avec un mail de "
-"résumé journalier ou hebdomadaire.<br /><br />\n"
+"\tRecevez un résumé quotidien/hebdomadaire des nouvelles annonces publiées: "
+"inscrivez-vous <a href=\"%(surl)s\">ici</a>.<br /><br />\n"
 "\n"
 "\tLes utilisateurs externes (sans un compte tequila) ne peuvent pas lire les "
 "annonces. Par contre, ils ont la possiblité d'en publier. Toutes les "
@@ -508,24 +509,24 @@ msgstr ""
 "\t</p>\n"
 "\t"
 
-#: templates/polyclassifiedads/home.html:24
+#: templates/polyclassifiedads/home.html:26
 msgid "I'm from EPFL"
 msgstr "Je suis de l'EPFL"
 
-#: templates/polyclassifiedads/home.html:25
+#: templates/polyclassifiedads/home.html:27
 msgid ""
-"Click one of the button bellow to begin to use the site ! If you're not "
+"Click one of the button bellow to start using the website. If you're not "
 "already logged in, you will be redirected to tequila to identify you "
 msgstr ""
-"Cliquez sur un des boutons ci-dessous pour commencer à utiliser le site ! Si "
+"Cliquez sur un des boutons ci-dessous pour commencer à utiliser le site. Si "
 "vous n'êtes pas déjà connecté, vous serez redirigés vers tequila pour vous "
 "identifier"
 
-#: templates/polyclassifiedads/home.html:29
+#: templates/polyclassifiedads/home.html:31
 msgid "I'm not from EPFL"
 msgstr "Je ne suis pas de l'EPFL"
 
-#: templates/polyclassifiedads/home.html:30
+#: templates/polyclassifiedads/home.html:32
 msgid ""
 "The service is only for EPFL's members, and you cannot browse ads. However, "
 "if you have an ad interesting for the EPFL community, you can submit it "
@@ -535,19 +536,19 @@ msgstr ""
 "les annonces. Par contre, si vous avez une annonce intéressante pour la "
 "communauté EPFL, vous pouvez proposer une annonce avec le bouton ci-dessous."
 
-#: templates/polyclassifiedads/home.html:31
-msgid "Summit an ad without login"
+#: templates/polyclassifiedads/home.html:33
+msgid "Submit an ad without login"
 msgstr "Ajouter une annonce sans se connecter"
 
-#: templates/polyclassifiedads/home.html:36
+#: templates/polyclassifiedads/home.html:38
 msgid "Looking for / offering a job"
 msgstr "Je cherche/propose un job"
 
-#: templates/polyclassifiedads/home.html:37
+#: templates/polyclassifiedads/home.html:39
 msgid "All job-related ads will be rejected"
 msgstr "Toutes les annonces liées au travail seront refusées"
 
-#: templates/polyclassifiedads/home.html:38
+#: templates/polyclassifiedads/home.html:40
 msgid ""
 "MyJob, another service provided by AGEPoly, already offers such ads. Please "
 "use MyJob instead of this plateform, thank you!"
@@ -555,28 +556,28 @@ msgstr ""
 "MyJob, un autre service de l'AGEPoly, propose déjà le même service. Merci "
 "d'utiliser MyJob au lieu de cette plateforme&nbsp;!"
 
-#: templates/polyclassifiedads/home.html:39
+#: templates/polyclassifiedads/home.html:41
 msgid "Go to MyJob"
 msgstr "Aller sur MyJob"
 
-#: templates/polyclassifiedads/home.html:43
-msgid "Looking / renting an accommodation"
+#: templates/polyclassifiedads/home.html:45
+msgid "Looking for / renting an accommodation"
 msgstr "Je cherche/propose un logement"
 
-#: templates/polyclassifiedads/home.html:44
+#: templates/polyclassifiedads/home.html:46
 msgid "All ads regarding rooms, flats and houses rental will be rejected."
 msgstr ""
 "Toutes les annonces de location de chambres, d’appartements et de maisons "
 "seront refusées."
 
-#: templates/polyclassifiedads/home.html:45
+#: templates/polyclassifiedads/home.html:47
 msgid ""
 "Only ads regarding holidays rental, garages, or house sales will be accepted."
 msgstr ""
 "Seules les annonces de locations de vacances, de locaux ou de vente de biens "
 "immobiliers seront acceptées."
 
-#: templates/polyclassifiedads/home.html:47
+#: templates/polyclassifiedads/home.html:49
 msgid ""
 "The EPFL Housing office already offers a complete list of house rental ads "
 "and its dedicated team is at your disposal should you wish to offer of find "
@@ -586,7 +587,7 @@ msgstr ""
 "immobilières et son équipe dédiée se tient à votre disposition si vous "
 "souhaitez proposer ou trouver un logement (location uniquement). "
 
-#: templates/polyclassifiedads/home.html:48
+#: templates/polyclassifiedads/home.html:50
 msgid "Visit the EPFL Housing office website"
 msgstr "Visitez le site du Bureau du Logement EPFL"
 
