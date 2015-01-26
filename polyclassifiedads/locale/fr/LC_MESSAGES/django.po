@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-26 17:39+0100\n"
-"PO-Revision-Date: 2015-01-26 17:41+0100\n"
+"POT-Creation-Date: 2015-01-26 17:48+0100\n"
+"PO-Revision-Date: 2015-01-26 17:49+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -322,7 +322,7 @@ msgid "Browse"
 msgstr "Parcourir"
 
 #: templates/polyclassifiedads/base.html:109
-#: templates/polyclassifiedads/base.html:116
+#: templates/polyclassifiedads/base.html:117
 #: templates/polyclassifiedads/myads/edit.html:7
 #: templates/polyclassifiedads/myads/edit.html:11
 msgid "New ad"
@@ -341,22 +341,30 @@ msgid "Notifications"
 msgstr "Notifications"
 
 #: templates/polyclassifiedads/base.html:112
+#: templates/polyclassifiedads/contact.html:5
+#: templates/polyclassifiedads/contact.html:9
+#: templates/polyclassifiedads/show.html:75
+#: templates/polyclassifiedads/validate.html:22
+msgid "Contact"
+msgstr "Contact"
+
+#: templates/polyclassifiedads/base.html:113
 msgid "Ad to validate"
 msgstr "Annonces à valider"
 
-#: templates/polyclassifiedads/base.html:116
+#: templates/polyclassifiedads/base.html:117
 msgid "External users"
 msgstr "Utilisateurs externes"
 
-#: templates/polyclassifiedads/base.html:148
+#: templates/polyclassifiedads/base.html:149
 msgid "Please login first !"
 msgstr "Merci de vous connecter !"
 
-#: templates/polyclassifiedads/base.html:148
+#: templates/polyclassifiedads/base.html:149
 msgid "Report an abuse"
 msgstr "Signaler un abus"
 
-#: templates/polyclassifiedads/base.html:153
+#: templates/polyclassifiedads/base.html:154
 msgid "Fork me on Github!"
 msgstr "Forquez-moi sur Github !"
 
@@ -464,6 +472,33 @@ msgstr "Effacer le filtre"
 #: templates/polyclassifiedads/home.html:28
 msgid "Submit an ad"
 msgstr "Proposer une annonce"
+
+#: templates/polyclassifiedads/contact.html:11
+msgid ""
+"\n"
+"        If you have any question, you can contact us using information "
+"bellow:\n"
+"    "
+msgstr ""
+"\n"
+"\tSi vous avec des questions, vous pouvez nous contacter avec les "
+"informations suivantes:"
+
+#: templates/polyclassifiedads/contact.html:20
+#: templates/polyclassifiedads/show.html:80
+#: templates/polyclassifiedads/validate.html:27
+msgid "Phone"
+msgstr "Téléphone"
+
+#: templates/polyclassifiedads/contact.html:23
+#: templates/polyclassifiedads/show.html:77
+#: templates/polyclassifiedads/validate.html:24
+msgid "Email"
+msgstr "Email"
+
+#: templates/polyclassifiedads/contact.html:28
+msgid "Please login first"
+msgstr "Merci de vous connecter !"
 
 #: templates/polyclassifiedads/home.html:8
 msgid "Welcome on the AGEPoly's classified ads webpage !"
@@ -722,21 +757,6 @@ msgstr "Prix"
 #: templates/polyclassifiedads/myads/edit.html:36
 msgid "Photos"
 msgstr "Photos"
-
-#: templates/polyclassifiedads/show.html:75
-#: templates/polyclassifiedads/validate.html:22
-msgid "Contact"
-msgstr "Contact"
-
-#: templates/polyclassifiedads/show.html:77
-#: templates/polyclassifiedads/validate.html:24
-msgid "Email"
-msgstr "Email"
-
-#: templates/polyclassifiedads/show.html:80
-#: templates/polyclassifiedads/validate.html:27
-msgid "Phone"
-msgstr "Téléphone"
 
 #: templates/polyclassifiedads/show.html:86
 #: templates/polyclassifiedads/validate.html:31

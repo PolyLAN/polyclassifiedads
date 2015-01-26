@@ -499,3 +499,7 @@ def jfu_delete(request, pk):
         success = False
 
     return JFUResponse(request, success)
+
+
+def contact(request):
+    return render(request, 'polyclassifiedads/contact.html', {})

@@ -1,0 +1,33 @@
+{% extends "polyclassifiedads/base.html" %}
+{% load i18n %}
+{% load polyclassifiedads_extras %}
+
+{% block title %}{{block.super}} :: {% trans "Contact" %}{% endblock %}
+
+{% block content %}
+
+    <h1 class="page-header">{% trans "Contact" %}</h1>
+
+    {% blocktrans %}
+        If you have any question, you can contact us using information bellow:
+    {% endblocktrans %}
+
+    <br />
+    <br />
+
+
+    <dl>
+        <dt>{% trans "Phone" %}</dt>
+        <dd>+41 21 69<b>3 20 95</b></dd>
+
+        <dt>{% trans "Email" %}</dt>
+        <dd>
+            {% if user.pk %}
+                <a href="mailto:{% polyclassifiedads_abuseemail %}">{% polyclassifiedads_abuseemail %}</a>
+            {% else %}
+                {% trans "Please login first" %}
+            {% endif %}
+        </dd>
+    </dt>
+
+{% endblock %}

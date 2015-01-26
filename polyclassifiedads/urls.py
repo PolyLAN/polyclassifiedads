@@ -36,4 +36,6 @@ urlpatterns = patterns('polyclassifiedads.views',
 
     url(r'^upload/$', 'jfu_upload', name='pca_jfu_upload'),
     url(r'^upload/delete/(?P<pk>\d+)$', 'jfu_delete', name='pca_jfu_delete'),
+
+    url(r'^contact$', 'contact'),
 )
