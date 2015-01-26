@@ -45,7 +45,7 @@
             <p>{% trans "Only ads regarding holidays rental, garages, or house sales will be accepted." %}<br /><br />
 
                 {% trans "The EPFL Housing office already offers a complete list of house rental ads and its dedicated team is at your disposal should you wish to offer of find an accommodation (rental only)." %}</p>
-            <p><a class="btn btn-danger" href="http://logement.epfl.ch/housing" role="button"><i class="glyphicon glyphicon-forward"></i> {% trans "Visit the EPFL Housing office website" %}</a></p>
+            <p><a class="btn btn-danger" href="http://logement.epfl.ch/{% if LANGUAGE_CODE == 'en' %}housing{% endif %}" role="button"><i class="glyphicon glyphicon-forward"></i> {% trans "Visit the EPFL Housing office website" %}</a></p>
         </div>
       </div>
 
