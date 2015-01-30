@@ -30,7 +30,6 @@
 <div class="row">
     <div class="col-md-7">
         <div class="well">
-            <h4>{% trans "Text of the ad" %}</h4>
             {{ad.content_formated|safe}}
             {% if ad.price %}
                 <h4>{% trans "Price" %}</h4>
@@ -83,7 +82,6 @@
             </dl>
         </div>
         <div class="well">
-        <h4>{% trans "Metadata" %}</h4>
         <dl>
              <dt>{% trans "Author" %}</dt>
              <dd>{% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}</i>{% endif %}</dd>
