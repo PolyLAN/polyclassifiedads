@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 19:21+0100\n"
+"POT-Creation-Date: 2015-01-30 19:34+0100\n"
 "PO-Revision-Date: 2015-01-30 19:22+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
@@ -368,17 +368,17 @@ msgstr "Signaler un abus"
 msgid "Fork me on Github!"
 msgstr "Forquez-moi sur Github !"
 
-#: templates/polyclassifiedads/browse.html:7
-#: templates/polyclassifiedads/browse.html:17
+#: templates/polyclassifiedads/browse.html:8
+#: templates/polyclassifiedads/browse.html:18
 #: templates/polyclassifiedads/home.html:21
 msgid "Browse ads"
 msgstr "Parcourir les annonces"
 
-#: templates/polyclassifiedads/browse.html:21
+#: templates/polyclassifiedads/browse.html:22
 msgid "No ads for your search !"
 msgstr "Pas d'annonces pour votre recherche !"
 
-#: templates/polyclassifiedads/browse.html:31
+#: templates/polyclassifiedads/browse.html:32
 #: templates/polyclassifiedads/unvalidated.html:15
 #: templates/polyclassifiedads/emails/ad_to_revalidate.html:265
 #: templates/polyclassifiedads/emails/ad_to_revalidate.txt:13
@@ -388,18 +388,16 @@ msgstr "Pas d'annonces pour votre recherche !"
 msgid "Title"
 msgstr "Titre"
 
-#: templates/polyclassifiedads/browse.html:32
-#: templates/polyclassifiedads/show.html:88
-#: templates/polyclassifiedads/unvalidated.html:16
-#: templates/polyclassifiedads/validate.html:33
-msgid "Author"
-msgstr "Auteur"
-
 #: templates/polyclassifiedads/browse.html:33
 msgid "Text"
 msgstr "Texte"
 
 #: templates/polyclassifiedads/browse.html:34
+#: templates/polyclassifiedads/show.html:36
+msgid "Price"
+msgstr "Prix"
+
+#: templates/polyclassifiedads/browse.html:35
 #: templates/polyclassifiedads/show.html:97
 #: templates/polyclassifiedads/validate.html:41
 #: templates/polyclassifiedads/emails/ad_to_revalidate.html:305
@@ -411,64 +409,63 @@ msgstr "Texte"
 msgid "Tags"
 msgstr "Tags"
 
-#: templates/polyclassifiedads/browse.html:46
-#: templates/polyclassifiedads/browse.html:74
+#: templates/polyclassifiedads/browse.html:62
+#: templates/polyclassifiedads/browse.html:85
+msgid "More"
+msgstr "Plus"
+
+#: templates/polyclassifiedads/browse.html:81
+msgid "By"
+msgstr "Par"
+
+#: templates/polyclassifiedads/browse.html:81
 #: templates/polyclassifiedads/show.html:89
 #: templates/polyclassifiedads/unvalidated.html:27
 #: templates/polyclassifiedads/validate.html:34
 msgid "Anonymous"
 msgstr "Anonyme"
 
-#: templates/polyclassifiedads/browse.html:55
-#: templates/polyclassifiedads/browse.html:78
-msgid "More"
-msgstr "Plus"
-
-#: templates/polyclassifiedads/browse.html:74
-msgid "By"
-msgstr "Par"
-
-#: templates/polyclassifiedads/browse.html:101
-#: templates/polyclassifiedads/browse.html:103
+#: templates/polyclassifiedads/browse.html:108
+#: templates/polyclassifiedads/browse.html:110
 msgid "Newer"
 msgstr "Plus récent"
 
-#: templates/polyclassifiedads/browse.html:106
+#: templates/polyclassifiedads/browse.html:113
 #, python-format
 msgid "Page %(n)s of %(p)s"
 msgstr "Page %(n)s sur %(p)s"
 
-#: templates/polyclassifiedads/browse.html:109
-#: templates/polyclassifiedads/browse.html:111
+#: templates/polyclassifiedads/browse.html:116
+#: templates/polyclassifiedads/browse.html:118
 msgid "Older"
 msgstr "Plus ancien"
 
-#: templates/polyclassifiedads/browse.html:120
+#: templates/polyclassifiedads/browse.html:127
 msgid "Filters"
 msgstr "Filtres"
 
-#: templates/polyclassifiedads/browse.html:125
+#: templates/polyclassifiedads/browse.html:132
 msgid "Search in ads"
 msgstr "Rechercher dans les annonces"
 
-#: templates/polyclassifiedads/browse.html:128
+#: templates/polyclassifiedads/browse.html:135
 #: templates/polyclassifiedads/notification_block.html:39
 msgid "Filter by category"
 msgstr "Filter par catégorie"
 
-#: templates/polyclassifiedads/browse.html:136
+#: templates/polyclassifiedads/browse.html:143
 msgid "Filter by type"
 msgstr "Filtrer par type"
 
-#: templates/polyclassifiedads/browse.html:144
+#: templates/polyclassifiedads/browse.html:151
 msgid "Search"
 msgstr "Recherche"
 
-#: templates/polyclassifiedads/browse.html:145
+#: templates/polyclassifiedads/browse.html:152
 msgid "Clear filter"
 msgstr "Effacer le filtre"
 
-#: templates/polyclassifiedads/browse.html:159
+#: templates/polyclassifiedads/browse.html:166
 #: templates/polyclassifiedads/home.html:21
 msgid "Submit an ad"
 msgstr "Proposer une annonce"
@@ -720,10 +717,6 @@ msgstr ""
 msgid "Text of the ad"
 msgstr "Texte de l'annonce"
 
-#: templates/polyclassifiedads/show.html:36
-msgid "Price"
-msgstr "Prix"
-
 #: templates/polyclassifiedads/show.html:40
 #: templates/polyclassifiedads/myads/edit.html:36
 msgid "Photos"
@@ -733,6 +726,12 @@ msgstr "Photos"
 #: templates/polyclassifiedads/validate.html:31
 msgid "Metadata"
 msgstr "Métadonnées"
+
+#: templates/polyclassifiedads/show.html:88
+#: templates/polyclassifiedads/unvalidated.html:16
+#: templates/polyclassifiedads/validate.html:33
+msgid "Author"
+msgstr "Auteur"
 
 #: templates/polyclassifiedads/show.html:90
 #: templates/polyclassifiedads/validate.html:35

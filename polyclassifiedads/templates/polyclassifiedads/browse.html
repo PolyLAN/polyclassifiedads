@@ -1,5 +1,6 @@
 {% extends "polyclassifiedads/base.html" %}
 {% load i18n %}
+{% load l10n %}
 {% load bootstrap3 %}
 {% load polyclassifiedads_extras %}
 {% load staticfiles %}
@@ -29,9 +30,10 @@
                     <thead>
                         <tr>
                             <th>{% trans "Title" %}</th>
-                            <th>{% trans "Author" %}</th>
                             <th>{% trans "Text" %}</th>
+                            <th>{% trans "Price" %}</th>
                             <th>{% trans "Tags" %}</th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -43,14 +45,19 @@
                                 {% if not ad_seen %}<small><small><i class="glyphicon glyphicon-asterisk"></i></small></small>{% endif %}
                                 <a style="{% if not ad_seen %}font-weight: bold;{% endif %}" href="{% url 'polyclassifiedads.views.show' ad.pk %}">{{ad.title}}</a>
                             </td>
-                            <td>{% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}</i>{% endif %}</td>
                             <td>{{ad.content_formated|safe|removetags:"br p"|striptags|truncatewords_html:10}}...</td>
+                            <td>{% if ad.price %}{{ad.price|localize}} CHF{% endif %}</td>
                             <td>
                                 <a href="?tag={{tag}}&q={{q}}&cat={{ad.category}}&typ={{typ}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-list-alt"></i> {{ad.get_category_display}}</a>
                                 <a href="?tag={{tag}}&q={{q}}&cat={{cat}}&typ={{ad.type}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-list-alt"></i> {{ad.get_type_display}}</a>
                                 {% for t in ad.tags_for_list %}
                                     <a href="?tag={{t.tag}}&q={{q}}&cat={{cat}}&typ={{typ}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a>
                                 {% endfor %}
+                            </td>
+                            <td>
+                                {% if ad.adphoto_set.all %}
+                                <i class="glyphicon glyphicon-picture" data-toggle="tooltip" data-placement="left" title="<img style='max-height: 150px; max-width: 150px; margin: 5px;' src='{{MEDIA_URL}}{{ad.adphoto_set.first.file}}'>"></i>
+                                {% endif %}
                             </td>
                             <td><a href="{% url 'polyclassifiedads.views.show' ad.pk %}" style="margin-bottom: 2px;" class="btn btn-info btn-xs pull-right"><i class="glyphicon glyphicon-folder-open"></i> {% trans "More" %}</a></td>
                         </tr>
@@ -193,6 +200,10 @@
             });
         }
     });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({html: true})
+    })
 
 </script>
 {% endblock %}
