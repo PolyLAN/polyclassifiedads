@@ -24,7 +24,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'south',
-        'django',
+        'django<1.7',
         'django-bootstrap3',
         'markdown',
         'bleach',
