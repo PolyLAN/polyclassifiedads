@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 19:17+0100\n"
-"PO-Revision-Date: 2015-01-30 19:17+0100\n"
+"POT-Creation-Date: 2015-01-30 19:18+0100\n"
+"PO-Revision-Date: 2015-01-30 19:18+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -499,7 +499,7 @@ msgid "Please login first"
 msgstr "Merci de vous connecter !"
 
 #: templates/polyclassifiedads/home.html:8
-msgid "Welcome on the AGEPoly's classified ads webpage !"
+msgid "Welcome on the AGEPoly's classified!"
 msgstr "Bienvenue sur le site des petites annonces de l'AGEPoly !"
 
 #: templates/polyclassifiedads/home.html:12
