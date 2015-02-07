@@ -1,3 +1,4 @@
 *.pyc
 PolyClassifiedAds.egg-info/
 .ropeproject
+*.swp
