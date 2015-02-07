@@ -4,7 +4,7 @@ from distutils.core import setup
 
 setup(
     name='PolyClassifiedAds',
-    version='0.3.3',
+    version='0.3.4',
     description='A small django application for classified ads at AGEPoly.',
     long_description='PolyClassifiedAds is a small django application used for classified ads at AGEPoly, the student association of EPFL.',
     author='Maximilien Cuony',
