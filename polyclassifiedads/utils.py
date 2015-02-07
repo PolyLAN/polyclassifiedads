@@ -29,4 +29,8 @@ def generate_secret_rss_key(user):
 
 
 def check_secret_rss_key(user, key):
-    return hmac.compare_digest(generate_secret_rss_key(user), key.encode('utf-8'))
+
+    if hasattr(hmac, 'compare_digest'):
+        return hmac.compare_digest(generate_secret_rss_key(user), key.encode('utf-8'))
+    else:
+        return generate_secret_rss_key(user) == key.encode('utf-8')
