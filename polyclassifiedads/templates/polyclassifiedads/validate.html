@@ -1,5 +1,6 @@
 {% extends "polyclassifiedads/base.html" %}
 {% load i18n %}
+{% load l10n %}
 {% load bootstrap3 %}
 
 {% block title %}{{block.super}} :: {% trans "Validate ad" %}{% endblock %}
@@ -15,21 +16,60 @@
 </div>
 
 <div class="col-md-8">
-    <div class="well">{{ad.content_formated|safe}}</div>
+    <div class="well">{{ad.content_formated|safe}}
+
+        {% if ad.price %}
+            <h4>{% trans "Price" %}</h4>
+            {{ad.price|localize}} CHF
+        {% endif %}
+        {% if ad.adphoto_set.all %}
+            <h4>{% trans "Photos" %}</h4>
+
+            <div class="row">
+                    {% for photo in ad.adphoto_set.all %}
+                        <div class="col-md-3">
+                            <a href="{{MEDIA_URL}}{{photo.file}}" title="{{photo.basename}}" download="{{MEDIA_URL}}{{photo.file}}" data-gallery class="thumbnail"><img src="{{MEDIA_URL}}{{photo.file}}" /></a>
+                        </div>
+
+                        {% if forloop.counter|divisibleby:4 %}
+            </div>
+            <div class="row">
+                        {% endif %}
+                    {% endfor %}
+            </div>
+
+            <link rel="stylesheet" href="{{STATIC_URL}}demo/blueimp-gallery.min.css">
+            <script src="{{STATIC_URL}}demo/jquery.blueimp-gallery.min.js"></script>
+
+            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+                <div class="slides"></div>
+                <h3 class="title"></h3>
+                <a class="prev">&larr;</a>
+                <a class="next">&rarr;</a>
+                <a class="close">x</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
+            </div>
+        {% endif %}
+    </div>
+
 </div>
 
 <div class="col-md-4">
-    <h4>{% trans "Contact" %}</h4>
-    <dl>
-        <dt>{% trans "Email" %}</dt>
-        <dd><a href="mailto:{{ad.contact_email}}">{{ad.contact_email}}</a></dd>
-        {% if ad.contact_phone %}
-            <dt>{% trans "Phone" %}</dt>
-            <dd>{{ad.contact_phone}}</dd>
-        {% endif %}
-    </dl>
-    <h4>{% trans "Metadata" %}</h4>
-    <dl>
+    <div class="well">
+        <h4>{% trans "Contact" %}</h4>
+        <dl>
+            <dt>{% trans "Email" %}</dt>
+            <dd><a href="mailto:{{ad.contact_email}}">{{ad.contact_email}}</a></dd>
+            {% if ad.contact_phone %}
+                <dt>{% trans "Phone" %}</dt>
+                <dd>{{ad.contact_phone}}</dd>
+            {% endif %}
+        </dl>
+    </div>
+    <div class="well">
+        <h4>{% trans "Metadata" %}</h4>
+        <dl>
             <dt>{% trans "Author" %}</dt>
             <dd>{% if ad.author %}{{ad.author.get_full_name}}{% else %}<i>{% trans "Anonymous" %}</i>{% endif %}</dd>
             <dt>{% trans "Last modification" %}</dt>
@@ -40,11 +80,12 @@
             <dd>{{ad.get_type_display}}</dd>
             <dt>{% trans "Tags" %}</dt>
             <dd>{% for t in ad.tags_for_list %}<a href="{% url 'polyclassifiedads.views.browse' %}?tag={{t.tag}}" class="label label-default" style="display: inline-block;"><i class="glyphicon glyphicon-tag"></i> {{t.tag}}</a> {% endfor %}</dd>
-        <dt>{% trans "Online date" %}</dt>
-        <dd>{{ad.online_date|date}}</dd>
-        <dt>{% trans "Offline date" %}</dt>
-        <dd>{{ad.offline_date|date}}</dd>
-    </dl>
+            <dt>{% trans "Online date" %}</dt>
+            <dd>{{ad.online_date|date}}</dd>
+            <dt>{% trans "Offline date" %}</dt>
+            <dd>{{ad.offline_date|date}}</dd>
+        </dl>
+    </div>
 </div>
 
 <form action="" method="POST">
