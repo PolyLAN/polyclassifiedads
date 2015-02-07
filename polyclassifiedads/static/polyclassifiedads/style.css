@@ -182,3 +182,11 @@ line-height: 20px;
 .navbar-inverse .open > a{
   color: #ddd !important;
 }
+
+.general-conditions {
+  text-align: justify;
+}
+
+.general-conditions p {
+  margin-bottom: 15px !important;
+}

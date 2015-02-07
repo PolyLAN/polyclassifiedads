@@ -42,9 +42,11 @@
 
         <div class="form-actions pull-right">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" style="text-align: right;">
                     <a href="{% if form.instance.pk %}{% if secret_key %}{% url 'polyclassifiedads.views.external_show' form.instance.pk %}?secret_key={{secret_key}}{% else %}{% url 'polyclassifiedads.views.show' form.instance.pk %}{% endif %}{% else %}{% url 'polyclassifiedads.views.home' %}{% endif %}" class="btn btn-danger">{% trans "Cancel" %}</a>
                     <button type="submit" onclick="$('#main_form').submit();" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i> {% trans "Save" %}</button>
+                    <br />
+                    <small>{% blocktrans %}By saving the ad, you acknowledge that you have read, understood and accepted <a href="#" onclick="$('#cg-link').click(); return false;">general conditions</a>{% endblocktrans %}.</small>
                 </div>
             </div>
         </div>

@@ -503,3 +503,7 @@ def jfu_delete(request, pk):
 
 def contact(request):
     return render(request, 'polyclassifiedads/contact.html', {})
+
+
+def cg(request):
+    return render(request, 'polyclassifiedads/cg.html', {})

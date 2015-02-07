@@ -1,0 +1,33 @@
+{% load i18n %}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">{% trans "General conditions for the EPFL online platform of classified ads" %}</h4>
+</div>
+
+<div class="modal-body general-conditions">
+    <p>{% blocktrans %}The EPFL platform of classified ads is a free online service for the EPFL community members (ie. all people affiliated to EPFL having a Gaspar account), offered by the EPFL in collaboration with the AGEPoly. This online platform is complementary to two other EPFL platform regarding jobs (<a href="http://myjob.epfl.ch">http://myjob.epfl.ch</a>) and accommodation (<a href="http://logement.epfl.ch/housing">http://logement.epfl.ch/housing</a>).{% endblocktrans %}</p>
+
+    <p>{% trans "By using this EPFL online ads platform, the user agrees and accepts the rules and terms of the EPFL and AGEPoly." %}</p>
+
+    <p>
+        {% trans "The basic rules for the use of this platform are the following:" %}
+        <ul>
+            <li>{% trans "Each advert must be inserted in only one occurrence, under the adequate category on the platform. The content of the advert must relate to its title;" %}</li>
+            <li>{% trans "It is forbidden to offer products that, in any way, violate the legal prescriptions, break good moral standards, or harm the EPFL interests or its students." %}</li>
+        </ul>
+    </p>
+
+    <p>{% trans "The EPFL and AGEPoly reserve the right, at any moment, at their sole discretion and without having to justify it to the user, to reject adverts." %}</p>
+
+    <p>{% trans "The EPFL and AGEPoly decline any responsibility regarding the adverts and following exchanges." %}</p>
+
+    <p class="pull-right">{% trans "Lausanne, February 2015" %}<br /> {% trans "Version" %} 1.0</p>
+
+    <br /><br />
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+</div>

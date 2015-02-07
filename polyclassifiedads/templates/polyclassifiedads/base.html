@@ -137,17 +137,14 @@
               {% block content %}
               {% endblock %}
 
-
                 <hr />
-
             </div>
-
 
             <div class="footer">
 
-                <div class="pull-left">
-                    <a href="{% if not user.pk %}javascript:alert('{% trans "Please login first !" %}');{% else %}mailto:{% polyclassifiedads_abuseemail %}{% endif %}">{% trans "Report an abuse" %}</a>
-
+                <div class="pull-left" style="text-align: left;">
+                    <a href="{% if not user.pk %}javascript:alert('{% trans "Please login first !" %}');{% else %}mailto:{% polyclassifiedads_abuseemail %}{% endif %}">{% trans "Report an abuse" %}</a><br />
+                    <a href="{% url 'polyclassifiedads.views.cg' %}" data-toggle="modal" id="cg-link" data-target="#modal-cg">{% trans "General conditions" %}</a>
                 </div>
 
 
@@ -155,6 +152,13 @@
                 <br />
                 Using <a href="https://www.djangoproject.com/" target="_blank">Django</a> with <a href="http://djangopony.com/" target="_blank">ponies and magic</a> and <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>.
 
+            </div>
+
+            <div class="modal fade" id="modal-cg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    </div>
+                </div>
             </div>
 
           </div>

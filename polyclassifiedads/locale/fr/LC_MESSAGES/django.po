@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-30 19:35+0100\n"
-"PO-Revision-Date: 2015-02-07 13:21+0100\n"
+"POT-Creation-Date: 2015-02-07 14:02+0100\n"
+"PO-Revision-Date: 2015-02-07 14:05+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -191,7 +191,7 @@ msgid "Misc"
 msgstr "Divers"
 
 #: models.py:67 templates/polyclassifiedads/show.html:90
-#: templates/polyclassifiedads/validate.html:37
+#: templates/polyclassifiedads/validate.html:77
 msgid "Category"
 msgstr "Catégorie"
 
@@ -344,7 +344,7 @@ msgstr "Notifications"
 #: templates/polyclassifiedads/contact.html:5
 #: templates/polyclassifiedads/contact.html:9
 #: templates/polyclassifiedads/show.html:74
-#: templates/polyclassifiedads/validate.html:22
+#: templates/polyclassifiedads/validate.html:60
 msgid "Contact"
 msgstr "Contact"
 
@@ -356,15 +356,19 @@ msgstr "Annonces à valider"
 msgid "External users"
 msgstr "Utilisateurs externes"
 
-#: templates/polyclassifiedads/base.html:149
+#: templates/polyclassifiedads/base.html:146
 msgid "Please login first !"
 msgstr "Merci de vous connecter !"
 
-#: templates/polyclassifiedads/base.html:149
+#: templates/polyclassifiedads/base.html:146
 msgid "Report an abuse"
 msgstr "Signaler un abus"
 
-#: templates/polyclassifiedads/base.html:154
+#: templates/polyclassifiedads/base.html:147
+msgid "General conditions"
+msgstr "Conditions générales"
+
+#: templates/polyclassifiedads/base.html:151
 msgid "Fork me on Github!"
 msgstr "Forquez-moi sur Github !"
 
@@ -394,12 +398,13 @@ msgstr "Texte"
 
 #: templates/polyclassifiedads/browse.html:34
 #: templates/polyclassifiedads/show.html:35
+#: templates/polyclassifiedads/validate.html:22
 msgid "Price"
 msgstr "Prix"
 
 #: templates/polyclassifiedads/browse.html:35
 #: templates/polyclassifiedads/show.html:95
-#: templates/polyclassifiedads/validate.html:41
+#: templates/polyclassifiedads/validate.html:81
 #: templates/polyclassifiedads/emails/ad_to_revalidate.html:305
 #: templates/polyclassifiedads/emails/ad_to_revalidate.txt:28
 #: templates/polyclassifiedads/emails/new_ad_to_validate.html:306
@@ -421,7 +426,7 @@ msgstr "Par"
 #: templates/polyclassifiedads/browse.html:81
 #: templates/polyclassifiedads/show.html:87
 #: templates/polyclassifiedads/unvalidated.html:27
-#: templates/polyclassifiedads/validate.html:34
+#: templates/polyclassifiedads/validate.html:74
 msgid "Anonymous"
 msgstr "Anonyme"
 
@@ -470,6 +475,89 @@ msgstr "Effacer le filtre"
 msgid "Submit an ad"
 msgstr "Proposer une annonce"
 
+#: templates/polyclassifiedads/cg.html:5
+msgid "General conditions for the EPFL online platform of classified ads"
+msgstr "Conditions générales de la plateforme de petites annonces EPFL"
+
+#: templates/polyclassifiedads/cg.html:9
+msgid ""
+"The EPFL platform of classified ads is a free online service for the EPFL "
+"community members (ie. all people affiliated to EPFL having a Gaspar "
+"account), offered by the EPFL in collaboration with the AGEPoly. This online "
+"platform is complementary to two other EPFL platform regarding jobs (<a href="
+"\"http://myjob.epfl.ch\">http://myjob.epfl.ch</a>) and accommodation (<a "
+"href=\"http://logement.epfl.ch/housing\">http://logement.epfl.ch/housing</"
+"a>)."
+msgstr ""
+"La plateforme de petites annonces EPFL est un service gratuit d’annonces en "
+"ligne à l’usage des membres de la communauté EPFL (à savoir toutes les "
+"personnes affiliées à l’EPFL ayant un compte Gaspar), proposé par l’EPFL en "
+"collaboration avec l’AGEPoly. Cette plateforme est complémentaire aux "
+"plateformes de petites annonces EPFL concernant l’emploi (<a href=\"http://"
+"myjob.epfl.ch\">http://myjob.epfl.ch</a>) et le logement étudiant (<a href="
+"\"http://logement.epfl.ch/\">http://logement.epfl.ch</a>)."
+
+#: templates/polyclassifiedads/cg.html:11
+msgid ""
+"By using this EPFL online ads platform, the user agrees and accepts the "
+"rules and terms of the EPFL and AGEPoly."
+msgstr ""
+"En utilisant la plateforme de petites annonces EPFL, l’utilisateur accepte "
+"les règles et les termes fixés à cet effet par l’EPFL et l’AGEPoly."
+
+#: templates/polyclassifiedads/cg.html:14
+msgid "The basic rules for the use of this platform are the following:"
+msgstr ""
+"Les règles de base pour l’utilisation de la plateforme sont les suivantes :"
+
+#: templates/polyclassifiedads/cg.html:16
+msgid ""
+"Each advert must be inserted in only one occurrence, under the adequate "
+"category on the platform. The content of the advert must relate to its title;"
+msgstr ""
+"l’annonce doit être insérée, en une seule occurrence, sous la rubrique "
+"adéquate de la plateforme. Le contenu de l’annonce doit se rapporter à son "
+"intitulé ;"
+
+#: templates/polyclassifiedads/cg.html:17
+msgid ""
+"It is forbidden to offer products that, in any way, violate the legal "
+"prescriptions, break good moral standards, or harm the EPFL interests or its "
+"students."
+msgstr ""
+"il est interdit de proposer des produits qui, de quelque manière que ce "
+"soit, violent les prescriptions légales, contreviennent aux bonnes moeurs ou "
+"porte atteinte aux intérêts de l’EPFL ou de ses étudiants."
+
+#: templates/polyclassifiedads/cg.html:21
+msgid ""
+"The EPFL and AGEPoly reserve the right, at any moment, at their sole "
+"discretion and without having to justify it to the user, to reject adverts."
+msgstr ""
+"L’EPFL et l’AGEPoly se réservent, en tout temps, selon leur propre "
+"appréciation et sans avoir à s’en justifier auprès de l’utilisateur, le "
+"droit de supprimer certaines annonces."
+
+#: templates/polyclassifiedads/cg.html:23
+msgid ""
+"The EPFL and AGEPoly decline any responsibility regarding the adverts and "
+"following exchanges."
+msgstr ""
+"L’EPFL et l’AGEPoly déclinent toute responsabilité concernant les annonces "
+"et les échanges qui s’en suivront."
+
+#: templates/polyclassifiedads/cg.html:25
+msgid "Lausanne, February 2015"
+msgstr "Lausanne, février 2015"
+
+#: templates/polyclassifiedads/cg.html:25
+msgid "Version"
+msgstr "Version"
+
+#: templates/polyclassifiedads/cg.html:32
+msgid "Close"
+msgstr "Fermer"
+
 #: templates/polyclassifiedads/contact.html:11
 msgid ""
 "\n"
@@ -481,13 +569,13 @@ msgstr ""
 
 #: templates/polyclassifiedads/contact.html:20
 #: templates/polyclassifiedads/show.html:79
-#: templates/polyclassifiedads/validate.html:27
+#: templates/polyclassifiedads/validate.html:65
 msgid "Phone"
 msgstr "Téléphone"
 
 #: templates/polyclassifiedads/contact.html:23
 #: templates/polyclassifiedads/show.html:76
-#: templates/polyclassifiedads/validate.html:24
+#: templates/polyclassifiedads/validate.html:62
 msgid "Email"
 msgstr "Email"
 
@@ -714,29 +802,30 @@ msgstr ""
 "votre annonce !"
 
 #: templates/polyclassifiedads/show.html:39
+#: templates/polyclassifiedads/validate.html:26
 #: templates/polyclassifiedads/myads/edit.html:36
 msgid "Photos"
 msgstr "Photos"
 
 #: templates/polyclassifiedads/show.html:86
 #: templates/polyclassifiedads/unvalidated.html:16
-#: templates/polyclassifiedads/validate.html:33
+#: templates/polyclassifiedads/validate.html:73
 msgid "Author"
 msgstr "Auteur"
 
 #: templates/polyclassifiedads/show.html:88
-#: templates/polyclassifiedads/validate.html:35
+#: templates/polyclassifiedads/validate.html:75
 msgid "Last modification"
 msgstr "Dernière modification"
 
 #: templates/polyclassifiedads/show.html:92
-#: templates/polyclassifiedads/validate.html:39
+#: templates/polyclassifiedads/validate.html:79
 msgid "Type"
 msgstr "Type"
 
 #: templates/polyclassifiedads/show.html:99
 #: templates/polyclassifiedads/unvalidated.html:17
-#: templates/polyclassifiedads/validate.html:43
+#: templates/polyclassifiedads/validate.html:83
 #: templates/polyclassifiedads/emails/ad_to_revalidate.html:289
 #: templates/polyclassifiedads/emails/ad_to_revalidate.txt:22
 #: templates/polyclassifiedads/emails/new_ad_to_validate.html:290
@@ -747,7 +836,7 @@ msgstr "Date de mise en ligne"
 
 #: templates/polyclassifiedads/show.html:101
 #: templates/polyclassifiedads/unvalidated.html:18
-#: templates/polyclassifiedads/validate.html:45
+#: templates/polyclassifiedads/validate.html:85
 #: templates/polyclassifiedads/emails/ad_to_revalidate.html:297
 #: templates/polyclassifiedads/emails/ad_to_revalidate.txt:25
 #: templates/polyclassifiedads/emails/new_ad_to_validate.html:298
@@ -806,12 +895,12 @@ msgstr ""
 "\t"
 
 #: templates/polyclassifiedads/unvalidate.html:21
-#: templates/polyclassifiedads/validate.html:54
+#: templates/polyclassifiedads/validate.html:95
 msgid "No"
 msgstr "Non"
 
 #: templates/polyclassifiedads/unvalidate.html:22
-#: templates/polyclassifiedads/validate.html:55
+#: templates/polyclassifiedads/validate.html:96
 #: templates/polyclassifiedads/myads/delete.html:25
 #: templates/polyclassifiedads/myads/put_offline.html:23
 msgid "Yes"
@@ -822,12 +911,12 @@ msgstr "Oui"
 msgid "Unvalidated ads"
 msgstr "Annonces à valider"
 
-#: templates/polyclassifiedads/validate.html:5
-#: templates/polyclassifiedads/validate.html:9
+#: templates/polyclassifiedads/validate.html:6
+#: templates/polyclassifiedads/validate.html:10
 msgid "Validate ad"
 msgstr "Valider l'annonce"
 
-#: templates/polyclassifiedads/validate.html:12
+#: templates/polyclassifiedads/validate.html:13
 #, python-format
 msgid ""
 "\n"
@@ -838,7 +927,7 @@ msgstr ""
 "\tÊtes vous sur de vouloir valider l'annonce \"%(t)s\" ?<br /><br />\n"
 "\t"
 
-#: templates/polyclassifiedads/validate.html:31
+#: templates/polyclassifiedads/validate.html:71
 msgid "Metadata"
 msgstr "Métadonnées"
 
@@ -1164,59 +1253,69 @@ msgstr ""
 "Attention ! Cette annonce a déjà été validée par notre staff. Si vous la "
 "sauvegardez, l'annonce sera mise hors ligne en attente d'une revalidation !"
 
-#: templates/polyclassifiedads/myads/edit.html:59
+#: templates/polyclassifiedads/myads/edit.html:49
+msgid ""
+"By saving the ad, you acknowledge that you have read, understood and "
+"accepted <a href=\"#\" onclick=\"$('#cg-link').click(); return false;"
+"\">general conditions</a>"
+msgstr ""
+"En sauvegardant l'annonce, vous confirmez que vous avez lu, compris et "
+"accepté les <a href=\"#\" onclick=\"$('#cg-link').click(); return false;"
+"\">conditions générales</a>"
+
+#: templates/polyclassifiedads/myads/edit.html:61
 msgid "Markdown quick reference"
 msgstr "Référence rapide pour le markdown"
 
-#: templates/polyclassifiedads/myads/edit.html:62
+#: templates/polyclassifiedads/myads/edit.html:64
 msgid "Formating"
 msgstr "Formatage"
 
-#: templates/polyclassifiedads/myads/edit.html:64
-#: templates/polyclassifiedads/myads/edit.html:65
+#: templates/polyclassifiedads/myads/edit.html:66
+#: templates/polyclassifiedads/myads/edit.html:67
 msgid "Bold text"
 msgstr "Texte en gras"
 
-#: templates/polyclassifiedads/myads/edit.html:68
-#: templates/polyclassifiedads/myads/edit.html:69
+#: templates/polyclassifiedads/myads/edit.html:70
+#: templates/polyclassifiedads/myads/edit.html:71
 msgid "Italics text"
 msgstr "Texte en italics"
 
-#: templates/polyclassifiedads/myads/edit.html:72
 #: templates/polyclassifiedads/myads/edit.html:74
+#: templates/polyclassifiedads/myads/edit.html:76
 msgid "Header 1"
 msgstr "Titre 1"
 
-#: templates/polyclassifiedads/myads/edit.html:73
-#: templates/polyclassifiedads/myads/edit.html:74
+#: templates/polyclassifiedads/myads/edit.html:75
+#: templates/polyclassifiedads/myads/edit.html:76
 msgid "Header 2"
 msgstr "Titre 2"
 
-#: templates/polyclassifiedads/myads/edit.html:78
-#: templates/polyclassifiedads/myads/edit.html:97
+#: templates/polyclassifiedads/myads/edit.html:80
+#: templates/polyclassifiedads/myads/edit.html:99
 msgid "Links"
 msgstr "Liens"
 
-#: templates/polyclassifiedads/myads/edit.html:80
-#: templates/polyclassifiedads/myads/edit.html:81
+#: templates/polyclassifiedads/myads/edit.html:82
+#: templates/polyclassifiedads/myads/edit.html:83
 msgid "Text of the link"
 msgstr "Texte du lien"
 
-#: templates/polyclassifiedads/myads/edit.html:84
+#: templates/polyclassifiedads/myads/edit.html:86
 msgid "Lists"
 msgstr "Listes"
 
-#: templates/polyclassifiedads/myads/edit.html:86
-#: templates/polyclassifiedads/myads/edit.html:87
 #: templates/polyclassifiedads/myads/edit.html:88
 #: templates/polyclassifiedads/myads/edit.html:89
-#: templates/polyclassifiedads/myads/edit.html:92
-#: templates/polyclassifiedads/myads/edit.html:93
+#: templates/polyclassifiedads/myads/edit.html:90
+#: templates/polyclassifiedads/myads/edit.html:91
 #: templates/polyclassifiedads/myads/edit.html:94
+#: templates/polyclassifiedads/myads/edit.html:95
+#: templates/polyclassifiedads/myads/edit.html:96
 msgid "Item"
 msgstr "Entrée"
 
-#: templates/polyclassifiedads/myads/edit.html:128
+#: templates/polyclassifiedads/myads/edit.html:130
 msgid "Quick reference"
 msgstr "Référence rapide"
 
