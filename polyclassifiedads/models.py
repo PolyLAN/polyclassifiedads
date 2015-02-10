@@ -24,7 +24,7 @@ class Ad(models.Model):
 
     price = models.IntegerField(_('Price (CHF)'), blank=True, null=True, help_text=_('Optionnal price for your item'))
 
-    online_date = models.DateField(blank=True, null=True, help_text=_('Starting date to display the ad. Leave empty to start as soon as the ad is validataed.'))
+    online_date = models.DateField(blank=True, null=True, help_text=_('Starting date to display the ad. Leave empty to start as soon as the ad is validated.'))
     offline_date = models.DateField(blank=True, null=True, help_text=_('Ending date to display the ad. Maximum 30 days from today.'))
 
     contact_email = models.EmailField(_('Contact\'s email'))

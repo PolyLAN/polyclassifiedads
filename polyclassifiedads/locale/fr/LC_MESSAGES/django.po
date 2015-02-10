@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PolyBookExchange\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-07 14:02+0100\n"
-"PO-Revision-Date: 2015-02-07 14:05+0100\n"
+"POT-Creation-Date: 2015-02-10 19:52+0100\n"
+"PO-Revision-Date: 2015-02-10 19:52+0100\n"
 "Last-Translator: Maximilien Cuony <theglu@theglu.org>\n"
 "Language-Team: Maximilien Cuony <theglu@theglu.org>\n"
 "Language: fr\n"
@@ -23,17 +23,17 @@ msgstr ""
 msgid "Latest AGEPoly's classified ads"
 msgstr "Dernières petites annonces de l'AGEPoly"
 
-#: forms.py:23
+#: forms.py:26
 msgid "Offline date is too far in the futur: Maximum 30 days !"
 msgstr ""
 "La date de mise hors ligne est trop loin dans le futur: Maximum 30 jours !"
 
-#: forms.py:31
+#: forms.py:34
 msgid "You must set an contact phone as you're not logged in !"
 msgstr ""
 "Vous devez définir un téléphone de contact car vous n'êtes pas connecté !"
 
-#: forms.py:37
+#: forms.py:40
 msgid "Please copy the following code:"
 msgstr "Merci de recopier le code suivant:"
 
@@ -56,7 +56,7 @@ msgstr "Prix (optionnel) pour votre annonce"
 #: models.py:27
 msgid ""
 "Starting date to display the ad. Leave empty to start as soon as the ad is "
-"validataed."
+"validated."
 msgstr ""
 "Date du début pour afficher l'annonce. Laissez vide pour commencer dès que "
 "l'annonce est validée."

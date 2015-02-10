@@ -184,7 +184,7 @@
     });
 
 
-  $('#id_category, #id_type').select2({
+    $('#id_category, #id_type').select2({
         allowClear: true,
         sortResults: function(results, container, query) {
             return results.sort(function(a, b) {
@@ -207,7 +207,6 @@
                 return a.text > b.text;
             });
         }
-    
     });
 
 

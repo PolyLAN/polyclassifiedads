@@ -15,6 +15,9 @@ class AdForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(AdForm, self).__init__(*args, **kwargs)
 
+        self.fields['offline_date'].input_formats = [self.fields['offline_date'].widget.format]
+        self.fields['online_date'].input_formats = [self.fields['online_date'].widget.format]
+
     def clean_offline_date(self):
 
         data = self.cleaned_data['offline_date']
