@@ -134,7 +134,7 @@
             </div>
             <select class="form-control" id="cat-select" name="cat" data-placeholder="{% trans "Filter by category" %}" style="margin-top: 4px;">
                 {# <option value='' disabled selected style='display:none;'>{% trans "Select a category" %}</option> #}
-                <option>&nbsp;</option>
+                <option value="">;</option>
                 {% for cid, ctext in CATEGORY_CHOICES %}
                     <option value="{{cid}}" {% if cid == cat %}selected{% endif %}>{{ctext}}</a>
                 {% endfor %}
@@ -142,7 +142,7 @@
 
             <select class="form-control" id="typ-select" name="typ" data-placeholder="{% trans "Filter by type" %}" style="margin-top: 4px;">
                 {# <option value='' disabled selected style='display:none;'>{% trans "Select a type" %}</option> #}
-                <option>&nbsp;</option>
+                <option value="">&nbsp;</option>
                 {% for cid, ctext in TYPE_CHOICES %}
                     <option value="{{cid}}" {% if cid == typ %}selected{% endif %}>{{ctext}}</a>
                 {% endfor %}
