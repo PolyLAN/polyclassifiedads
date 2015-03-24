@@ -140,13 +140,13 @@ def _edit(request, id, Form, secret_key=None):
                     tag, __ = AdTag.objects.get_or_create(tag=t.strip())
                     object.tags.add(tag)
 
-            for file_pk in request.session['pca_files_%s' % (file_key,)]:
+            for file_pk in request.session.get('pca_files_%s' % (file_key,), []):
                 photo = AdPhoto.objects.get(pk=file_pk)
                 photo.ad = object
                 photo.save()
 
             for photo in object.adphoto_set.all():
-                if photo.pk not in request.session['pca_files_%s' % (file_key,)]:
+                if photo.pk not in request.session.get('pca_files_%s' % (file_key,), []):
                     os.unlink(photo.file.path)
                     photo.delete()
 
