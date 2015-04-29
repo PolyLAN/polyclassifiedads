@@ -1,6 +1,6 @@
 from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, string_concat
 
 import datetime
 
@@ -21,7 +21,12 @@ class LatestAdFeed(Feed):
         return ad.title
 
     def item_description(self, ad):
-        return ad.content_formated()
+        text = ad.content_formated()
+
+        if ad.price:
+            text = string_concat(text, "<br /><b>", _('Price'), "</b>: ", ad.price,)
+
+        return text
 
     def item_link(self, ad):
         return reverse('polyclassifiedads.views.show', args=(ad.pk,))
