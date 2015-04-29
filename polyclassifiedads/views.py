@@ -312,6 +312,9 @@ def validate(request, id):
         if not ad.online_date:
             ad.online_date = datetime.date.today()
 
+        if not ad.offline_date:
+            ad.offline_date = datetime.date.today() + datetime.timedelta(days=30)
+
         ad.save()
 
         send_templated_mail(_('AGEPoly\'s classified ads: Your ad \'%s\' has been validated !') % (ad.title,), settings.POLYCLASSIFIEDADS_EMAIL_FROM, [ad.author.email if ad.author else ad.contact_email], 'ad_validated', {'ad': ad, 'site': get_current_site(request)})
