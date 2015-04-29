@@ -27,7 +27,7 @@ class LatestAdFeed(Feed):
         return reverse('polyclassifiedads.views.show', args=(ad.pk,))
 
     def item_author_name(self, ad):
-        return ad.author.get_full_name() if ad.author else 'Anonymous'
+        return ad.author.get_full_name() if ad.author else _('Anonymous')
 
     def item_author_email(self, ad):
         return ad.contact_email
